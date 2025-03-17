@@ -1,5 +1,8 @@
 import React from "react";
 import { useTranslation } from "react-i18next";
+import { NavLink } from "react-router";
+import logo from "../../assets/Footer/Logo3.png";
+import istad from "../../assets/Footer/istad.webp";
 
 export default function Footer() {
   const { t } = useTranslation();
@@ -9,13 +12,13 @@ export default function Footer() {
       <div className="mx-auto w-full max-w-screen-xl p-4 py-6 lg:py-8">
         <div className="md:flex md:justify-between">
           <div className="mb-6 md:mb-0">
-            <a href="https://flowbite.com/" className="flex items-center">
+            <NavLink to="/" className="flex items-center">
               <img
-                src="src/assets/Footer/Logo3.png"
+                src={logo}
                 className="h-8 me-3"
                 alt="JobSeek Logo"
               />
-            </a>
+            </NavLink>
             <h2 className="dark:text-white mt-15">
               {t('footer.createdBy')}
             </h2>
@@ -83,15 +86,7 @@ export default function Footer() {
                 <li className="h-[100px] w-[200px]">
                   <a href="#" className="hover:underline">
                     <img
-                      src="src/assets/Footer/ministry.png"
-                      alt={t('footer.ministryLogo')}
-                    />
-                  </a>
-                </li>
-                <li className="h-[100px] w-[200px]">
-                  <a href="#" className="hover:underline">
-                    <img
-                      src="src/assets/Footer/istad.webp"
+                      src={istad}
                       alt={t('footer.istadLogo')}
                     />
                   </a>

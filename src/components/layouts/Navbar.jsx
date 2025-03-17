@@ -9,6 +9,9 @@ import Button from "../button/Button";
 import { useGetMeQuery } from "../../feature/auth/authSlide";
 import toast from "react-hot-toast";
 import logo from "../../assets/images/Logo3.png";
+import khImage from "../../assets/images/Cambodia.png";
+import enImage from "../../assets/images/England.png";
+
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -180,13 +183,13 @@ export default function Navbar() {
           </NavLink>
           <img
             onClick={() => changeLanguage("en")}
-            src="src/assets/images/England.png"
+            src={enImage}
             alt="English"
             className="w-[40px] h-[20px] cursor-pointer"
           />
           <img
             onClick={() => changeLanguage("km")}
-            src="src/assets/images/Cambodia.png"
+            src={khImage}
             alt="Khmer"
             className="w-[40px] h-[20px] cursor-pointer"
           />
