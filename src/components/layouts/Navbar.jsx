@@ -8,6 +8,7 @@ import "../../i18n";
 import Button from "../button/Button";
 import { useGetMeQuery } from "../../feature/auth/authSlide";
 import toast from "react-hot-toast";
+import logo from "../../assets/images/Logo3.png";
 
 export default function Navbar() {
   const { t, i18n } = useTranslation();
@@ -64,7 +65,7 @@ export default function Navbar() {
         {/* Logo */}
         <NavLink to="/" className="flex items-center space-x-3">
           <img
-            src="../../assets/images/Logo3.png"
+            src={logo}
             className="md:h-8 h-4"
             alt="JobSeek Logo"
           />
