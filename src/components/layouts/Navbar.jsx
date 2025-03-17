@@ -64,7 +64,7 @@ export default function Navbar() {
         {/* Logo */}
         <NavLink to="/" className="flex items-center space-x-3">
           <img
-            src="src/assets/images/Logo3.png"
+            src="../../assets/images/Logo3.png"
             className="md:h-8 h-4"
             alt="JobSeek Logo"
           />
