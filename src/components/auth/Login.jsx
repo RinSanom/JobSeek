@@ -7,8 +7,11 @@ import { useLoginMutation } from "../../feature/auth/authSlide";
 import Ta1 from "../../assets/Ta_Images/LoginJoinUs.png";
 import Ta2 from "../../assets/Ta_Images/Logo.png";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next"; // Added for i18n
+import "../../i18n"; // Ensure i18n is imported
 
 const LoginPage = () => {
+  const { t } = useTranslation(); // Hook for translations
   const [passwordVisible, setPasswordVisible] = useState(false);
   const navigate = useNavigate();
   const [login, { isLoading, error }] = useLoginMutation();
@@ -16,8 +19,8 @@ const LoginPage = () => {
   const togglePasswordVisibility = () => setPasswordVisible(!passwordVisible);
 
   const validationSchema = Yup.object({
-    email: Yup.string().required("Email or username is required"),
-    password: Yup.string().required("Password is required"),
+    email: Yup.string().required(t("emailOrUsernameRequired")),
+    password: Yup.string().required(t("passwordRequired")),
   });
 
   const formik = useFormik({
@@ -38,7 +41,7 @@ const LoginPage = () => {
             localStorage.setItem("refreshToken", response.refreshToken);
           }
 
-          toast.success("Login successful! Welcome back!", {
+          toast.success(t("loginSuccess"), {
             position: "bottom-right",
           });
 
@@ -56,13 +59,11 @@ const LoginPage = () => {
             navigate("/");
           }
         } else {
-          toast.error("Login successful, but no token received.");
+          toast.error(t("noTokenReceived"));
         }
       } catch (err) {
         console.error("Login error:", err);
-        toast.error(
-          err.data?.message || "Invalid credentials. Please try again."
-        );
+        toast.error(err.data?.message || t("invalidCredentials"));
       }
     },
   });
@@ -73,12 +74,12 @@ const LoginPage = () => {
       <div className="hidden md:flex w-full md:w-1/2 bg-gradient-to-br from-blue-900 to-blue-700 text-white items-center justify-center p-4 sm:p-6 md:p-8">
         <div className="text-center">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2">
-            Welcome to
+            {t("welcomeTo")}
           </h1>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold">JobSeek</h1>
           <img
             src={Ta1}
-            alt="Welcome Graphic"
+            alt={t("welcomeGraphic")}
             className="mt-6 sm:mt-8 md:mt-10 w-full sm:w-3/4 max-w-xs sm:max-w-sm md:max-w-md mx-auto"
           />
         </div>
@@ -88,16 +89,16 @@ const LoginPage = () => {
       <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8">
         <div className="w-full max-w-md space-y-6 sm:space-y-8">
           <div className="flex items-center gap-3">
-            <img src={Ta2} alt="Logo" className="w-10 h-10 sm:w-12 sm:h-12" />
+            <img src={Ta2} alt={t("logoAlt")} className="w-10 h-10 sm:w-12 sm:h-12" />
             <h1 className="text-2xl sm:text-3xl font-bold text-blue-900 dark:text-blue-300">JobSeek</h1>
           </div>
 
           <div>
             <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
-              Welcome Back
+              {t("welcomeBack")}
             </h2>
             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">
-              Log in to your account
+              {t("loginPrompt")}
             </p>
           </div>
 
@@ -105,7 +106,7 @@ const LoginPage = () => {
             {/* Email/Username */}
             <div>
               <input
-                placeholder="Enter your email"
+                placeholder={t("emailPlaceholder")}
                 id="email"
                 name="email"
                 type="text"
@@ -132,7 +133,7 @@ const LoginPage = () => {
                   onBlur={formik.handleBlur}
                   value={formik.values.password}
                   className="w-full px-3 py-2 sm:px-4 sm:py-3 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
-                  placeholder="Enter your password"
+                  placeholder={t("passwordPlaceholder")}
                 />
                 <button
                   type="button"
@@ -156,7 +157,7 @@ const LoginPage = () => {
                   className="text-xs sm:text-sm text-blue-900 dark:text-blue-300 hover:underline cursor-pointer"
                   onClick={() => navigate("/forgot-password")}
                 >
-                  Forgot password?
+                  {t("forgotPassword")}
                 </span>
               </div>
             </div>
@@ -164,7 +165,7 @@ const LoginPage = () => {
             {/* Error Message */}
             {error && (
               <p className="text-red-500 dark:text-red-400 text-xs sm:text-sm text-center">
-                {error?.data?.message || "Invalid credentials. Please try again."}
+                {error?.data?.message || t("invalidCredentials")}
               </p>
             )}
 
@@ -174,17 +175,17 @@ const LoginPage = () => {
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? "Logging in..." : "Log in"}
+              {isLoading ? t("loggingIn") : t("login")}
             </button>
           </form>
 
           <p className="text-center text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-            Don't have an account?{" "}
+            {t("noAccount")}{" "}
             <span
               className="text-blue-900 dark:text-blue-300 hover:underline cursor-pointer font-medium"
               onClick={() => navigate("/register-freelancer")}
             >
-              Sign up
+              {t("signUp")}
             </span>
           </p>
         </div>
