@@ -1,18 +1,19 @@
-import React from "react";
+import React, { useState } from "react";
 import { IoMdTime } from "react-icons/io";
+import { FaBookmark, FaRegBookmark } from "react-icons/fa"; // Import both filled and outline bookmark icons
 import { useGetAllServicesQuery } from "../../../feature/service/serviceSlde";
 import { NavLink } from "react-router-dom";
 import dataMuck from "../../../data/mockData";
 import { MdError } from "react-icons/md";
 import { useCreateBookmarkMutation } from "../../../feature/bookmark/bookmarkSlide";
-import { toast } from "react-toastify"; // Import toast
+import { toast } from "react-toastify";
+import { motion } from "framer-motion"; // For animations
 
 export default function CardServices({ page }) {
   const { data, isLoading, isError } = useGetAllServicesQuery(page);
   const [createBookmark, { isLoading: isBookmarking }] =
     useCreateBookmarkMutation();
-
-  console.log("Freelancer service: ", data);
+  const [bookmarkedServices, setBookmarkedServices] = useState(new Set()); // Track bookmarked services
 
   if (isLoading)
     return (
@@ -42,44 +43,58 @@ export default function CardServices({ page }) {
   }
 
   const services = data?.content || [];
-
-  // Remove duplicates based on service ID
   const uniqueServices = services.filter(
     (value, index, self) => index === self.findIndex((t) => t.id === value.id)
   );
 
-  // Handle adding a service to favorites
   const handleAddToFavorite = async (serviceId) => {
     try {
       const response = await createBookmark(serviceId).unwrap();
-      toast.success(response.message); // Show success toast
+      toast.success(response.message);
+
+      // Toggle bookmark state
+      setBookmarkedServices((prev) => {
+        const newSet = new Set(prev);
+        if (newSet.has(serviceId)) {
+          newSet.delete(serviceId); // Remove if already bookmarked
+        } else {
+          newSet.add(serviceId); // Add if not bookmarked
+        }
+        return newSet;
+      });
     } catch (error) {
-      toast.error("Failed to add service to favorites"); // Show error toast
+      toast.error("Failed to add service to favorites");
       console.error("Failed to add service to favorites:", error);
     }
   };
 
   return (
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 p-6">
       {uniqueServices.map((service) => (
         <div
           key={service.id}
-          className="rounded-lg bg-white dark:bg-black p-4 shadow-lg">
+          className="rounded-sm bg-white dark:bg-gray-800 p-4 border border-gray-200 dark:border-gray-700 shadow-sm dark:shadow-lg">
           <NavLink to={`/freelancer-page/${service.id}`}>
             <div>
-              <img
-                src={
-                  service.jobImages.length > 0
-                    ? service.jobImages[0] || dataMuck.imageUrl
-                    : "https://i.pinimg.com/originals/4f/7e/ab/4f7eab8b98913e658391c54b57980e68.gif"
-                }
-                className="mb-4 object-cover aspect-video w-full rounded-lg bg-gray-200 dark:bg-gray-700"
-                alt="service banner"
-              />
+              {/* Image with Hover Effect */}
+              <motion.div
+                whileHover={{ scale: 1.05 }} // Hover effect only on the image
+                transition={{ duration: 0.3 }}
+                className="overflow-hidden rounded-lg">
+                <img
+                  src={
+                    service.jobImages.length > 0
+                      ? service.jobImages[0] || dataMuck.imageUrl
+                      : "https://i.pinimg.com/originals/4f/7e/ab/4f7eab8b98913e658391c54b57980e68.gif"
+                  }
+                  className="mb-4 object-cover aspect-video w-full rounded-lg bg-gray-200 dark:bg-gray-700"
+                  alt="service banner"
+                />
+              </motion.div>
 
               {/* Service Description */}
               <div className="mb-4">
-                <h3 className="text-lg font-semibold text-black dark:text-white">
+                <h3 className="text-lg font-semibold text-black dark:text-white line-clamp-1">
                   {service.title}
                 </h3>
                 <p className="mt-2 text-sm text-gray-600 dark:text-gray-300 line-clamp-2">
@@ -88,24 +103,27 @@ export default function CardServices({ page }) {
               </div>
 
               {/* Service Creation Date */}
-              <div className="flex items-center justify-between">
-                <div className="flex items-center gap-2">
-                  <IoMdTime className="text-gray-500 dark:text-gray-400" />
-                  <span className="text-sm text-gray-500 dark:text-gray-400">
-                    {new Date(service.createdAt).toLocaleDateString()}
-                  </span>
-                </div>
-              </div>
             </div>
           </NavLink>
-
-          {/* Add to Favorite Button */}
-          <div className="flex justify-end gap-2 mt-4">
+          <div className="flex justify-between items-center mt-4">
+            <div className="flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <IoMdTime className="text-gray-500 dark:text-gray-400" />
+                <span className="text-sm text-gray-500 dark:text-gray-400">
+                  {new Date(service.createdAt).toLocaleDateString()}
+                </span>
+              </div>
+            </div>
             <button
               onClick={() => handleAddToFavorite(service.id)}
               disabled={isBookmarking}
-              className="rounded-md bg-blue-900 px-4 py-2 text-sm font-medium text-white hover:bg-blue-800 disabled:opacity-50 disabled:cursor-not-allowed">
-              {isBookmarking ? "Adding..." : "Add To Favorite"}
+              className="p-2 rounded-full hover:bg-gray-200 dark:hover:bg-gray-700 transition-colors duration-300"
+              aria-label="Add to favorites">
+              {bookmarkedServices.has(service.id) ? (
+                <FaBookmark className="w-5 h-5 text-blue-600 hover:text-blue-700" /> // Filled icon
+              ) : (
+                <FaRegBookmark className="w-5 h-5 text-blue-600 hover:text-blue-700" /> // Outline icon
+              )}
             </button>
           </div>
         </div>

@@ -1,11 +1,10 @@
-"use client"
-
 import { useState } from "react"
 import ScrollIndicator from "../components/scrollIndicator/scrollIndicator"
 // import { CheckIcon, ChevronDownIcon } from "./icons"; // Optional - see note below
-
+import { useEditeProfileFreelancerMutatio } from "../../feature/editProfile/editeProfileSlide"
 export default function FreelancerEditProfile() {
-  const [formData, setFormData] = useState({
+  const  { dat } = useEditeProfileFreelancerMutatio();
+   const [formData, setFormData] = useState({
     firstName: "Mehrab",
     lastName: "Bozorgi",
     email: "Mehrabozorgi.business@gmail.com",

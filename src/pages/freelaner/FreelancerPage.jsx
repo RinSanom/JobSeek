@@ -18,10 +18,9 @@ export default function FreelancerPage() {
     <>
       <ScrollIndicator />
       <main className="max-w-screen-xl mx-auto p-4">
-        {/* Carousel Section */}
-        <section className="mb-10">
+        {/* <section className="mb-10">
           <CustomCarousel />
-        </section>
+        </section> */}
 
         {/* Existing Title Section */}
         <section className="border-b-2 py-1">

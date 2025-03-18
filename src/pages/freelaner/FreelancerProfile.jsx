@@ -345,7 +345,7 @@ const FreelancerProfile = () => {
                       No services added yet. Start by adding a new service.
                     </p>
                     <Link
-                      to="/add-service"
+                      to="/create-service"
                       className="mt-4 inline-flex items-center px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition">
                       <FaPlus className="mr-2" />
                       Add Service

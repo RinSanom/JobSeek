@@ -85,8 +85,6 @@ const EditProfileFreelancerPage = () => {
         setPreviewImage(e.target.result);
       };
       reader.readAsDataURL(file);
-
-      // Clear any file-related errors
       if (formErrors.profileImageUrl) {
         setFormErrors((prev) => ({ ...prev, profileImageUrl: null }));
       }
@@ -109,47 +107,44 @@ const EditProfileFreelancerPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-
+  
     try {
       let profileImageUrl = formData.profileImageUrl;
-
+  
       // Upload new image if selected
       if (selectedFile) {
         const imageFormData = new FormData();
         imageFormData.append("file", selectedFile);
-
+  
         const uploadResponse = await uploadImage(imageFormData).unwrap();
         if (uploadResponse && uploadResponse.uri) {
           profileImageUrl = uploadResponse.uri;
         }
       }
-
+  
       // Prepare data for submission
       const updatedData = {
         ...formData,
         profileImageUrl,
         skills: formData.skills.split(",").map((skill) => skill.trim()), // Convert skills back to array
       };
-
-      // Call the API to update freelancer profile
-      const token = localStorage.getItem("accessToken");
-      await editProfileFreelancer({
-        body: updatedData,
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      }).unwrap();
-
+  
+      // Call API to update freelancer profile
+      await editProfileFreelancer(updatedData).unwrap();
+  
       // Refetch user data to update the profile page
       await refetch();
-
+  
       // Success notification
       alert("Profile updated successfully!");
     } catch (error) {
       console.error("Failed to update profile:", error);
-      alert("Failed to update profile. Please try again.");
+      alert(
+        error?.data?.message || "Failed to update profile. Please try again."
+      );
     }
   };
+  
   // Show loading spinner while data is being fetched
   if (isFreelancerLoading) {
     return (

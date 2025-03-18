@@ -310,7 +310,7 @@ const BusinessProfile = () => {
                             ${serviceItem.budget}/M
                           </span>
                           <Link
-                            to={`/service/${serviceItem.id}`}
+                            to={`/freelancer-page/${serviceItem.id}`}
                             className="text-teal-600 hover:underline font-medium">
                             View Details
                           </Link>
@@ -402,7 +402,7 @@ const BusinessProfile = () => {
                     {/* Actions */}
                     <div className="flex items-center mt-4 gap-4">
                       <Link
-                        to={`/service/${wishlistItem.service.id}`}
+                         to={`/freelancer-page/${wishlistItem.id}`}
                         className="text-teal-600 hover:underline font-medium">
                         View Details
                       </Link>
