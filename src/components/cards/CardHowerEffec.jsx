@@ -17,7 +17,7 @@ const CardHowerEffec = ({ heading, content, svg }) => {
       </div>
       <div className="card-content">
         <div className="card-icon hover-icon"></div>
-        <h3 className="text-xl sm:text-2xl text-blue-200 font-bold z-10">
+        <h3 className="text-xl sm:text-2xl text-secondary  font-bold z-10">
           {heading}
         </h3>
         <p className="text-sm sm:text-base text-white z-10">{content}</p>
