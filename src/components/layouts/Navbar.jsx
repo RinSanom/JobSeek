@@ -183,9 +183,9 @@ export default function Navbar() {
           {/* Join as Business Button */}
           {(!userRole || userRole !== "BUSINESS_OWNER") && (
             <div>
-              <li className="lg:mt-0 md:mt-4">
+              <li className="lg:mt-0 md:mt-4 text-primary">
                 <NavLink to="/register-businessowner">
-                  <button className="text-white text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-2 md:px-3 md:py-2 border-2 border-secondary rounded-md cursor-pointer whitespace-nowrap">
+                  <button className="text-white text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-2 md:px-3 md:py-2 border-2 border-secondary rounded-md whitespace-nowrap">
                     {t("joinASBusiness")}
                   </button>
                 </NavLink>
