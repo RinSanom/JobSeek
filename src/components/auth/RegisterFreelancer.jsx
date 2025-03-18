@@ -7,10 +7,13 @@ import Ta2 from "../../assets/Ta_Images/Logo.png";
 import { useRegisterFreelancerMutation } from "../../feature/auth/authSlide";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import toast from "react-hot-toast";
+import { useTranslation } from "react-i18next"; // Added for i18n
+import "../../i18n"; // Ensure i18n is imported
 
 const RegisterFreelancer = () => {
+  const { t } = useTranslation(); // Hook for translations
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -27,20 +30,20 @@ const RegisterFreelancer = () => {
   const [registerFreelancer, { isLoading, error }] = useRegisterFreelancerMutation();
 
   const validationSchema = Yup.object({
-    fullName: Yup.string().required("Full name is required"),
-    gender: Yup.string().required("Gender is required"),
-    address: Yup.string().required("Address is required"),
+    fullName: Yup.string().required(t("fullNameRequired")),
+    gender: Yup.string().required(t("genderRequired")),
+    address: Yup.string().required(t("addressRequired")),
     username: Yup.string()
-      .min(3, "Username must be at least 3 characters")
-      .required("Username is required"),
-    email: Yup.string().email("Invalid email").required("Email is required"),
-    phone: Yup.string().required("Phone number is required"),
+      .min(3, t("usernameMinLength"))
+      .required(t("usernameRequired")),
+    email: Yup.string().email(t("invalidEmail")).required(t("emailRequired")),
+    phone: Yup.string().required(t("phoneRequired")),
     password: Yup.string()
-      .min(6, "Password must be at least 6 characters")
-      .required("Password is required"),
+      .min(6, t("passwordMinLength"))
+      .required(t("passwordRequired")),
     confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Passwords must match")
-      .required("Confirm password is required"),
+      .oneOf([Yup.ref("password"), null], t("passwordsMustMatch"))
+      .required(t("confirmPasswordRequired")),
   });
 
   const formik = useFormik({
@@ -73,24 +76,20 @@ const RegisterFreelancer = () => {
           password: values.password,
         };
         const response = await registerFreelancer(formattedData).unwrap();
-        toast.success("Registration successful! Welcome to JobSeek!", {
+        toast.success(t("registrationSuccess"), {
           position: "top-right",
         });
         navigate("/login");
       } catch (err) {
         if (err.status === 409) {
-          toast.error(
-            "This account already exists. The email, username, or phone number may already be registered.",
-            { position: "top-right" }
-          );
+          toast.error(t("accountExistsError"), { position: "top-right" });
         } else {
-          toast.error(
-            err.data?.message || "Registration failed! Please try again.",
-            { position: "top-right" }
-          );
+          toast.error(err.data?.message || t("registrationFailed"), {
+            position: "top-right",
+          });
         }
       }
-    }
+    },
   });
 
   return (
@@ -99,12 +98,12 @@ const RegisterFreelancer = () => {
       <div className="w-full md:w-1/2 bg-gradient-to-br from-blue-900 to-blue-700 text-white flex items-center justify-center p-4 sm:p-6">
         <div className="text-center">
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2">
-            Welcome to
+            {t("welcomeTo")}
           </h1>
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold">JobSeek</h1>
           <img
             src={Ta1}
-            alt="Join Us"
+            alt={t("joinUs")}
             className="mt-4 sm:mt-8 w-full sm:w-3/4 mx-auto max-w-xs sm:max-w-sm md:max-w-md"
           />
         </div>
@@ -114,16 +113,18 @@ const RegisterFreelancer = () => {
       <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8">
         <div className="w-full max-w-md space-y-4 sm:space-y-6">
           <div className="flex items-center gap-3">
-            <img src={Ta2} alt="Logo" className="w-10 h-10 sm:w-12 sm:h-12" />
+          <NavLink to="/">
+          <img src={Ta2} alt={t("logoAlt")} className="w-10 h-10 sm:w-12 sm:h-12" />
+          </NavLink>
             <h1 className="text-2xl sm:text-3xl font-bold text-blue-900 dark:text-blue-300">JobSeek</h1>
           </div>
 
           <div>
             <h2 className="text-xl sm:text-2xl font-semibold text-gray-800 dark:text-gray-200">
-              Join as a Freelancer
+              {t("joinAsFreelancer")}
             </h2>
             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400 mt-1">
-              Create your account to get started
+              {t("createAccountPrompt")}
             </p>
           </div>
 
@@ -132,7 +133,7 @@ const RegisterFreelancer = () => {
               {/* Full Name */}
               <div>
                 <input
-                  placeholder="Full Name"
+                  placeholder={t("fullNamePlaceholder")}
                   id="fullName"
                   name="fullName"
                   type="text"
@@ -151,7 +152,7 @@ const RegisterFreelancer = () => {
               {/* Username */}
               <div>
                 <input
-                  placeholder="Username"
+                  placeholder={t("usernamePlaceholder")}
                   id="username"
                   name="username"
                   type="text"
@@ -179,10 +180,10 @@ const RegisterFreelancer = () => {
                   value={formik.values.gender}
                   className="w-full px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
                 >
-                  <option value="">Select gender</option>
-                  <option value="Male">Male</option>
-                  <option value="Female">Female</option>
-                  <option value="Other">Other</option>
+                  <option value="">{t("selectGender")}</option>
+                  <option value="Male">{t("male")}</option>
+                  <option value="Female">{t("female")}</option>
+                  <option value="Other">{t("other")}</option>
                 </select>
                 {formik.touched.gender && formik.errors.gender && (
                   <p className="text-red-500 dark:text-red-400 text-xs mt-1">
@@ -194,7 +195,7 @@ const RegisterFreelancer = () => {
               {/* Address */}
               <div>
                 <input
-                  placeholder="Address"
+                  placeholder={t("addressPlaceholder")}
                   id="address"
                   name="address"
                   type="text"
@@ -215,7 +216,7 @@ const RegisterFreelancer = () => {
               {/* Email */}
               <div>
                 <input
-                  placeholder="Email"
+                  placeholder={t("emailPlaceholder")}
                   id="email"
                   name="email"
                   type="email"
@@ -234,7 +235,7 @@ const RegisterFreelancer = () => {
               {/* Phone */}
               <div>
                 <PhoneInput
-                  placeholder="Phone Number"
+                  placeholder={t("phonePlaceholder")}
                   country={"kh"}
                   value={phoneNumber}
                   onChange={handlePhoneNumberChange}
@@ -267,7 +268,7 @@ const RegisterFreelancer = () => {
             <div>
               <div className="relative">
                 <input
-                  placeholder="Password"
+                  placeholder={t("passwordPlaceholder")}
                   id="password"
                   name="password"
                   type={passwordVisible ? "text" : "password"}
@@ -299,7 +300,7 @@ const RegisterFreelancer = () => {
             <div>
               <div className="relative">
                 <input
-                  placeholder="Confirm Password"
+                  placeholder={t("confirmPasswordPlaceholder")}
                   id="confirmPassword"
                   name="confirmPassword"
                   type={confirmPasswordVisible ? "text" : "password"}
@@ -329,32 +330,33 @@ const RegisterFreelancer = () => {
 
             {/* Submit Button */}
             <button
-              className="w-full bg-blue-900 dark:bg-blue-800 hover:bg-blue-800 dark:hover:bg-blue-700 text-white py-2 sm:py-3 rounded-lg font-medium disabled:opacity-50 transition"
+              className="w-full bg-blue-900 dark:bg-blue-800 hover:bg-blue-8
+00 dark:hover:bg-blue-700 text-white py-2 sm:py-3 rounded-lg font-medium disabled:opacity-50 transition"
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? "Creating Account..." : "Create Account"}
+              {isLoading ? t("creatingAccount") : t("createAccount")}
             </button>
             {error && (
               <p className="text-red-500 dark:text-red-400 text-sm text-center">
-                {error.data?.message || "An error occurred during registration."}
+                {error.data?.message || t("registrationError")}
               </p>
             )}
           </form>
 
           <div className="text-center space-y-2">
             <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-              Already have an account?{" "}
+              {t("alreadyHaveAccount")}{" "}
               <span
                 className="text-blue-900 dark:text-blue-300 hover:underline cursor-pointer font-medium"
                 onClick={() => navigate("/login")}
               >
-                Login now
+                {t("loginNow")}
               </span>
             </p>
             <div className="flex items-center justify-center gap-2">
               <span className="w-1/4 h-px bg-gray-300 dark:bg-gray-600"></span>
-              <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">OR</span>
+              <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{t("or")}</span>
               <span className="w-1/4 h-px bg-gray-300 dark:bg-gray-600"></span>
             </div>
           </div>

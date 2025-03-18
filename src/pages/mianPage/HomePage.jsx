@@ -24,9 +24,24 @@ export default function HomePage() {
   }, []);
 
   const cardData = [
-    { id: 1, title: t("freelancer"), description: t("freelancerDescription"), svg: <FaUserFriends /> },
-    { id: 2, title: t("businessOwner"), description: t("businessOwnerDescription"), svg: <FaUserTie /> },
-    { id: 3, title: t("jobSeeker"), description: t("jobSeekerDescription"), svg: <FaUsers /> },
+    {
+      id: 1,
+      title: t("freelancer"),
+      description: t("freelancerDescription"),
+      svg: <FaUserFriends />,
+    },
+    {
+      id: 2,
+      title: t("businessOwner"),
+      description: t("businessOwnerDescription"),
+      svg: <FaUserTie />,
+    },
+    {
+      id: 3,
+      title: t("jobSeeker"),
+      description: t("jobSeekerDescription"),
+      svg: <FaUsers />,
+    },
   ];
 
   return (
@@ -38,7 +53,11 @@ export default function HomePage() {
         </div>
       </section>
       <section className="bg-blue-600 dark:bg-blue-700 container mx-auto gap-5 sm:gap-7 px-4 sm:px-5 md:px-20 xl:px-32 py-10 sm:py-17">
-        <div data-aos="fade-right" data-aos-duration="1000" className="mb-8 sm:mb-12">
+        <div
+          data-aos="fade-right"
+          data-aos-duration="1000"
+          className="mb-8 sm:mb-12"
+        >
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-start text-white dark:text-white">
             {t("forJobSeekService")}
           </h2>
@@ -59,12 +78,16 @@ export default function HomePage() {
       </section>
       <section className="container mt-8 sm:mt-12 px-4 sm:px-5 md:px-20 xl:px-32 dark:bg-gray-900">
         <div className="overflow-hidden sm:grid sm:grid-cols-2 sm:items-center">
-          <div data-aos="fade-right" data-aos-duration="1000" className="py-8 sm:py-16">
+          <div
+            data-aos="fade-right"
+            data-aos-duration="1000"
+            className="py-8 sm:py-16"
+          >
             <div className="md:col-span-2 justify-center items-center order-1 md:order-none">
-              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+              <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-white dark:text-white">
                 {t("careerSuccess")}
               </h1>
-              <p className="text-base sm:text-lg md:text-xl mt-2 text-gray-900 dark:text-white">
+              <p className="text-base sm:text-lg md:text-xl mt-2 text-white dark:text-white">
                 {t("careerSuccessDescription")}
               </p>
             </div>
@@ -79,7 +102,11 @@ export default function HomePage() {
         </div>
       </section>
       <section className="bg-blue-600 dark:bg-blue-700 container px-4 sm:px-5 py-5 my-10 sm:my-16 md:px-20 xl:px-32">
-        <div data-aos="fade-up-right" data-aos-duration="1000" className="flex flex-col justify-center items-start mt-8 sm:mt-16">
+        <div
+          data-aos="fade-up-right"
+          data-aos-duration="1000"
+          className="flex flex-col justify-center items-start mt-8 sm:mt-16"
+        >
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white dark:text-white">
             {t("whyJoinUs")}
           </h2>
@@ -93,10 +120,10 @@ export default function HomePage() {
       </section>
       <section className="px-4 sm:px-5 py-5 md:px-20 xl:px-32 dark:bg-gray-900">
         <div data-aos="fade-up-right" data-aos-duration="1000">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
+          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white dark:text-white">
             {t("mostPopularJob")}
           </h2>
-          <p className="text-sm sm:text-base md:text-lg mt-2 sm:mt-4 text-gray-900 dark:text-white">
+          <p className="text-sm sm:text-base md:text-lg mt-2 sm:mt-4 text-white dark:text-white">
             {t("discoverJobOpportunities")}
           </p>
         </div>
@@ -104,7 +131,7 @@ export default function HomePage() {
           <PopularCart />
         </div>
       </section>
-      <section className="bg-blue-600 dark:bg-blue-700 container px-4 sm:px-5 py-5 md:px-10 lg:px-20 xl:px-32">
+      <section className="bg-blue-600 dark:bg-blue-700  px-4 sm:px-5 py-5 md:px-10 lg:px-20 xl:px-32">
         <div className="text-white flex flex-col md:flex-row justify-between items-center px-2 sm:px-4 py-4 sm:py-6 md:px-8 md:py-8 lg:px-12 lg:py-8 rounded-xl gap-4 sm:gap-6 md:gap-0">
           <div className="max-w-full md:max-w-lg text-center md:text-left">
             <h2 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-semibold leading-tight text-white dark:text-white">
@@ -117,7 +144,10 @@ export default function HomePage() {
           >
             <div className="text-center">
               <h3 className="text-xl sm:text-2xl md:text-3xl lg:text-4xl font-bold text-white dark:text-white">
-                {inView && <CountUp start={0} end={500} duration={5} separator="," />}+
+                {inView && (
+                  <CountUp start={0} end={500} duration={5} separator="," />
+                )}
+                +
               </h3>
               <p className="text-xs sm:text-sm md:text-base lg:text-lg text-white dark:text-white">
                 {t("jobOpenings")}

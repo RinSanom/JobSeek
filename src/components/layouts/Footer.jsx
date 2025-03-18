@@ -83,7 +83,7 @@ export default function Footer() {
                 {t('footer.ourSponsors')}
               </h2>
               <ul>
-                <li className="h-[100px] w-[200px]">
+                <li className="h-[100px] w-[200px] md:w-[100px] md:h-[100px]">
                   <a href="#" className="hover:underline">
                     <img
                       src={istad}

@@ -35,10 +35,10 @@ export default function PopularCart() {
             <strong className="text-lg sm:text-xl font-medium text-gray-900 dark:text-gray-100">
               {t(jobData.companyType)}
             </strong>
-            <p className="mt-1 sm:mt-2 text-sm sm:text-base text-pretty text-gray-700 dark:text-gray-300 line-clamp-2">
+            <p className="mt-1 sm:mt-2 text-sm sm:text-base text-pretty text-white dark:text-gray-300 line-clamp-2">
               {t(jobData.role)}
             </p>
-            <p className="mt-1 sm:mt-2 text-sm sm:text-base text-pretty text-gray-700 dark:text-gray-300 line-clamp-2">
+            <p className="mt-1 sm:mt-2 text-sm sm:text-base text-pretty text-white dark:text-gray-300 line-clamp-2">
               {t(jobData.companyDescription)} {t(jobData.companyDescriptionKey)}
             </p>
 
