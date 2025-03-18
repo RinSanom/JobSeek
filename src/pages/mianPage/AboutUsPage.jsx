@@ -41,7 +41,9 @@ export default function AboutUsPage() {
           >
             {t("ourTeam")}
           </h2>
-          <OurTeam />
+        <div>
+        <OurTeam />
+        </div>
         </section>
         <section className="mt-20">
           <h2
