@@ -5,8 +5,8 @@ import sanomImg from "../../assets/imgAboutUs/sanom.jpg";
 import chimImg from "../../assets/imgAboutUs/theara.jpg";
 import daronImg from "../../assets/imgAboutUs/daron.png";
 import marinetImg from "../../assets/imgAboutUs/marinet.jpg";
-import tainganImg from "../../assets/imgAboutUs/TaingAnn.jpg";
 import meyLingImg from "../../assets/imgAboutUs/meyLingjpg.jpg";
+import taingAnImg from "../../assets/imgAboutUs/taingAnn.jpg";
 
 const OurTeam = () => {
   const employees = [
@@ -62,7 +62,7 @@ const OurTeam = () => {
       name: "Korm TaingAn",
       position: "Mentor",
       color: "blue",
-      image: tainganImg, 
+      image: taingAnImg,  
       telegram: "https://t.me/keoKAY",
       github: "https://github.com/keoKAY",
     },
