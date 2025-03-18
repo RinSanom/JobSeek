@@ -7,7 +7,7 @@ import daronImg from "../../assets/imgAboutUs/daron.png";
 import marinetImg from "../../assets/imgAboutUs/marinet.jpg";
 import meyLingImg from "../../assets/imgAboutUs/meyLingjpg.jpg";
 import taingAnImg from "../../assets/imgAboutUs/taingAnn.jpg";
-import taingAnImg from "../../assets/imgAboutUs/taingAnn.jpg";
+
 
 const OurTeam = () => {
   const employees = [
