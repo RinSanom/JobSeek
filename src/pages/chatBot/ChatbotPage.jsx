@@ -137,7 +137,7 @@ const ChatbotPage = () => {
 
         {/* Sidebar */}
         <div
-          className={`w-64 bg-primary mt-10 md:mt-0 text-white flex flex-col fixed inset-y-0 left-0 z-40 transform ${
+          className={`w-64 bg-primary mt-15 md:mt-0 lg:mt-0 text-white flex flex-col fixed inset-y-0 left-0 z-40 transform ${
             isSidebarOpen ? "translate-x-0" : "-translate-x-full"
           } md:sticky md:translate-x-0 md:w-64 transition-transform duration-300 ease-in-out`}
         >
