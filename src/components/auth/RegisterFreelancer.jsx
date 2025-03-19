@@ -10,7 +10,7 @@ import * as Yup from "yup";
 import { NavLink, useNavigate } from "react-router";
 import toast from "react-hot-toast";
 import { useTranslation } from "react-i18next"; // Added for i18n
-import "../../i18n"; // Ensure i18n is imported
+import "../../i18n";
 
 const RegisterFreelancer = () => {
   const { t } = useTranslation(); // Hook for translations
@@ -27,7 +27,8 @@ const RegisterFreelancer = () => {
     formik.setFieldValue("phone", value);
   };
 
-  const [registerFreelancer, { isLoading, error }] = useRegisterFreelancerMutation();
+  const [registerFreelancer, { isLoading, error }] =
+    useRegisterFreelancerMutation();
 
   const validationSchema = Yup.object({
     fullName: Yup.string().required(t("fullNameRequired")),
@@ -100,7 +101,9 @@ const RegisterFreelancer = () => {
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2">
             {t("welcomeTo")}
           </h1>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold">JobSeek</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold">
+            JobSeek
+          </h1>
           <img
             src={Ta1}
             alt={t("joinUs")}
@@ -112,12 +115,22 @@ const RegisterFreelancer = () => {
       {/* Form Section */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8">
         <div className="w-full max-w-md space-y-4 sm:space-y-6">
-                    <NavLink className="text-primary dark:text-white text-lg md:text-2xl underline " to="/">{t("back")}</NavLink>
-          <div className="flex items-center gap-3">
-          <NavLink to="/">
-          <img src={Ta2} alt={t("logoAlt")} className="w-10 h-10 sm:w-12 sm:h-12" />
+          <NavLink
+            className="text-primary dark:text-white text-lg md:text-2xl underline "
+            to="/">
+            {t("back")}
           </NavLink>
-            <h1 className="text-2xl sm:text-3xl font-bold text-blue-900 dark:text-blue-300">JobSeek</h1>
+          <div className="flex items-center gap-3">
+            <NavLink to="/">
+              <img
+                src={Ta2}
+                alt={t("logoAlt")}
+                className="w-10 h-10 sm:w-12 sm:h-12"
+              />
+            </NavLink>
+            <h1 className="text-2xl sm:text-3xl font-bold text-blue-900 dark:text-blue-300">
+              JobSeek
+            </h1>
           </div>
 
           <div>
@@ -129,7 +142,9 @@ const RegisterFreelancer = () => {
             </p>
           </div>
 
-          <form onSubmit={formik.handleSubmit} className="space-y-3 sm:space-y-4">
+          <form
+            onSubmit={formik.handleSubmit}
+            className="space-y-3 sm:space-y-4">
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {/* Full Name */}
               <div>
@@ -179,8 +194,7 @@ const RegisterFreelancer = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.gender}
-                  className="w-full px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
-                >
+                  className="w-full px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700">
                   <option value="">{t("selectGender")}</option>
                   <option value="Male">{t("male")}</option>
                   <option value="Female">{t("female")}</option>
@@ -281,8 +295,7 @@ const RegisterFreelancer = () => {
                 <button
                   type="button"
                   onClick={togglePasswordVisibility}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-900 dark:text-blue-300"
-                >
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-900 dark:text-blue-300">
                   {passwordVisible ? (
                     <i className="fas fa-eye-slash"></i>
                   ) : (
@@ -313,8 +326,7 @@ const RegisterFreelancer = () => {
                 <button
                   type="button"
                   onClick={toggleConfirmPasswordVisibility}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-900 dark:text-blue-300"
-                >
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-900 dark:text-blue-300">
                   {confirmPasswordVisible ? (
                     <i className="fas fa-eye-slash"></i>
                   ) : (
@@ -322,20 +334,19 @@ const RegisterFreelancer = () => {
                   )}
                 </button>
               </div>
-              {formik.touched.confirmPassword && formik.errors.confirmPassword && (
-                <p className="text-red-500 dark:text-red-400 text-xs mt-1">
-                  {formik.errors.confirmPassword}
-                </p>
-              )}
+              {formik.touched.confirmPassword &&
+                formik.errors.confirmPassword && (
+                  <p className="text-red-500 dark:text-red-400 text-xs mt-1">
+                    {formik.errors.confirmPassword}
+                  </p>
+                )}
             </div>
 
             {/* Submit Button */}
             <button
-              className="w-full bg-blue-900 dark:bg-blue-800 hover:bg-blue-8
-00 dark:hover:bg-blue-700 text-white py-2 sm:py-3 rounded-lg font-medium disabled:opacity-50 transition"
+              className="w-full bg-blue-900 dark:bg-blue-800 hover:bg-blue-800 dark:hover:bg-blue-700 text-white py-2 sm:py-3 rounded-lg font-medium disabled:opacity-50 transition"
               type="submit"
-              disabled={isLoading}
-            >
+              disabled={isLoading}>
               {isLoading ? t("creatingAccount") : t("createAccount")}
             </button>
             {error && (
@@ -350,16 +361,15 @@ const RegisterFreelancer = () => {
               {t("alreadyHaveAccount")}{" "}
               <span
                 className="text-blue-900 dark:text-blue-300 hover:underline cursor-pointer font-medium"
-                onClick={() => navigate("/login")}
-              >
+                onClick={() => navigate("/login")}>
                 {t("loginNow")}
               </span>
             </p>
-            <div className="flex items-center justify-center gap-2">
-              <span className="w-1/4 h-px bg-gray-300 dark:bg-gray-600"></span>
-              <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{t("or")}</span>
-              <span className="w-1/4 h-px bg-gray-300 dark:bg-gray-600"></span>
-            </div>
+            {/* <div className="flex items-center justify-center gap-2">
+                <span className="w-1/4 h-px bg-gray-300 dark:bg-gray-600"></span>
+                <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{t("or")}</span>
+                <span className="w-1/4 h-px bg-gray-300 dark:bg-gray-600"></span>
+              </div> */}
           </div>
         </div>
       </div>
