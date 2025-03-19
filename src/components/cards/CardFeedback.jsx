@@ -6,42 +6,45 @@ import "swiper/css/pagination";
 import "swiper/css/navigation"; // Added navigation CSS
 import { Pagination, Navigation, Autoplay } from "swiper/modules";
 import Aos from "aos";
+import daraImg from "../../assets/imgAboutUs/dara.jpg";
+import nomImg from "../../assets/imgAboutUs/sanom.jpg";
+import thearaImg from "./../../assets/imgAboutUs/theara.jpg";
 
 const testimonials = [
   {
     nameKey: "KongSisovandara",
     roleKey: "leadFrontend",
-    image: "src/assets/Our Client/Dara.JPG",
+    image: daraImg,
     feedbackKey: "kongSisovandaraFeedback",
   },
   {
     nameKey: "ChimTheara",
     roleKey: "leadDesigner",
-    image: "src/assets/Our Client/Sanom.JPG",
+    image: nomImg,
     feedbackKey: "chimThearaFeedback",
   },
   {
     nameKey: "RinSanom",
     roleKey: "webDeveloper",
-    image: "src/assets/Our Client/Sanom.JPG",
+    image: thearaImg,
     feedbackKey: "rinSanomFeedback",
   },
   {
-    nameKey: "Phoem Oudom",
-    roleKey: "Cleaner ",
-    image: "src/assets/HomePageImg/udom.jpg",
+    nameKey: "KongSisovandara",
+    roleKey: "leadFrontend",
+    image: daraImg,
     feedbackKey: "kongSisovandaraFeedback",
   },
   {
     nameKey: "ChimTheara",
     roleKey: "leadDesigner",
-    image: "src/assets/Our Client/Sanom.JPG",
+    image: nomImg,
     feedbackKey: "chimThearaFeedback",
   },
   {
     nameKey: "RinSanom",
     roleKey: "webDeveloper",
-    image: "src/assets/Our Client/Sanom.JPG",
+    image: thearaImg,
     feedbackKey: "rinSanomFeedback",
   },
 ];
