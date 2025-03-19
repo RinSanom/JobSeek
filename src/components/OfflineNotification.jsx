@@ -1,5 +1,5 @@
 import React from 'react';
-import { CiWifiOff } from "react-icons/ci";
+import { RiWifiOffLine } from "react-icons/ri";
 import { LuRefreshCw } from "react-icons/lu"; // Using react-icons for WiFi and refresh icons
 
 const OfflineNotification = () => {
@@ -12,7 +12,7 @@ const OfflineNotification = () => {
       <div className="container mx-auto px-4 py-3 flex flex-col md:flex-row items-center justify-between gap-4 md:gap-0">
         {/* Left Section: Icon and Message */}
         <div className="flex items-center gap-3">
-          <CiWifiOff className="w-8 h-8 md:w-10 md:h-10 animate-pulse" />
+          <RiWifiOffLine className="w-8 h-8 md:w-10 md:h-10 animate-pulse" />
           <div>
             <h3 className="text-lg md:text-xl font-semibold flex items-center gap-2">
               You are offline <span className="text-yellow-300">⚠️</span>
