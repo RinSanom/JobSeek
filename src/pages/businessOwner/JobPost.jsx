@@ -41,8 +41,8 @@ export default function JobPost() {
       <ScrollIndicator />
       <main className="max-w-screen-xl mx-auto p-4">
         <section className="   py-1">
-          <h2 className="text-3xl font-bold">What The Business Owner Needs.</h2>
-          <p className="text-md mt-3">
+          <h2 className="text-xl md:text-3xl font-bold ">What The Business Owner Needs.</h2>
+          <p className="text-sm mt-3">
             Find the best Job for your business. Post a job and get the best
             candidates to work for you
           </p>
@@ -82,7 +82,7 @@ export default function JobPost() {
                 required
               />
             </div>
-          </div> */}
+          </div> */}    
         </section>
         <section className="mt-7">
           {/* Pass filtered jobs to CardJob component */}
