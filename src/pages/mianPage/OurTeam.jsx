@@ -8,6 +8,7 @@ import marinetImg from "../../assets/imgAboutUs/marinet.jpg";
 import meyLingImg from "../../assets/imgAboutUs/meyLingjpg.jpg";
 import taingAnImg from "../../assets/imgAboutUs/taingAnn.jpg";
 
+
 const OurTeam = () => {
   const employees = [
     {
@@ -62,7 +63,7 @@ const OurTeam = () => {
       name: "Korm TaingAn",
       position: "Mentor",
       color: "blue",
-      image: taingAnImg,  
+      image: taingAnImg,
       telegram: "https://t.me/keoKAY",
       github: "https://github.com/keoKAY",
     },
