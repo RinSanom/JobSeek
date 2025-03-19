@@ -16,16 +16,16 @@ const OurTeam = () => {
       position: "Lead Web(Leader)",
       color: "blue",
       image: daraImg,
-      telegram: "https://t.me/keoKAY",
-      github: "https://github.com/keoKAY",
+      telegram: "https://t.me/sisovandaraKong",
+      github: "https://github.com/SisovandaraKong",
     },
     {
       name: "Rin Sanom",
       position: "Lead Web",
       color: "yellow",
       image: sanomImg,
-      telegram: "https://t.me/proeungchiso",
-      github: "https://github.com/proeungchiso",
+      telegram: "https://t.me/rinsanom",
+      github: "https://github.com/RinSanom",
     },
     {
       name: "Chim Theara",
@@ -33,7 +33,7 @@ const OurTeam = () => {
       color: "blue",
       image: chimImg,
       telegram: "https://t.me/keoKAY",
-      github: "https://github.com/keoKAY",
+      github: "https://github.com/theara24",
     },
     {
       name: "Kea Daron",
@@ -41,7 +41,7 @@ const OurTeam = () => {
       color: "yellow",
       image: daronImg,
       telegram: "https://t.me/proeungchiso",
-      github: "https://github.com/proeungchiso",
+      github: "https://github.com/kea-daron",
     },
     {
       name: "Chhun Meyling",
@@ -49,7 +49,7 @@ const OurTeam = () => {
       color: "blue",
       image: meyLingImg, 
       telegram: "https://t.me/keoKAY",
-      github: "https://github.com/keoKAY",
+      github: "https://github.com/ChhunMeyling",
     },
     {
       name: "Sorn Sophamarinet",
@@ -57,7 +57,7 @@ const OurTeam = () => {
       color: "yellow",
       image: marinetImg,
       telegram: "https://t.me/proeungchiso",
-      github: "https://github.com/proeungchiso",
+      github: "https://github.com/Sorn-Sophamarinet",
     },
     {
       name: "Korm TaingAn",
@@ -65,7 +65,7 @@ const OurTeam = () => {
       color: "blue",
       image: taingAnImg,
       telegram: "https://t.me/keoKAY",
-      github: "https://github.com/keoKAY",
+      github: "https://github.com/TaingAnKorm",
     },
   ];
 
