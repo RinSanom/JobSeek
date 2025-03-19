@@ -14,7 +14,8 @@ export default function CardServices({ page }) {
   const [createBookmark, { isLoading: isBookmarking }] =
     useCreateBookmarkMutation();
   const [bookmarkedServices, setBookmarkedServices] = useState(new Set()); // Track bookmarked services
-
+  console.log("data in card service", data);
+  
   if (isLoading)
     return (
       <div className="flex justify-center items-center h-96">

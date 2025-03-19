@@ -3,7 +3,7 @@ import { IoMdTime } from "react-icons/io";
 import { NavLink } from "react-router"; // Make sure this is imported correctly
 import { useGetAllJobsQuery } from "../../../feature/job/jobSlide";
 import { MdError } from "react-icons/md";
-
+import { motion } from "framer-motion";
 export default function CardJob({ page }) {
   const { data, isLoading, isError } = useGetAllJobsQuery(page);
   console.log("Job Business Owner: ", data);
@@ -36,8 +36,6 @@ export default function CardJob({ page }) {
   }
 
   const services = data?.content || [];
-
-  // Remove duplicates based on service ID
   const uniqueServices = services.filter(
     (value, index, self) => index === self.findIndex((t) => t.id === value.id)
   );
@@ -47,28 +45,33 @@ export default function CardJob({ page }) {
       {uniqueServices.map((service) => (
         <NavLink key={service.id} to={`/job-detail/${service.id}`}>
           <div className="rounded-lg bg-white dark:bg-black p-4 shadow-lg">
-            <img
-              src={
-                service.jobImages.length > 0
-                  ? service.jobImages[0] || dataMuck.imageUrl
-                  : "https://i.pinimg.com/originals/4f/7e/ab/4f7eab8b98913e658391c54b57980e68.gif"
-              }
-              className="mb-4 object-cover aspect-video w-full rounded-lg bg-gray-200 dark:bg-gray-700"
-              alt="service banner"
-            />
+            <motion.div
+              whileHover={{ scale: 1.05 }}
+              transition={{ duration: 0.3 }}
+              className="overflow-hidden rounded-lg">
+              <img
+                src={
+                  service.jobImages.length > 0
+                    ? service.jobImages[0] || dataMuck.imageUrl
+                    : "https://i.pinimg.com/originals/4f/7e/ab/4f7eab8b98913e658391c54b57980e68.gif"
+                }
+                className="mb-4 object-cover aspect-video w-full rounded-lg bg-gray-200 dark:bg-gray-700"
+                alt="service banner"
+              />
+            </motion.div>
 
             {/* Service Description */}
             <div className="mb-4">
               {/* <p
-                className={`text-sm px-2 py-1 rounded text-white w-fit ${
-                  service.status === "active"
-                    ? "bg-yellow-300 blur-sm"
-                    : service.status === "disable"
-                    ? "bg-red-500"
-                    : "bg-blue-700"
-                }`}>
-                {service.status}
-              </p> */}
+                  className={`text-sm px-2 py-1 rounded text-white w-fit ${
+                    service.status === "active"
+                      ? "bg-yellow-300 blur-sm"
+                      : service.status === "disable"
+                      ? "bg-red-500"
+                      : "bg-blue-700"
+                  }`}>
+                  {service.status}
+                </p> */}
 
               <h3 className="text-lg font-semibold text-black dark:text-white line-clamp-1">
                 {service.title}

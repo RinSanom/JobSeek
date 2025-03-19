@@ -25,6 +25,7 @@ const FreelancerProfile = () => {
     error: servicesError,
   } = useGetMyOwnServiceQuery();
   console.log("my serviece : ", myServices);
+  console.log("Me  : ", data);
 
   const [deleteService, { isLoading: deleteLoading }] =
     useDeleteServiceMutation();
@@ -208,7 +209,7 @@ const FreelancerProfile = () => {
                     </div>
                   </div>
                 )}
-
+            
                 {userData.createdAt && (
                   <div className="flex items-center">
                     <div className="bg-teal-100 dark:bg-teal-800 p-3 rounded-full mr-4">

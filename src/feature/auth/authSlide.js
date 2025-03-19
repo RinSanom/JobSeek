@@ -42,6 +42,7 @@ export const registerFreelancer = apiSlide.injectEndpoints({
       },
       providesTags: ["User"], // Tag this query for cache invalidation
     }),
+    
   }),
 });
 

@@ -4,7 +4,6 @@ import {
   useGetAllServicesQuery,
   useGetAllUsersQuery,
 } from "../../feature/service/serviceSlde";
-import { MdError } from "react-icons/md";
 
 export default function ServiceDetail() {
   const { id } = useParams();
@@ -49,8 +48,7 @@ export default function ServiceDetail() {
     return (
       <div className="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900">
         <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-lg">
-          <MdError className="text-5xl mb-4 mx-auto text-red-500" />
-          <p className="text-accent dark:text-red-400 text-lg font-medium">
+          <p className="text-red-600 dark:text-red-400 text-lg font-medium">
             Oops! Couldn’t load this service
           </p>
           <p className="text-gray-600 dark:text-gray-400 text-sm mt-2">

@@ -62,11 +62,11 @@ const AppRoutes = () => (
           </ProtectedRoute>
         }
       />
-       <Route
+      <Route
         path="/edit-profile-freelanecer"
         element={
           <ProtectedRoute allowedRoles={["FREELANCER"]}>
-            <EditProfileFreelancerPage/>
+            <EditProfileFreelancerPage />
           </ProtectedRoute>
         }
       />
@@ -127,7 +127,6 @@ const AppRoutes = () => (
         }
       />
 
-      {/* Public routes that still require authentication */}
       <Route
         path="/freelancer-page/:id"
         element={
@@ -162,7 +161,6 @@ const AppRoutes = () => (
       />
     </Route>
 
-    {/* Authentication routes */}
     <Route path="/register-freelancer" element={<RegisterFreelancer />} />
     <Route path="/register-businessowner" element={<RegisterBusinessOwner />} />
     <Route path="/login" element={<Login />} />

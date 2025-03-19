@@ -268,7 +268,6 @@ const EditProfileBusinessOwner = () => {
                     </p>
                   )}
                 </div>
-
                 {/* Email */}
                 <div>
                   <label className="flex items-center text-gray-700 dark:text-gray-300 mb-1">

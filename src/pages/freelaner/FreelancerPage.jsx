@@ -22,19 +22,16 @@ export default function FreelancerPage() {
           <CustomCarousel />
         </section> */}
 
-        {/* Existing Title Section */}
         <section className="border-b-2 py-1">
           <h2 className="text-3xl font-bold">
             Explore The Service Of Freelancer
           </h2>
         </section>
 
-        {/* Existing CardJob Grid Section */}
         <section className="mt-10">
           <CardServices page={currentPage} />
         </section>
 
-        {/* Existing Pagination Section */}
         <section>
           <ol className="flex justify-center gap-2 mt-4">
             <li>

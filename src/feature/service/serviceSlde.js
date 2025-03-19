@@ -20,12 +20,12 @@ export const serviceSlide = apiSlide.injectEndpoints({
         method: "GET",
       }),
     }),
-    // getGetServicesById: build.query({
-    //   query: (id) => ({
-    //     url: `/api/jobs-service/services?serviceId=${id}`,
-    //     method: "GET",
-    //   }),
-    // }),
+    getGetServicesById: build.query({
+      query: (id) => ({
+        url: `/api/jobs-service/services?serviceId=${id}`,
+        method: "GET",
+      }),
+    }),
     getAllCategories: build.query({
       query: () => ({
         url: "/api/jobs-service/categories",
@@ -73,10 +73,10 @@ export const serviceSlide = apiSlide.injectEndpoints({
 export const {
   useGetAllUsersQuery,
   useGetUserByIdQuery,
-  useGetGetServicesByIdQuery,
   useGetAllServicesQuery,
   useCreateServiceMutation,
   useGetAllCategoriesQuery,
   useGetMyOwnServiceQuery,
   useDeleteServiceMutation,
+  useGetGetServicesByIdQuery
 } = serviceSlide;
