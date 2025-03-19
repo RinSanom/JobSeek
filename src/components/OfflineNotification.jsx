@@ -15,7 +15,7 @@ const OfflineNotification = () => {
           {/* Logo and Message Section */}
           <div className="flex items-center gap-3">
             <img 
-              src={logo1} 
+              src={logo1 || "https://job-seek-seven.vercel.app/assets/Logo-CYGUXLXP.png"}   
               alt="logo" 
               className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-15 lg:w-15"
             />
