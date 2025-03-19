@@ -15,19 +15,23 @@ import "../../i18n"; // Ensure i18n is imported
 const validationSchema = Yup.object({
   fullName: Yup.string().required("FullNameRequired"), // Updated to use key
   gender: Yup.string().required("GenderRequired"), // Updated to use key
-  profileImageUrl: Yup.string().required("ProfileImageUrlRequired"), // Updated to use key
   email: Yup.string().email("InvalidEmail").required("EmailRequired"), // Updated to use key
   phone: Yup.string().required("PhoneRequired"), // Updated to use key
   userType: Yup.string().required("UserTypeRequired"), // Updated to use key
   companyName: Yup.string().required("CompanyNameRequired"), // Updated to use key
-  companyWebsite: Yup.string().url("InvalidUrl").required("CompanyWebsiteRequired"), // Updated to use key
+  companyWebsite: Yup.string()
+    .url("InvalidUrl")
+    .required("CompanyWebsiteRequired"), // Updated to use key
   industry: Yup.string().required("IndustryRequired"), // Updated to use key
-  password: Yup.string().min(6, "PasswordMinLength").required("PasswordRequired"), // Updated to use key
+  password: Yup.string()
+    .min(6, "PasswordMinLength")
+    .required("PasswordRequired"), // Updated to use key
 });
 
 const RegisterBusinessOwner = () => {
   const { t } = useTranslation(); // Hook for translations
-  const [registerBusinessOwner, { isLoading }] = useRegisterBusinessOwnerMutation();
+  const [registerBusinessOwner, { isLoading }] =
+    useRegisterBusinessOwnerMutation();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
   const navigate = useNavigate();
@@ -59,7 +63,9 @@ const RegisterBusinessOwner = () => {
           <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold tracking-tight mb-2">
             {t("welcomeTo")}
           </h1>
-          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold">JobSeek</h1>
+          <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold">
+            JobSeek
+          </h1>
           <img
             src={Ta1}
             alt={t("joinUs")}
@@ -71,12 +77,20 @@ const RegisterBusinessOwner = () => {
       {/* Form Section */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8">
         <div className="w-full max-w-full sm:max-w-md space-y-4 sm:space-y-6">
-          <NavLink className="text-primary text-lg md:text-2xl underline " to="/login">{t("back")}</NavLink>
+          <NavLink
+            className="text-primary text-lg md:text-2xl underline "
+            to="/login">
+            {t("back")}
+          </NavLink>
           {/* Logo and Title */}
           <div className="flex items-center gap-2 sm:gap-3 mt-3">
-          <NavLink to="/">
-          <img src={Ta2} alt={t("logoAlt")} className="w-10 h-10 sm:w-12 sm:h-12" />
-          </NavLink>
+            <NavLink to="/">
+              <img
+                src={Ta2}
+                alt={t("logoAlt")}
+                className="w-10 h-10 sm:w-12 sm:h-12"
+              />
+            </NavLink>
             <h1 className="text-2xl sm:text-3xl font-bold text-blue-900 dark:text-blue-300">
               JobSeek
             </h1>
@@ -95,7 +109,7 @@ const RegisterBusinessOwner = () => {
             initialValues={{
               fullName: "",
               gender: "",
-              profileImageUrl: "",
+              profileImageUrl: [],
               email: "",
               phone: "",
               userType: "BUSINESS_OWNER",
@@ -105,8 +119,7 @@ const RegisterBusinessOwner = () => {
               password: "",
             }}
             validationSchema={validationSchema}
-            onSubmit={handleSubmit}
-          >
+            onSubmit={handleSubmit}>
             {({ setFieldValue, errors, touched }) => (
               <Form className="space-y-3 sm:space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
@@ -118,7 +131,12 @@ const RegisterBusinessOwner = () => {
                       placeholder={t("fullNamePlaceholder")}
                       className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
                     />
-                    <ErrorMessage name="fullName" component="p" className="text-red-500 dark:text-red-400 text-xs mt-1" render={(msg) => t(msg)} />
+                    <ErrorMessage
+                      name="fullName"
+                      component="p"
+                      className="text-red-500 dark:text-red-400 text-xs mt-1"
+                      render={(msg) => t(msg)}
+                    />
                   </div>
 
                   {/* Gender */}
@@ -126,14 +144,18 @@ const RegisterBusinessOwner = () => {
                     <Field
                       as="select"
                       name="gender"
-                      className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
-                    >
+                      className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700">
                       <option value="">{t("selectGender")}</option>
                       <option value="male">{t("male")}</option>
                       <option value="female">{t("female")}</option>
                       <option value="other">{t("other")}</option>
                     </Field>
-                    <ErrorMessage name="gender" component="p" className="text-red-500 dark:text-red-400 text-xs mt-1" render={(msg) => t(msg)} />
+                    <ErrorMessage
+                      name="gender"
+                      component="p"
+                      className="text-red-500 dark:text-red-400 text-xs mt-1"
+                      render={(msg) => t(msg)}
+                    />
                   </div>
                 </div>
 
@@ -146,7 +168,12 @@ const RegisterBusinessOwner = () => {
                       placeholder={t("emailPlaceholder")}
                       className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
                     />
-                    <ErrorMessage name="email" component="p" className="text-red-500 dark:text-red-400 text-xs mt-1" render={(msg) => t(msg)} />
+                    <ErrorMessage
+                      name="email"
+                      component="p"
+                      className="text-red-500 dark:text-red-400 text-xs mt-1"
+                      render={(msg) => t(msg)}
+                    />
                   </div>
 
                   {/* Phone */}
@@ -154,7 +181,9 @@ const RegisterBusinessOwner = () => {
                     <PhoneInput
                       country={"kh"}
                       value={phoneNumber}
-                      onChange={(value) => handlePhoneNumberChange(value, setFieldValue)}
+                      onChange={(value) =>
+                        handlePhoneNumberChange(value, setFieldValue)
+                      }
                       inputStyle={{
                         width: "100%",
                         height: "42px",
@@ -163,20 +192,25 @@ const RegisterBusinessOwner = () => {
                         paddingLeft: "48px",
                         backgroundColor: "#fff", // Light mode
                       }}
-                      buttonStyle={{ border: "none", background: "transparent" }}
+                      buttonStyle={{
+                        border: "none",
+                        background: "transparent",
+                      }}
                       containerStyle={{ position: "relative" }}
                       dropdownStyle={{ zIndex: 999 }}
                       specialLabel=""
                       className="dark:[&_.form-control]:bg-gray-700 dark:[&_.form-control]:border-gray-600 dark:[&_.form-control]:text-gray-100"
                     />
                     {touched.phone && errors.phone && (
-                      <p className="text-red-500 dark:text-red-400 text-xs mt-1">{t(errors.phone)}</p>
+                      <p className="text-red-500 dark:text-red-400 text-xs mt-1">
+                        {t(errors.phone)}
+                      </p>
                     )}
                   </div>
                 </div>
 
                 {/* Profile Image URL */}
-                <div>
+                {/* <div>
                   <Field
                     name="profileImageUrl"
                     type="text"
@@ -184,7 +218,7 @@ const RegisterBusinessOwner = () => {
                     className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
                   />
                   <ErrorMessage name="profileImageUrl" component="p" className="text-red-500 dark:text-red-400 text-xs mt-1" render={(msg) => t(msg)} />
-                </div>
+                </div> */}
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {/* Company Name */}
@@ -195,7 +229,12 @@ const RegisterBusinessOwner = () => {
                       placeholder={t("companyNamePlaceholder")}
                       className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
                     />
-                    <ErrorMessage name="companyName" component="p" className="text-red-500 dark:text-red-400 text-xs mt-1" render={(msg) => t(msg)} />
+                    <ErrorMessage
+                      name="companyName"
+                      component="p"
+                      className="text-red-500 dark:text-red-400 text-xs mt-1"
+                      render={(msg) => t(msg)}
+                    />
                   </div>
 
                   {/* Industry */}
@@ -206,7 +245,12 @@ const RegisterBusinessOwner = () => {
                       placeholder={t("industryPlaceholder")}
                       className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
                     />
-                    <ErrorMessage name="industry" component="p" className="text-red-500 dark:text-red-400 text-xs mt-1" render={(msg) => t(msg)} />
+                    <ErrorMessage
+                      name="industry"
+                      component="p"
+                      className="text-red-500 dark:text-red-400 text-xs mt-1"
+                      render={(msg) => t(msg)}
+                    />
                   </div>
                 </div>
 
@@ -218,7 +262,12 @@ const RegisterBusinessOwner = () => {
                     placeholder={t("companyWebsitePlaceholder")}
                     className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
                   />
-                  <ErrorMessage name="companyWebsite" component="p" className="text-red-500 dark:text-red-400 text-xs mt-1" render={(msg) => t(msg)} />
+                  <ErrorMessage
+                    name="companyWebsite"
+                    component="p"
+                    className="text-red-500 dark:text-red-400 text-xs mt-1"
+                    render={(msg) => t(msg)}
+                  />
                 </div>
 
                 {/* User Type */}
@@ -226,12 +275,16 @@ const RegisterBusinessOwner = () => {
                   <Field
                     as="select"
                     name="userType"
-                    className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
-                  >
+                    className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700">
                     <option value="BUSINESS_OWNER">{t("businessOwner")}</option>
                     <option value="INDIVIDUAL">{t("individual")}</option>
                   </Field>
-                  <ErrorMessage name="userType" component="p" className="text-red-500 dark:text-red-400 text-xs mt-1" render={(msg) => t(msg)} />
+                  <ErrorMessage
+                    name="userType"
+                    component="p"
+                    className="text-red-500 dark:text-red-400 text-xs mt-1"
+                    render={(msg) => t(msg)}
+                  />
                 </div>
 
                 {/* Password */}
@@ -246,8 +299,7 @@ const RegisterBusinessOwner = () => {
                     <button
                       type="button"
                       onClick={togglePasswordVisibility}
-                      className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-900 dark:text-blue-300"
-                    >
+                      className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-900 dark:text-blue-300">
                       {passwordVisible ? (
                         <i className="fas fa-eye-slash"></i>
                       ) : (
@@ -255,15 +307,19 @@ const RegisterBusinessOwner = () => {
                       )}
                     </button>
                   </div>
-                  <ErrorMessage name="password" component="p" className="text-red-500 dark:text-red-400 text-xs mt-1" render={(msg) => t(msg)} />
+                  <ErrorMessage
+                    name="password"
+                    component="p"
+                    className="text-red-500 dark:text-red-400 text-xs mt-1"
+                    render={(msg) => t(msg)}
+                  />
                 </div>
 
                 {/* Submit Button */}
                 <button
                   type="submit"
                   className="w-full bg-blue-900 dark:bg-blue-800 text-white py-2 sm:py-3 rounded-lg font-medium disabled:opacity-50 hover:bg-blue-800 dark:hover:bg-blue-700 transition"
-                  disabled={isLoading}
-                >
+                  disabled={isLoading}>
                   {isLoading ? t("creatingAccount") : t("createAccount")}
                 </button>
               </Form>
@@ -276,14 +332,15 @@ const RegisterBusinessOwner = () => {
               {t("alreadyHaveAccount")}{" "}
               <span
                 className="text-blue-900 dark:text-blue-300 hover:underline cursor-pointer font-medium"
-                onClick={() => navigate("/login")}
-              >
+                onClick={() => navigate("/login")}>
                 {t("loginNow")}
               </span>
             </p>
             <div className="flex items-center justify-center gap-2">
               <span className="w-1/4 h-px bg-gray-300 dark:bg-gray-600"></span>
-              <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">{t("or")}</span>
+              <span className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                {t("or")}
+              </span>
               <span className="w-1/4 h-px bg-gray-300 dark:bg-gray-600"></span>
             </div>
           </div>
