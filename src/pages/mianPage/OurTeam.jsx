@@ -13,7 +13,7 @@ const OurTeam = () => {
   const employees = [
     {
       name: "Kong Sisovandara",
-      position: "Lead Web",
+      position: "Lead Web(Leader)",
       color: "blue",
       image: daraImg,
       telegram: "https://t.me/keoKAY",
@@ -29,7 +29,7 @@ const OurTeam = () => {
     },
     {
       name: "Chim Theara",
-      position: "Lead Java",
+      position: "Lead Web",
       color: "blue",
       image: chimImg,
       telegram: "https://t.me/keoKAY",
@@ -53,7 +53,7 @@ const OurTeam = () => {
     },
     {
       name: "Sorn Sophamarinet",
-      position: "Mentor",
+      position: "Lead java",
       color: "yellow",
       image: marinetImg,
       telegram: "https://t.me/proeungchiso",
@@ -61,7 +61,7 @@ const OurTeam = () => {
     },
     {
       name: "Korm TaingAn",
-      position: "Mentor",
+      position: "Lead java",
       color: "blue",
       image: taingAnImg,
       telegram: "https://t.me/keoKAY",

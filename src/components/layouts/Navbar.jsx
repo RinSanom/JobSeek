@@ -178,134 +178,138 @@ export default function Navbar() {
           </ul>
         </div>
 
-        {/* Theme, Chat Bot, and Profile */}
-        <div className="flex items-center space-x-2 sm:space-x-4 md:space-x-4">
-          {/* Join as Business Button */}
-          {(!userRole || userRole !== "BUSINESS_OWNER") && (
-            <div>
-              <li className="lg:mt-0 md:mt-4 text-primary">
-                <NavLink to="/register-businessowner">
-                  <button className="text-white text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-2 md:px-3 md:py-2 border-2 border-secondary rounded-md whitespace-nowrap">
-                    {t("joinASBusiness")}
-                  </button>
-                </NavLink>
-              </li>
-            </div>
-          )}
+        <div className="flex md:space-x-6 space-x-2">
+          {/* Theme, Chat Bot, and Profile */}
+          <div className={`flex items-center space-x-2 sm:space-x-4 md:space-x-4 ${
+            isOpen ? "hidden" : "block"
+          }`} >
+            {/* Join as Business Button */}
+            {(!userRole || userRole !== "BUSINESS_OWNER") && (
+              <div>
+                <li className="lg:mt-0 md:mt-4 text-primary">
+                  <NavLink to="/register-businessowner">
+                    <button className="text-white text-xs sm:text-sm px-2 py-1 sm:px-3 sm:py-2 md:px-3 md:py-2 border-2 border-secondary rounded-md whitespace-nowrap">
+                      {t("joinASBusiness")}
+                    </button>
+                  </NavLink>
+                </li>
+              </div>
+            )}
 
-          {/* Profile or Sign Up */}
-          {accessToken || refreshToken ? (
-            <div className="relative">
-              <button
-                type="button"
-                className="flex text-sm bg-gray-800 rounded-full"
-                onClick={() => setProfileDropdown(!profileDropdown)}
-              >
-                <span className="sr-only">Open user menu</span>
-                {userData?.profileImageUrl ? (
-                  <img
-                    className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full object-cover"
-                    src={userData.profileImageUrl}
-                    alt="user photo"
-                  />
-                ) : (
-                  <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-blue-100 flex items-center justify-center">
-                    <span className="text-blue-600 text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold">
-                      {userData?.fullName?.charAt(0) || "S"}
-                    </span>
+            {/* Profile or Sign Up */}
+            {accessToken || refreshToken ? (
+              <div className="relative">
+                <button
+                  type="button"
+                  className="flex text-sm bg-gray-800 rounded-full"
+                  onClick={() => setProfileDropdown(!profileDropdown)}
+                >
+                  <span className="sr-only">Open user menu</span>
+                  {userData?.profileImageUrl ? (
+                    <img
+                      className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-12 lg:h-12 rounded-full cursor-pointer object-cover"
+                      src={userData.profileImageUrl}
+                      alt="user photo"
+                    />
+                  ) : (
+                    <div className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-14 lg:h-14 rounded-full bg-blue-100 flex items-center justify-center">
+                      <span className="text-blue-600 text-lg sm:text-xl md:text-2xl lg:text-4xl font-bold">
+                        {userData?.fullName?.charAt(0) || "S"}
+                      </span>
+                    </div>
+                  )}
+                </button>
+                {profileDropdown && (
+                  <div className="absolute items-center right-0 mt-2 w-36 sm:w-40 md:w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg text-sm">
+                    <ul className="py-2 text-gray-700 dark:text-white">
+                      {userRole === "FREELANCER" && (
+                        <>
+                          <li>
+                            <NavLink
+                              to="/freelancer-profile"
+                              className="block px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            >
+                              {t("My Profile")}
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/create-service"
+                              className="block px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            >
+                              {t("Create Service")}
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/edit-profile-freelanecer"
+                              className="block px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            >
+                              {t("Edit Profile")}
+                            </NavLink>
+                          </li>
+                        </>
+                      )}
+
+                      {userRole === "BUSINESS_OWNER" && (
+                        <>
+                          <li>
+                            <NavLink
+                              to="/profile"
+                              className="block px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            >
+                              {t("My Profile")}
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/create-job"
+                              className="block px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            >
+                              {t("Create Job")}
+                            </NavLink>
+                          </li>
+                          <li>
+                            <NavLink
+                              to="/edit-profile-business-owner"
+                              className="block px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                            >
+                              {t("Edit Profile")}
+                            </NavLink>
+                          </li>
+                        </>
+                      )}
+
+                      <li>
+                        <button
+                          onClick={handleLogout}
+                          className="w-full text-left px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
+                        >
+                          {t("Logout")}
+                        </button>
+                      </li>
+                    </ul>
                   </div>
                 )}
-              </button>
-              {profileDropdown && (
-                <div className="absolute items-center right-0 mt-2 w-36 sm:w-40 md:w-48 bg-white dark:bg-gray-800 rounded-lg shadow-lg text-sm">
-                  <ul className="py-2 text-gray-700 dark:text-white">
-                    {userRole === "FREELANCER" && (
-                      <>
-                        <li>
-                          <NavLink
-                            to="/freelancer-profile"
-                            className="block px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                          >
-                            {t("My Profile")}
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink
-                            to="/create-service"
-                            className="block px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                          >
-                            {t("Create Service")}
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink
-                            to="/edit-profile-freelanecer"
-                            className="block px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                          >
-                            {t("Edit Profile")}
-                          </NavLink>
-                        </li>
-                      </>
-                    )}
+              </div>
+            ) : (
+              <NavLink
+                to="/register-freelancer"
+                className="text-white text-xs md:mt-4 lg:mt-0 sm:text-sm px-2 py-1 sm:px-3 sm:py-2 md:px-3 md:py-2 bg-secondary border-2 border-secondary rounded-md cursor-pointer whitespace-nowrap"
+              >
+                {t("signUp")}
+              </NavLink>
+            )}
+          </div>
 
-                    {userRole === "BUSINESS_OWNER" && (
-                      <>
-                        <li>
-                          <NavLink
-                            to="/profile"
-                            className="block px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                          >
-                            {t("My Profile")}
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink
-                            to="/create-job"
-                            className="block px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                          >
-                            {t("Create Job")}
-                          </NavLink>
-                        </li>
-                        <li>
-                          <NavLink
-                            to="/edit-profile-business-owner"
-                            className="block px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                          >
-                            {t("Edit Profile")}
-                          </NavLink>
-                        </li>
-                      </>
-                    )}
-
-                    <li>
-                      <button
-                        onClick={handleLogout}
-                        className="w-full text-left px-2 py-1 sm:px-3 sm:py-1 md:px-4 md:py-2 hover:bg-gray-100 dark:hover:bg-gray-700"
-                      >
-                        {t("Logout")}
-                      </button>
-                    </li>
-                  </ul>
-                </div>
-              )}
-            </div>
-          ) : (
-            <NavLink
-              to="/register-freelancer"
-              className="text-white text-xs md:mt-4 lg:mt-0 sm:text-sm px-2 py-1 sm:px-3 sm:py-2 md:px-3 md:py-2 bg-secondary border-2 border-secondary rounded-md cursor-pointer whitespace-nowrap"
-            >
-              {t("signUp")}
-            </NavLink>
-          )}
+          {/* Hamburger Menu Button */}
+          <button
+            onClick={() => setIsOpen(!isOpen)}
+            className="lg:hidden items-end p-2 text-white rounded-lg focus:outline-none dark:text-gray-200"
+          >
+            <CiMenuBurger className="text-xl sm:text-2xl md:text-2xl lg:text-[24px] cursor-pointer" />
+          </button>
         </div>
-
-        {/* Hamburger Menu Button */}
-        <button
-          onClick={() => setIsOpen(!isOpen)}
-          className="lg:hidden items-end p-2 text-white rounded-lg focus:outline-none dark:text-gray-200"
-        >
-          <CiMenuBurger className="text-xl sm:text-2xl md:text-2xl lg:text-[24px] cursor-pointer" />
-        </button>
       </div>
     </nav>
   );

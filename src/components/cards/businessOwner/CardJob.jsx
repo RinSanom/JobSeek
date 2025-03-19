@@ -44,7 +44,7 @@ export default function CardJob({ page }) {
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
       {uniqueServices.map((service) => (
         <NavLink key={service.id} to={`/job-detail/${service.id}`}>
-          <div className="rounded-lg bg-white dark:bg-black p-4 shadow-lg">
+          <div className="rounded-lg dark:border dark:border-white bg-white dark:bg-black p-4 shadow-lg">
             <motion.div
               whileHover={{ scale: 1.05 }}
               transition={{ duration: 0.3 }}

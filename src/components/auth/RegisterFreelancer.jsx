@@ -112,6 +112,7 @@ const RegisterFreelancer = () => {
       {/* Form Section */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8">
         <div className="w-full max-w-md space-y-4 sm:space-y-6">
+                    <NavLink className="text-primary dark:text-white text-lg md:text-2xl underline " to="/">{t("back")}</NavLink>
           <div className="flex items-center gap-3">
           <NavLink to="/">
           <img src={Ta2} alt={t("logoAlt")} className="w-10 h-10 sm:w-12 sm:h-12" />

@@ -13,8 +13,11 @@ import {
 import { useUploadImageMutation } from "../../feature/fileUplord/fileUplordSlide";
 import { useGetMeQuery } from "../../feature/auth/authSlide";
 import { useEditeProfileBusinessOwnerMutation } from "../../feature/editProfile/editeProfileSlide";
+import { useTranslation } from "react-i18next"; // Added for i18n
+import "../../i18n"; // Ensure i18n is imported
 
 const EditProfileBusinessOwner = () => {
+  const { t } = useTranslation(); // Hook for translations
   const { data: userData, isLoading: userLoading } = useGetMeQuery();
   const [editeProfileBusinessOwner, { isLoading: updating }] =
     useEditeProfileBusinessOwnerMutation();
@@ -88,11 +91,11 @@ const EditProfileBusinessOwner = () => {
 
   const validateForm = () => {
     const errors = {};
-    if (!formData.fullName.trim()) errors.fullName = "Full name is required";
-    if (!formData.gender) errors.gender = "Please select a gender";
-    if (!formData.email) errors.email = "Email is required";
-    if (!formData.phone) errors.phone = "Phone number is required";
-    if (!formData.companyName) errors.companyName = "Company name is required";
+    if (!formData.fullName.trim()) errors.fullName = t("fullNameRequired");
+    if (!formData.gender) errors.gender = t("genderRequired");
+    if (!formData.email) errors.email = t("emailRequired");
+    if (!formData.phone) errors.phone = t("phoneRequired");
+    if (!formData.companyName) errors.companyName = t("companyNameRequired");
 
     // Website validation (optional but must be valid if provided)
     if (
@@ -101,7 +104,7 @@ const EditProfileBusinessOwner = () => {
         /^(https?:\/\/)?(www\.)?[a-zA-Z0-9-]+\.[a-zA-Z]{2,}(\.[a-zA-Z]{2,})?$/
       )
     ) {
-      errors.companyWebsite = "Please enter a valid website URL";
+      errors.companyWebsite = t("invalidWebsite");
     }
 
     setFormErrors(errors);
@@ -148,16 +151,15 @@ const EditProfileBusinessOwner = () => {
       }).unwrap();
 
       // Success notification
-
-      alert("Profile updated successfully!");
+      alert(t("profileUpdatedSuccess"));
       console.log("Profile update response:", result);
     } catch (error) {
       console.error("Failed to update profile:", error);
       // More detailed error handling
       if (error.data?.message) {
-        alert(`Failed to update profile: ${error.data.message}`);
+        alert(`${t("profileUpdateFailed")}: ${error.data.message}`);
       } else {
-        alert("Failed to update profile. Please try again.");
+        alert(t("profileUpdateFailedTryAgain"));
       }
     }
   };
@@ -166,6 +168,7 @@ const EditProfileBusinessOwner = () => {
     return (
       <div className="flex items-center justify-center min-h-screen">
         <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-primary"></div>
+        <p className="ml-4 text-gray-600">{t("loading")}</p>
       </div>
     );
   }
@@ -174,8 +177,8 @@ const EditProfileBusinessOwner = () => {
     <div className="bg-gray-50 dark:bg-gray-900 py-10 px-4">
       <div className="max-w-3xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
         <div className="bg-primary text-white p-6">
-          <h2 className="text-2xl font-bold">Edit Business Profile</h2>
-          <p className="text-gray-100">Update your business information</p>
+          <h2 className="text-2xl font-bold">{t("editBusinessProfile")}</h2>
+          <p className="text-gray-100">{t("updateBusinessInfo")}</p>
         </div>
 
         <form onSubmit={handleSubmit} className="p-6">
@@ -187,7 +190,7 @@ const EditProfileBusinessOwner = () => {
                   {previewImage ? (
                     <img
                       src={previewImage}
-                      alt="Profile Preview"
+                      alt={t("profilePreview")}
                       className="w-full h-full object-cover"
                     />
                   ) : (
@@ -208,7 +211,7 @@ const EditProfileBusinessOwner = () => {
                 </label>
               </div>
               {isUploading && (
-                <p className="text-primary">Uploading image...</p>
+                <p className="text-primary">{t("uploadingImage")}</p>
               )}
               {formErrors.profileImageUrl && (
                 <p className="text-red-500 text-sm">
@@ -219,22 +222,22 @@ const EditProfileBusinessOwner = () => {
             {/* Personal Information */}
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 border-b pb-2">
-                Personal Information
+                {t("personalInformation")}
               </h3>
 
               <div className="space-y-4">
                 {/* Full Name */}
                 <div>
                   <label className="flex items-center text-gray-700 dark:text-gray-300 mb-1">
-                    <FaUser className="mr-2" /> Full Name
+                    <FaUser className="mr-2" /> {t("fullName")}
                   </label>
                   <input
                     type="text"
                     name="fullName"
                     value={formData.fullName}
                     onChange={handleChange}
-                    placeholder="Enter your full name"
-                    className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+                    placeholder={t("enterFullName")}
+                    className={`mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm p-2 sm:p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition ${
                       formErrors.fullName ? "border-red-500" : ""
                     }`}
                   />
@@ -248,19 +251,20 @@ const EditProfileBusinessOwner = () => {
                 {/* Gender */}
                 <div>
                   <label className="flex items-center text-gray-700 dark:text-gray-300 mb-1">
-                    <FaVenusMars className="mr-2" /> Gender
+                    <FaVenusMars className="mr-2" /> {t("gender")}
                   </label>
                   <select
                     name="gender"
                     value={formData.gender}
                     onChange={handleChange}
-                    className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+                    className={`mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm p-2 sm:p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition ${
                       formErrors.gender ? "border-red-500" : ""
-                    }`}>
-                    <option value="">Select gender</option>
-                    <option value="female">Female</option>
-                    <option value="male">Male</option>
-                    <option value="other">Other</option>
+                    }`}
+                  >
+                    <option value="">{t("selectGender")}</option>
+                    <option value="female">{t("female")}</option>
+                    <option value="male">{t("male")}</option>
+                    <option value="other">{t("other")}</option>
                   </select>
                   {formErrors.gender && (
                     <p className="text-red-500 text-sm mt-1">
@@ -271,15 +275,15 @@ const EditProfileBusinessOwner = () => {
                 {/* Email */}
                 <div>
                   <label className="flex items-center text-gray-700 dark:text-gray-300 mb-1">
-                    <FaEnvelope className="mr-2" /> Email Address
+                    <FaEnvelope className="mr-2" /> {t("emailAddress")}
                   </label>
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    placeholder="Enter your email"
-                    className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+                    placeholder={t("enterEmail")}
+                    className={`mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm p-2 sm:p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition ${
                       formErrors.email ? "border-red-500" : ""
                     }`}
                   />
@@ -292,15 +296,15 @@ const EditProfileBusinessOwner = () => {
                 {/* Phone */}
                 <div>
                   <label className="flex items-center text-gray-700 dark:text-gray-300 mb-1">
-                    <FaPhone className="mr-2" /> Phone Number
+                    <FaPhone className="mr-2" /> {t("phoneNumber")}
                   </label>
                   <input
                     type="tel"
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    placeholder="Enter your phone number"
-                    className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+                    placeholder={t("enterPhone")}
+                    className={`mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm p-2 sm:p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition ${
                       formErrors.phone ? "border-red-500" : ""
                     }`}
                   />
@@ -316,21 +320,21 @@ const EditProfileBusinessOwner = () => {
             {/* Business Information */}
             <div className="space-y-4">
               <h3 className="text-lg font-semibold text-gray-700 dark:text-gray-300 border-b pb-2">
-                Business Information
+                {t("businessInformation")}
               </h3>
               <div className="space-y-4">
                 {/* Company Name */}
                 <div>
                   <label className="flex items-center text-gray-700 dark:text-gray-300 mb-1">
-                    <FaBuilding className="mr-2" /> Company Name
+                    <FaBuilding className="mr-2" /> {t("companyName")}
                   </label>
                   <input
                     type="text"
                     name="companyName"
                     value={formData.companyName}
                     onChange={handleChange}
-                    placeholder="Enter your company name"
-                    className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+                    placeholder={t("enterCompanyName")}
+                    className={`mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm p-2 sm:p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition ${
                       formErrors.companyName ? "border-red-500" : ""
                     }`}
                   />
@@ -344,15 +348,15 @@ const EditProfileBusinessOwner = () => {
                 {/* Company Website */}
                 <div>
                   <label className="flex items-center text-gray-700 dark:text-gray-300 mb-1">
-                    <FaGlobe className="mr-2" /> Company Website
+                    <FaGlobe className="mr-2" /> {t("companyWebsite")}
                   </label>
                   <input
                     type="url"
                     name="companyWebsite"
                     value={formData.companyWebsite}
                     onChange={handleChange}
-                    placeholder="https://example.com"
-                    className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+                    placeholder={t("enterWebsite")}
+                    className={`mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm p-2 sm:p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition ${
                       formErrors.companyWebsite ? "border-red-500" : ""
                     }`}
                   />
@@ -366,30 +370,31 @@ const EditProfileBusinessOwner = () => {
                 {/* Industry */}
                 <div>
                   <label className="flex items-center text-gray-700 dark:text-gray-300 mb-1">
-                    <FaIndustry className="mr-2" /> Industry
+                    <FaIndustry className="mr-2" /> {t("industry")}
                   </label>
                   <input
                     type="text"
                     name="industry"
                     value={formData.industry}
                     onChange={handleChange}
-                    placeholder="Enter your industry"
-                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+                    placeholder={t("enterIndustry")}
+                    className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm p-2 sm:p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition"
                   />
                 </div>
 
                 {/* Address */}
                 <div>
                   <label className="flex items-center text-gray-700 dark:text-gray-300 mb-1">
-                    <FaMapMarkerAlt className="mr-2" /> Address
+                    <FaMapMarkerAlt className="mr-2" /> {t("address")}
                   </label>
                   <textarea
                     name="address"
                     value={formData.address}
                     onChange={handleChange}
-                    placeholder="Enter your address"
+                    placeholder={t("enterAddress")}
                     rows="3"
-                    className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-primary focus:border-primary dark:bg-gray-700 dark:border-gray-600 dark:text-white"></textarea>
+                    className="mt-1 block w-full rounded-md border border-gray-300 dark:border-gray-600 shadow-sm p-2 sm:p-3 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 text-sm sm:text-base focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:border-transparent transition"
+                  ></textarea>
                 </div>
               </div>
             </div>
@@ -400,8 +405,9 @@ const EditProfileBusinessOwner = () => {
             <button
               type="submit"
               disabled={updating || isUploading}
-              className="w-full bg-primary text-white py-3 px-6 rounded-lg hover:bg-primary-dark transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed">
-              {updating || isUploading ? "Updating..." : "Update Profile"}
+              className="w-full bg-primary text-white py-3 px-6 rounded-lg hover:bg-primary-dark transition duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
+            >
+              {updating || isUploading ? t("updating") : t("updateProfile")}
             </button>
           </div>
         </form>
