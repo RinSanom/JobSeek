@@ -2,7 +2,7 @@ import { useState } from "react";
 import "@fortawesome/fontawesome-free/css/all.css";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router";
 import { useLoginMutation } from "../../feature/auth/authSlide";
 import Ta1 from "../../assets/Ta_Images/LoginJoinUs.png";
 import Ta2 from "../../assets/Ta_Images/Logo.png";
@@ -88,8 +88,11 @@ const LoginPage = () => {
       {/* Form Section */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8">
         <div className="w-full max-w-md space-y-6 sm:space-y-8">
+                    <NavLink className="text-primary dark:text-white text-lg md:text-2xl underline " to="/">{t("back")}</NavLink>
           <div className="flex items-center gap-3">
+            <NavLink to="/">
             <img src={Ta2} alt={t("logoAlt")} className="w-10 h-10 sm:w-12 sm:h-12" />
+            </NavLink>
             <h1 className="text-2xl sm:text-3xl font-bold text-blue-900 dark:text-blue-300">JobSeek</h1>
           </div>
 
