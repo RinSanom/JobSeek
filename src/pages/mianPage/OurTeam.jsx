@@ -62,7 +62,7 @@ const OurTeam = () => {
       name: "Korm TaingAn",
       position: "Mentor",
       color: "blue",
-      image: taingAnImg,
+      image: taingAnImg,  
       telegram: "https://t.me/keoKAY",
       github: "https://github.com/keoKAY",
     },
