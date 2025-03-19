@@ -4,14 +4,21 @@ import Navbar from "./Navbar";
 import Footer from "./Footer";
 import ScrollIndicator from "../scrollIndicator/scrollIndicator";
 import { Toaster } from "react-hot-toast";
+import { useNetwork } from "../../context/NetworkContext";
+import OfflineNotification from "../OfflineNotification";
+
+
 
 
 export default function RootLayout() {
+  const { isOnline } = useNetwork();
   return (
-    <div>
+    <div>{!isOnline && <OfflineNotification />}
       <ScrollIndicator/>
       <Navbar />
-      <Outlet />
+    <main className={`main-content ${!isOnline ? 'offline' : ''}`}>
+    <Outlet />
+    </main>
       <Footer />
       <Toaster
         position="top-right"

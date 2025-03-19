@@ -24,6 +24,7 @@ import CreateJob from "./pages/creatAtJob/CreateJob.jsx";
 import EditProfileBusinessOwner from "./pages/sitting/EditProfileBusinessOwner.jsx";
 import JobDetailPage from "./pages/businessOwner/JobDetailPage.jsx";
 import EditProfileFreelancerPage from "./pages/sitting/EditProfileFreelancerPage.jsx";
+import { NetworkProvider } from "./context/NetworkContext.jsx";
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -169,6 +170,7 @@ const AppRoutes = () => (
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
+    <NetworkProvider>
     <Provider store={store}>
       <ThemeProvider>
         <BrowserRouter>
@@ -176,5 +178,6 @@ createRoot(document.getElementById("root")).render(
         </BrowserRouter>
       </ThemeProvider>
     </Provider>
+    </NetworkProvider>
   </StrictMode>
 );
