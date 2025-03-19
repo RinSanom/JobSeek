@@ -19,7 +19,7 @@ export default function PopularCart() {
           className="relative block rounded-tr-3xl border border-gray-100 dark:border-gray-700"
         >
           {/* Date Badge */}
-          <span className="absolute -right-px -top-px rounded-bl-3xl rounded-tr-3xl bg-rose-600 px-4 py-2 sm:px-6 sm:py-4 font-medium uppercase tracking-widest text-white">
+          <span className="absolute -right-px -top-px rounded-bl-3xl rounded-tr-3xl bg-rose-600 px-4 py-2 sm:px-6 sm:py-4 font-medium uppercase tracking-widest text-black dark:text-white">
             {jobData.publishedDate}
           </span>
 
@@ -35,10 +35,10 @@ export default function PopularCart() {
             <strong className="text-lg sm:text-xl font-medium text-gray-900 dark:text-gray-100">
               {t(jobData.companyType)}
             </strong>
-            <p className="mt-1 sm:mt-2 text-sm sm:text-base text-pretty text-white dark:text-gray-300 line-clamp-2">
+            <p className="mt-1 sm:mt-2 text-sm sm:text-base text-pretty text-black dark:text-gray-300 line-clamp-2">
               {t(jobData.role)}
             </p>
-            <p className="mt-1 sm:mt-2 text-sm sm:text-base text-pretty text-white dark:text-gray-300 line-clamp-2">
+            <p className="mt-1 sm:mt-2 text-sm sm:text-base text-pretty text-black dark:text-gray-300 line-clamp-2">
               {t(jobData.companyDescription)} {t(jobData.companyDescriptionKey)}
             </p>
 
