@@ -36,14 +36,6 @@ export default function JobPost() {
   return (
     <>
       <ScrollIndicator />
-<<<<<<< HEAD
-      <main className="max-w-screen-xl mx-auto p-4">
-        <section className="   py-1">
-          <h2 className="text-xl md:text-3xl font-bold ">What The Business Owner Needs.</h2>
-          <p className="text-sm mt-3">
-            Find the best Job for your business. Post a job and get the best
-            candidates to work for you
-=======
       <main className="max-w-full sm:max-w-screen-md md:max-w-screen-lg lg:max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
         <section className="py-4 sm:py-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
@@ -51,7 +43,6 @@ export default function JobPost() {
           </h2>
           <p className="text-sm sm:text-base md:text-md mt-2 sm:mt-3 text-gray-600 dark:text-gray-300">
             Find the best Job for your business. Post a job and get the best candidates to work for you
->>>>>>> ffc34ed25fe6ef03b4abbfbf151d99981b06933d
           </p>
         </section>
 
