@@ -71,7 +71,7 @@ const RegisterBusinessOwner = () => {
       {/* Form Section */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8">
         <div className="w-full max-w-full sm:max-w-md space-y-4 sm:space-y-6">
-          <NavLink className="text-primary text-lg md:text-2xl underline " to="/login">{t("back")}</NavLink>
+          <NavLink className="text-primary dark:text-white text-lg md:text-2xl underline " to="/">{t("back")}</NavLink>
           {/* Logo and Title */}
           <div className="flex items-center gap-2 sm:gap-3 mt-3">
           <NavLink to="/">
@@ -161,13 +161,12 @@ const RegisterBusinessOwner = () => {
                         border: "1px solid #d1d5db",
                         borderRadius: "8px",
                         paddingLeft: "48px",
-                        backgroundColor: "#fff", // Light mode
                       }}
                       buttonStyle={{ border: "none", background: "transparent" }}
                       containerStyle={{ position: "relative" }}
                       dropdownStyle={{ zIndex: 999 }}
                       specialLabel=""
-                      className="dark:[&_.form-control]:bg-gray-700 dark:[&_.form-control]:border-gray-600 dark:[&_.form-control]:text-gray-100"
+                      className="dark:[&_.form-control]:bg-black dark:[&_.form-control]:border-gray-600 dark:[&_.form-control]:text-black"
                     />
                     {touched.phone && errors.phone && (
                       <p className="text-red-500 dark:text-red-400 text-xs mt-1">{t(errors.phone)}</p>
