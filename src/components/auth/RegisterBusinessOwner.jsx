@@ -175,16 +175,6 @@ const RegisterBusinessOwner = () => {
                   </div>
                 </div>
 
-                {/* Profile Image URL */}
-                <div>
-                  <Field
-                    name="profileImageUrl"
-                    type="text"
-                    placeholder={t("profileImageUrlPlaceholder")}
-                    className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
-                  />
-                  <ErrorMessage name="profileImageUrl" component="p" className="text-red-500 dark:text-red-400 text-xs mt-1" render={(msg) => t(msg)} />
-                </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {/* Company Name */}
