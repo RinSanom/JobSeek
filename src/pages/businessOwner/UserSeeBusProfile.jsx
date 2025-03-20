@@ -24,7 +24,6 @@ const UserSeeBusProfile = () => {
     isError: isJobPosterError,
   } = useGetJobPosterQuery(id);
   console.log("Job Poster: ", jobposter);
-
   const [showAllServices, setShowAllServices] = useState(false);
 
   if (isLoading || isJobPosterLoading) {
