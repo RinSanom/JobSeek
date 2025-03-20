@@ -12,9 +12,7 @@ import { toast } from "react-toastify"; // Import toast
 import { motion } from "framer-motion";
 export default function CardServices({ page }) {
   const { data, isLoading, isError } = useGetAllServicesQuery(page);
-  const {
-    data: freelancerSevicePost,
-  } = useGetFreelancerServiceQuery();
+  const { data: freelancerSevicePost } = useGetFreelancerServiceQuery();
   const [createBookmark, { isLoading: isBookmarking }] =
     useCreateBookmarkMutation();
 
@@ -28,7 +26,7 @@ export default function CardServices({ page }) {
     console.log("Job Poster sdsd:", jobPoster);
     return {
       ...service,
-      poster: jobPoster || null, 
+      poster: jobPoster || null,
     };
   });
   console.log("Services with Poster:", servicesWithPoster);
@@ -103,8 +101,6 @@ export default function CardServices({ page }) {
               </div>
             </div>
           </NavLink>
-
-          {/* Add to Favorite Button */}
           <div className="flex justify-end gap-2 mt-4">
             <button
               onClick={() => handleAddToFavorite(service.id)}

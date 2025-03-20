@@ -8,6 +8,7 @@ import {
 import { useTranslation } from "react-i18next";
 import "../../i18n";
 import { useCreateBookmarkMutation } from "../../feature/bookmark/bookmarkSlide";
+import { FaCalendarAlt, FaEnvelope, FaGlobe, FaPhone, FaUser, FaBriefcase, FaCode } from "react-icons/fa";
 
 export default function ServiceDetail() {
   const { t } = useTranslation();
@@ -54,7 +55,7 @@ export default function ServiceDetail() {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900">
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
         <div className="flex items-center gap-2">
           <div className="w-5 sm:w-6 h-5 sm:h-6 border-2 border-blue-500 dark:border-blue-400 border-t-transparent rounded-full animate-spin"></div>
           <p className="text-gray-600 dark:text-gray-300 text-base sm:text-lg">
@@ -67,8 +68,8 @@ export default function ServiceDetail() {
 
   if (isError || !service) {
     return (
-      <div className="flex justify-center items-center min-h-screen bg-gray-50 dark:bg-gray-900">
-        <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-lg">
+      <div className="flex justify-center items-center min-h-screen bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800">
+        <div className="bg-white dark:bg-gray-800 p-4 sm:p-6 rounded-lg shadow-xl">
           <p className="text-red-600 dark:text-red-400 text-base sm:text-lg font-medium">
             {t("errorLoadingService")}
           </p>
@@ -80,28 +81,29 @@ export default function ServiceDetail() {
     );
   }
 
-  // Find the job poster for the current service
   const jobPoster = servicesWithPoster.find(
     (item) => String(item.id) === String(id)
   )?.poster;
 
   return (
-    <section className="bg-gray-50 dark:bg-gray-900 min-h-screen pt-12 sm:pt-16 pb-10 sm:pb-20">
+    <section className="bg-gradient-to-r from-blue-50 to-purple-50 dark:from-gray-900 dark:to-gray-800 min-h-screen pt-12 sm:pt-16 pb-10 sm:pb-20">
       <div className="max-w-full sm:max-w-3xl md:max-w-5xl lg:max-w-6xl xl:max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Service Card */}
         <div className="bg-white dark:bg-gray-800 rounded-xl overflow-hidden mb-6 sm:mb-12">
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8">
+            {/* Left Column: Image Section */}
             <div className="relative">
               <img
                 src={
                   service.jobImages[0] ||
                   "https://i.pinimg.com/originals/4f/7e/ab/4f7eab8b98913e658391c54b57980e68.gif"
                 }
-                className="w-full h-64 sm:h-80 md:h-[350px] object-cover"
+                className="w-full h-64 sm:h-80 md:h-[350px] object-cover transform transition-transform duration-500 hover:scale-105"
                 alt={service.title}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/40 to-transparent"></div>
               <span
-                className={`absolute top-4 sm:top-6 left-4 sm:left-6 px-2 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium text-white shadow-md ${
+                className={`absolute top-4 sm:top-6 left-4 sm:left-6 px-2 sm:px-4 py-1 sm:py-1.5 rounded-full text-xs sm:text-sm font-medium text-white shadow-lg ${
                   service.status === "active"
                     ? "bg-green-500"
                     : service.status === "disable"
@@ -111,58 +113,160 @@ export default function ServiceDetail() {
                 {t(service.status)}
               </span>
             </div>
-
             {/* Right Column: Details Section */}
-            <div className="p-4 sm:p-6 md:p-8">
-              <div className="flex items-center gap-2 sm:gap-4 mb-4 sm:mb-6">
-                <div>
-                  <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mt-1">
+            {jobPoster && (
+              <div className="p-4 sm:p-6 md:p-8">
+                <NavLink to={`/freelancer-profile/${jobPoster.id}`}>
+                  <div className="flex items-center gap-4 mb-4 hover:opacity-80 transition-opacity">
+                    <img
+                      src={
+                        jobPoster.profileImageUrl ||
+                        "https://via.placeholder.com/150"
+                      }
+                      alt={jobPoster.fullName}
+                      className="w-16 h-16 rounded-full object-cover border-2 border-white shadow-md"
+                    />
+                    <div>
+                      <p className="text-xl font-bold text-gray-900 dark:text-white">
+                        {jobPoster.fullName}
+                      </p>
+                      <p className="text-sm font-medium text-gray-600 dark:text-gray-400">
+                        {jobPoster.userType}
+                      </p>
+                    </div>
+                  </div>
+                </NavLink>
+                <div className="mb-4 sm:mb-6">
+                  <h1 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
                     {service.title}
                   </h1>
-                  <p className="text-xs sm:text-sm mt-4 text-gray-600 dark:text-gray-400">
+                  <p className="text-xs sm:text-sm mt-2 text-gray-600 dark:text-gray-400">
                     {service.category.name}
                   </p>
                 </div>
+                <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed">
+                  {service.description}
+                </p>
               </div>
-              <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base md:text-lg leading-relaxed mb-4 sm:mb-6">
-                {service.description}
-              </p>
-
-              {/* Job Poster Profile Section */}
-            </div>
+            )}
           </div>
         </div>
-        <section className="border-t-2 border-gray-300 dark:border-gray-700 py-6 sm:py-8 mb-6 sm:mb-8">
+
+        {/* Contact and Information Section */}
+        <section className="border-t-2 border-gray-300 dark:border-gray-700 py-6 sm:py-8 mb-6 sm:mb-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
           {jobPoster && (
-            <div className="">
-              <h3 className="text-lg sm:text-xl font-semibold text-gray-900 dark:text-white mb-2 sm:mb-4">
-                {t("Job Poster")}
-              </h3>
-              <div className="flex items-center gap-4">
-                <img
-                  src={
-                    jobPoster.profileImageUrl ||
-                    "https://via.placeholder.com/150"
-                  }
-                  alt={jobPoster.fullName}
-                  className="w-12 h-12 sm:w-16 sm:h-16 rounded-full object-cover"
-                />
-                <div>
-                  <p className="text-sm sm:text-base font-medium text-gray-900 dark:text-white">
-                    {jobPoster.fullName}
-                  </p>
-                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                    {jobPoster.email}
-                  </p>
-                  <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-400">
-                    {jobPoster.phone}
-                  </p>
+            <>
+              {/* Contact Section */}
+              <div className="  ">
+                <h3 className="text-lg sm:text-2xl font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                  {t("Contact")} {jobPoster.fullName}
+                </h3>
+                <div className="space-y-4 sm:space-y-5">
+                  {jobPoster.email && (
+                    <div className="flex items-center">
+                      <div className="bg-blue-100 dark:bg-blue-900 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
+                        <FaEnvelope className="text-indigo-600 dark:text-blue-300 text-sm sm:text-base" />
+                      </div>
+                      <div>
+                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                          {t("email")}
+                        </p>
+                        <p className="text-gray-800 dark:text-white text-sm sm:text-base">
+                          {jobPoster.email}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {jobPoster.phone && (
+                    <div className="flex items-center">
+                      <div className="bg-blue-100 dark:bg-blue-900 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
+                        <FaPhone className="text-indigo-600 dark:text-blue-300 text-sm sm:text-base" />
+                      </div>
+                      <div>
+                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                          {t("phone")}
+                        </p>
+                        <p className="text-gray-800 dark:text-white text-sm sm:text-base">
+                          {jobPoster.phone}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {jobPoster.address && (
+                    <div className="flex items-center">
+                      <div className="bg-blue-100 dark:bg-blue-900 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
+                        <FaGlobe className="text-indigo-600 dark:text-blue-300 text-sm sm:text-base" />
+                      </div>
+                      <div>
+                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                          {t("address")}
+                        </p>
+                        <p className="text-gray-800 dark:text-white text-sm sm:text-base">
+                          {jobPoster.address}
+                        </p>
+                      </div>
+                    </div>
+                  )}
                 </div>
               </div>
-            </div>
+              {/* Information Section */}
+              <div className="">
+                <h3 className="text-lg sm:text-2xl font-semibold text-gray-900 dark:text-white mb-4 sm:mb-6">
+                  {t("Information")} {jobPoster.fullName}
+                </h3>
+                <div className="space-y-4 sm:space-y-5">
+                  {jobPoster.fullName && (
+                    <div className="flex items-center">
+                      <div className="bg-blue-100 dark:bg-blue-900 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
+                        <FaUser className="text-indigo-600 dark:text-blue-300 text-sm sm:text-base" />
+                      </div>
+                      <div>
+                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                          {t("Full Name")}
+                        </p>
+                        <p className="text-gray-800 dark:text-white text-sm sm:text-base">
+                          {jobPoster.fullName}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {jobPoster.experienceYears && (
+                    <div className="flex items-center">
+                      <div className="bg-blue-100 dark:bg-blue-900 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
+                        <FaBriefcase className="text-indigo-600 dark:text-blue-300 text-sm sm:text-base" />
+                      </div>
+                      <div>
+                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                          {t("Experience")}
+                        </p>
+                        <p className="text-gray-800 dark:text-white text-sm sm:text-base">
+                          {jobPoster.experienceYears} {t("years")}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                  {jobPoster.skills && (
+                    <div className="flex items-center">
+                      <div className="bg-blue-100 dark:bg-blue-900 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
+                        <FaCode className="text-indigo-600 dark:text-blue-300 text-sm sm:text-base" />
+                      </div>
+                      <div>
+                        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                          {t("Skills")}
+                        </p>
+                        <p className="text-gray-800 dark:text-white text-sm sm:text-base">
+                          {jobPoster.skills}
+                        </p>
+                      </div>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </>
           )}
         </section>
-        {/* Related Services Carousel */}
+
+        {/* Related Services Section */}
         {relatedServices.length > 0 && (
           <div>
             <div className="mb-6 sm:mb-8">
@@ -171,7 +275,6 @@ export default function ServiceDetail() {
               </h3>
               <div className="w-16 sm:w-24 h-1 bg-blue-600 dark:bg-blue-400 rounded-full mt-1 sm:mt-2"></div>
             </div>
-
             <div className="relative">
               <div className="overflow-hidden">
                 <div
