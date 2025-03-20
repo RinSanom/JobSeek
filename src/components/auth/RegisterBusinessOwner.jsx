@@ -109,7 +109,7 @@ const RegisterBusinessOwner = () => {
             initialValues={{
               fullName: "",
               gender: "",
-              profileImageUrl: "",
+              profileImageUrl: [],
               email: "",
               phone: "",
               userType: "BUSINESS_OWNER",
@@ -198,7 +198,7 @@ const RegisterBusinessOwner = () => {
                       containerStyle={{ position: "relative" }}
                       dropdownStyle={{ zIndex: 999 }}
                       specialLabel=""
-                      className="dark:[&_.form-control]:bg-black dark:[&_.form-control]:border-gray-600 dark:[&_.form-control]:text-black"
+                      className="dark:[&_.form-]:bg-black dark:[&_.form-control]:border-gray-600 dark:[&_.form-control]:text-black"
                     />
                     {touched.phone && errors.phone && (
                       <p className="text-red-500 dark:text-red-400 text-xs mt-1">
@@ -263,8 +263,7 @@ const RegisterBusinessOwner = () => {
                   <Field
                     as="select"
                     name="userType"
-                    className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
-                  >
+                    className="w-full px-3 py-2 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700">
                     <option value="BUSINESS_OWNER">{t("businessOwner")}</option>
                     <option value="INDIVIDUAL">{t("individual")}</option>
                   </Field>

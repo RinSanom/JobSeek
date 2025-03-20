@@ -3,14 +3,14 @@ import { apiSlide } from "../api/apiSlide";
 export const jobSlide = apiSlide.injectEndpoints({
   endpoints: (build) => ({
     getAllJobs: build.query({
-      query: () => ({
-        url: `/api/jobs-service/jobs`,
+      query: (page = 1) => ({
+        url: `/api/jobs-service/jobs?page=${page}&size=6`,
         method: "GET",
       }),
     }),
     getJobById: build.query({
       query: (id) => ({
-        url: `/api/job-service/job${id}`,
+        url: `/api/jobs-service/jobs?jobId${id}`,
         method: "GET",
       }),
     }),
@@ -37,6 +37,12 @@ export const jobSlide = apiSlide.injectEndpoints({
         },
       }),
     }),
+    getJobPoster: build.query({
+      query: (userId) => ({
+        url: `/api/jobs-service/jobs?userId=${userId}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -45,4 +51,5 @@ export const {
   useGetMyOwnJobsQuery,
   useGetJobByIdQuery,
   useCreateJobMutation,
+  useGetJobPosterQuery
 } = jobSlide;

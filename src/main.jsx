@@ -24,6 +24,8 @@ import CreateJob from "./pages/creatAtJob/CreateJob.jsx";
 import EditProfileBusinessOwner from "./pages/sitting/EditProfileBusinessOwner.jsx";
 import JobDetailPage from "./pages/businessOwner/JobDetailPage.jsx";
 import EditProfileFreelancerPage from "./pages/sitting/EditProfileFreelancerPage.jsx";
+import { NetworkProvider } from "./context/NetworkContext.jsx";
+import UserSeeBusProfile from "./pages/businessOwner/UserSeeBusProfile.jsx";
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -144,10 +146,10 @@ const AppRoutes = () => (
         }
       />
       <Route
-        path="/user-see-freelancer-profile"
+        path="/bussiness-owner-profile/:id"
         element={
           <ProtectedRoute allowedRoles={["FREELANCER", "BUSINESS_OWNER"]}>
-            <UserSeeFreelancerProfilePage />
+            <UserSeeBusProfile />
           </ProtectedRoute>
         }
       />
@@ -169,12 +171,14 @@ const AppRoutes = () => (
 
 createRoot(document.getElementById("root")).render(
   <StrictMode>
-    <Provider store={store}>
-      <ThemeProvider>
-        <BrowserRouter>
-          <AppRoutes />
-        </BrowserRouter>
-      </ThemeProvider>
-    </Provider>
+    <NetworkProvider>
+      <Provider store={store}>
+        <ThemeProvider>
+          <BrowserRouter>
+            <AppRoutes />
+          </BrowserRouter>
+        </ThemeProvider>
+      </Provider>
+    </NetworkProvider>
   </StrictMode>
 );

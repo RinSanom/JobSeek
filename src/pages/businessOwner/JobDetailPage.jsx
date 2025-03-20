@@ -1,5 +1,5 @@
 import React from "react";
-import { useGetAllJobsQuery } from "../../feature/job/jobSlide";
+import { useGetAllJobsQuery, useGetJobByIdQuery } from "../../feature/job/jobSlide";
 import { useParams } from "react-router-dom";
 import { useGetAllUsersQuery } from "../../feature/service/serviceSlde";
 import { useTranslation } from "react-i18next";
@@ -8,7 +8,7 @@ import "../../i18n";
 export default function JobDetailPage() {
   const { t } = useTranslation();
   const { id } = useParams();
-  const { data: jobs, isLoading, isError, error } = useGetAllJobsQuery();
+  const { data: jobs, isLoading, isError, error } = useGetJobByIdQuery(id);
   const { data: userData } = useGetAllUsersQuery();
 
   const jobData = jobs?.content?.find((job) => job.id === id);
