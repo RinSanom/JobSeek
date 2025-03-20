@@ -15,7 +15,7 @@ import "../../i18n";
 const validationSchema = Yup.object({
   fullName: Yup.string().required("FullNameRequired"),
   gender: Yup.string().required("GenderRequired"),
-  profileImageUrl: Yup.array().min(1, "ProfileImageUrlRequired"),
+
   email: Yup.string().email("InvalidEmail").required("EmailRequired"),
   phone: Yup.string().required("PhoneRequired"),
   userType: Yup.string().required("UserTypeRequired"),
@@ -108,7 +108,7 @@ const RegisterBusinessOwner = () => {
             initialValues={{
               fullName: "",
               gender: "",
-              profileImageUrl: [],
+              profileImageUrl: "",
               email: "",
               phone: "",
               userType: "BUSINESS_OWNER",
