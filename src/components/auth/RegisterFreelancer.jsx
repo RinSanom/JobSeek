@@ -41,12 +41,11 @@ const RegisterFreelancer = () => {
     phone: Yup.string().required(t("phoneRequired")),
     password: Yup.string()
       .min(6, t("passwordMinLength"))
-      .required(t("passwordRequired")),
+      .required(t("password must be one uppercase letter ")),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], t("passwordsMustMatch"))
       .required(t("confirmPasswordRequired")),
   });
-
   const formik = useFormik({
     initialValues: {
       fullName: "",
