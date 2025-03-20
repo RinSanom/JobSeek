@@ -1,0 +1,23 @@
+
+.offline-notification {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background-color: #ff4444;
+    color: white;
+    padding: 1rem;
+    text-align: center;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+  }
+  
+  .offline-content {
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  
+  .offline-notification p {
+    margin: 0.5rem 0 0;
+    font-size: 0.9rem;
+  }

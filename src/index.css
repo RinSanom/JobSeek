@@ -83,3 +83,7 @@ html[lang="en"] {
 html[lang="km"] {
   font-family: "Koh Santepheap", sans-serif;
 }
+
+.animate-spin-slow {
+  animation: spin 2s linear infinite;
+}
