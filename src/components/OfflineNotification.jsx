@@ -9,36 +9,36 @@ const OfflineNotification = () => {
   };
 
   return (
-    <div className="fixed inset-0 z-80 w-full h-screen bg-white opacity-95 text-black shadow-lg flex items-center justify-center">
-      <div className="w-full max-w-screen-xl px-4 py-3 mx-auto">
-        <div className="flex flex-col sm:flex-row items-center justify-center gap-6 sm:gap-8 md:gap-12">
+    <div className="flex bg-white h-screen justify-center shadow-lg text-black w-full fixed inset-0 items-center opacity-95 z-80">
+      <div className="w-full max-w-screen-xl mx-auto px-4 py-3">
+        <div className="flex flex-col justify-center gap-6 items-center md:gap-12 sm:flex-row sm:gap-8">
           {/* Logo and Message Section */}
-          <div className="flex items-center gap-3">
+          <div className="flex gap-3 items-center">
             <img 
-              src={logo1 || "https://job-seek-seven.vercel.app/assets/Logo-CYGUXLXP.png"}   
+              src={logo1 }   
               alt="logo" 
-              className="h-8 w-8 sm:h-10 sm:w-10 md:h-12 md:w-12 lg:h-15 lg:w-15"
+              className="h-8 w-8 lg:h-15 lg:w-15 md:h-12 md:w-12 sm:h-10 sm:w-10"
             />
             <RiWifiOffLine 
-              className="w-8 h-8 sm:w-10 sm:h-10 md:w-12 md:h-12 lg:w-15 lg:h-15 animate-pulse" 
+              className="h-8 w-8 animate-pulse lg:h-15 lg:w-15 md:h-12 md:w-12 sm:h-10 sm:w-10" 
             />
             <div>
-              <h3 className="text-base sm:text-lg md:text-xl lg:text-2xl font-semibold flex items-center gap-2">
+              <h3 className="flex text-base font-semibold gap-2 items-center lg:text-2xl md:text-xl sm:text-lg">
                 You are offline <span className="text-yellow-300">⚠️</span>
               </h3>
-              <p className="text-xs sm:text-sm md:text-base">
+              <p className="text-xs md:text-base sm:text-sm">
                 Please check your internet connection
               </p>
             </div>
           </div>
 
           {/* Retry Button Section */}
-          <div className="flex items-center justify-center">
+          <div className="flex justify-center items-center">
             <button
               onClick={handleRetry}
-              className="flex items-center gap-2 px-3 py-1.5 sm:px-4 sm  sm:py-2 bg-white text-red-600 rounded-lg font-medium border border-red-600 hover:bg-gray-100 transition-colors duration-200"
+              className="flex bg-white border border-red-600 rounded-lg text-red-600 duration-200 font-medium gap-2 hover:bg-gray-100 items-center px-3 py-1.5 sm sm:px-4 sm:py-2 transition-colors"
             >
-              <LuRefreshCw className="w-4 h-4 sm:w-5 sm:h-5 animate-spin-slow" />
+              <LuRefreshCw className="h-4 w-4 animate-spin-slow sm:h-5 sm:w-5" />
               <span className="text-sm sm:text-base">Retry</span>
             </button>
           </div>
