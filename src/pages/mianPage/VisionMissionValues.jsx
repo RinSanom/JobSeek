@@ -33,7 +33,7 @@ const VisionMissionValues = () => {
 
   const cards = [
     {
-      title: "Our Vision",
+      title: t("ourVision"),
       description: t("visionDescription"),
       icon: (
         <HexagonIcon>
@@ -42,7 +42,7 @@ const VisionMissionValues = () => {
       ),
     },
     {
-      title: "Our Mission",
+      title: t("ourMission"),
       description: t("missionDescription"),
       icon: (
         <HexagonIcon>
@@ -51,9 +51,8 @@ const VisionMissionValues = () => {
       ),
     },
     {
-      title: "Core Values",
-      description:
-        "Integrity, collaboration, excellence, innovation, and customer-centricity guide everything we do.",
+      title: t("coreValues"),
+      description: t("valuesDescription"),
       icon: (
         <HexagonIcon>
           <FaShieldAlt className="w-10 h-10 text-blue-600 dark:text-blue-300" /> {/* Values icon */}
@@ -69,7 +68,7 @@ const VisionMissionValues = () => {
           data-aos="fade-up"
           className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white text-center mb-12"
         >
-          Our Purpose
+          {t("ourPurpose")}
         </h2>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {cards.map((card, index) => (

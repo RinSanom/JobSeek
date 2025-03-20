@@ -56,7 +56,7 @@ export default function HomePage() {
         <div
           data-aos="fade-right"
           data-aos-duration="1000"
-          className="mb-8 sm:mb-12"
+          className="mb-8 sm:mb-12 "
         >
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-start text-white dark:text-white">
             {t("forJobSeekService")}

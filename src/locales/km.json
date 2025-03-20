@@ -441,5 +441,20 @@
   "PasswordUppercaseRequired": "Password must contain at least one uppercase letter",
   "passwordUppercaseRequired": "លេខសម្ងាត់ត្រូវតែមានអក្សរធំយ៉ាងហោចណាស់មួយ",
   "passwordMinLength": "លេខសម្ងាត់ត្រូវតែមានយ៉ាងហោចណាស់ ៦ តួអក្សរ",
-  "passwordRequired": "លេខសម្ងាត់ត្រូវបានទាមទារ"
+  "passwordRequired": "លេខសម្ងាត់ត្រូវបានទាមទារ",
+
+  "howItWorks": "របៀបដែលវាដំណើរការ",
+  "freelancersCreateProfilesTitle": "អ្នកឯករាជ្យបង្កើតប្រវត្តិរូប",
+  "freelancersCreateProfilesDesc": "អ្នកឯករាជ្យបង្កើតប្រវត្តិរូប និងបង្ហោះសេវាកម្មរបស់ពួកគេដើម្បីបង្ហាញជំនាញ និងឯកទេសរបស់ពួកគេ។",
+  "businessOwnersPostJobsTitle": "ម្ចាស់អាជីវកម្មបង្ហោះការងារ",
+  "businessOwnersPostJobsDesc": "ម្ចាស់អាជីវកម្មបង្ហោះបញ្ជីការងារដើម្បីស្វែងរកអ្នកឯករាជ្យដ៏ល្អឥតខ្ចោះសម្រាប់គម្រោងរបស់ពួកគេ។",
+  "connectCollaborateTitle": "ភ្ជាប់ និងសហការ",
+  "connectCollaborateDesc": "ភាគីទាំងពីរភ្ជាប់គ្នា ចរចា និងសហការដើម្បីនាំគម្រោងទៅជោគជ័យ។",
+  "ourPurpose": "គោលបំណងរបស់យើង",
+  "ourVision": "ចក្ខុវិស័យរបស់យើង",
+  "visionDescription": "ដើម្បីផ្តល់អំណាចដល់អ្នកឯករាជ្យ និងអាជីវកម្មដោយភ្ជាប់ទេពកោសល្យជាមួយនឹងឱកាសនានាទូទាំងពិភពលោក។",
+  "ourMission": "បេសកកម្មរបស់យើង",
+  "missionDescription": "ដើម្បីផ្តល់នូវវេទិកាដែលរលូន ដែលជំរុញការសហការ ការរីកចម្រើន និងជោគជ័យសម្រាប់អ្នកប្រើប្រាស់ទាំងអស់។",
+  "coreValues": "តម្លៃស្នូល",
+  "valuesDescription": "សុចរិតភាព ការសហការ ឧត្តមភាព ការច្នៃប្រឌិត និងការផ្តោតលើអតិថិជនជាមគ្គុទ្ទេសក៍គ្រប់យ៉ាងដែលយើងធ្វើ។"
 }

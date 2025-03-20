@@ -443,5 +443,20 @@
   "PasswordUppercaseRequired": "Password must contain at least one uppercase letter",
   "passwordUppercaseRequired": "Password must contain at least one uppercase letter",
   "passwordMinLength": "Password must be at least 6 characters",
-  "passwordRequired": "Password is required"
+  "passwordRequired": "Password is required",
+
+  "howItWorks": "How It Works",
+  "freelancersCreateProfilesTitle": "Freelancers Create Profiles",
+  "freelancersCreateProfilesDesc": "Freelancers create profiles and post their services to showcase their skills and expertise.",
+  "businessOwnersPostJobsTitle": "Business Owners Post Jobs",
+  "businessOwnersPostJobsDesc": "Business owners post job listings to find the perfect freelancers for their projects.",
+  "connectCollaborateTitle": "Connect & Collaborate",
+  "connectCollaborateDesc": "Both parties connect, negotiate, and collaborate to bring projects to life successfully.",
+  "ourPurpose": "Our Purpose",
+  "ourVision": "Our Vision",
+  "visionDescription": "To empower freelancers and businesses by connecting talent with opportunities worldwide.",
+  "ourMission": "Our Mission",
+  "missionDescription": "To provide a seamless platform that fosters collaboration, growth, and success for all users.",
+  "coreValues": "Core Values",
+  "valuesDescription": "Integrity, collaboration, excellence, innovation, and customer-centricity guide everything we do."
 }
