@@ -1,7 +1,8 @@
 import React from 'react';
 import { RiWifiOffLine } from "react-icons/ri";
 import { LuRefreshCw } from "react-icons/lu";
-import logo1 from "../assets/Footer/smallLogo.png";
+
+
 
 const OfflineNotification = () => {
   const handleRetry = () => {
@@ -15,7 +16,7 @@ const OfflineNotification = () => {
           {/* Logo and Message Section */}
           <div className="flex gap-3 items-center">
             <img 
-              src={logo1 }   
+              src={"/images/smallLogo.png"}   
               alt="logo" 
               className="h-8 w-8 lg:h-15 lg:w-15 md:h-12 md:w-12 sm:h-10 sm:w-10"
             />
