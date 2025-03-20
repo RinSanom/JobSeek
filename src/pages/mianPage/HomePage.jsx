@@ -76,7 +76,7 @@ export default function HomePage() {
           ))}
         </div>
       </section>
-      <section className="container mt-8 sm:mt-12 px-4 sm:px-5 md:px-20 xl:px-32 bg-white-background dark:bg-gray-900">
+      <section className="container mx-auto mt-8 sm:mt-12 px-4 sm:px-5 md:px-20 xl:px-32 bg-white-background dark:bg-gray-900">
         <div className="overflow-hidden sm:grid sm:grid-cols-2 sm:items-center">
           <div
             data-aos="fade-right"
@@ -101,7 +101,7 @@ export default function HomePage() {
           />
         </div>
       </section>
-      <section className="bg-primary dark:bg-primary container px-4 sm:px-5 py-5 my-10 sm:my-16 md:px-20 xl:px-32">
+      <section className="bg-primary dark:bg-primary container mx-auto px-4 sm:px-5 py-5 my-10 sm:my-16 md:px-20 xl:px-32">
         <div
           data-aos="fade-up-right"
           data-aos-duration="1000"
@@ -171,7 +171,7 @@ export default function HomePage() {
           </div>
         </div>
       </section>
-      <section className="container px-4 sm:px-5 py-5 md:px-20 xl:px-32 bg-white-background dark:bg-gray-900">
+      <section className="container mx-auto px-4 sm:px-5 py-5 md:px-20 xl:px-32 bg-white-background dark:bg-gray-900">
         <div className="py-8 sm:py-16 text-start">
           <h2
             data-aos="fade-up-right"
