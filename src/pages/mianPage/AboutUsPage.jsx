@@ -66,60 +66,60 @@ export default function AboutUsPage() {
 
         {/* How It Works Section */}
         <section className="mt-20">
-          <h2
-            data-aos="fade-up"
-            className="text-3xl md:text-4xl font-bold text-primary text-center underline underline-offset-8 decoration-secondary mb-12"
-          >
-            How It Works
-          </h2>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div
-              data-aos="fade-up"
-              data-aos-delay="100"
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center"
-            >
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-blue-600 dark:text-blue-300">1</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                Freelancers Create Profiles
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Freelancers create profiles and post their services to showcase their skills and expertise.
-              </p>
-            </div>
-            <div
-              data-aos="fade-up"
-              data-aos-delay="200"
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center"
-            >
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-blue-600 dark:text-blue-300">2</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                Business Owners Post Jobs
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Business owners post job listings to find the perfect freelancers for their projects.
-              </p>
-            </div>
-            <div
-              data-aos="fade-up"
-              data-aos-delay="300"
-              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center"
-            >
-              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
-                <span className="text-2xl text-blue-600 dark:text-blue-300">3</span>
-              </div>
-              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-                Connect & Collaborate
-              </h3>
-              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-                Both parties connect, negotiate, and collaborate to bring projects to life successfully.
-              </p>
-            </div>
+      <h2
+        data-aos="fade-up"
+        className="text-3xl md:text-4xl font-bold text-primary text-center underline underline-offset-8 decoration-secondary mb-12"
+      >
+        {t("howItWorks")}
+      </h2>
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+        <div
+          data-aos="fade-up"
+          data-aos-delay="100"
+          className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center"
+        >
+          <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl text-blue-600 dark:text-blue-300">1</span>
           </div>
-        </section>
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+            {t("freelancersCreateProfilesTitle")}
+          </h3>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            {t("freelancersCreateProfilesDesc")}
+          </p>
+        </div>
+        <div
+          data-aos="fade-up"
+          data-aos-delay="200"
+          className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center"
+        >
+          <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl text-blue-600 dark:text-blue-300">2</span>
+          </div>
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+            {t("businessOwnersPostJobsTitle")}
+          </h3>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            {t("businessOwnersPostJobsDesc")}
+          </p>
+        </div>
+        <div
+          data-aos="fade-up"
+          data-aos-delay="300"
+          className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center"
+        >
+          <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+            <span className="text-2xl text-blue-600 dark:text-blue-300">3</span>
+          </div>
+          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+            {t("connectCollaborateTitle")}
+          </h3>
+          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+            {t("connectCollaborateDesc")}
+          </p>
+        </div>
+      </div>
+    </section>
 
 
 

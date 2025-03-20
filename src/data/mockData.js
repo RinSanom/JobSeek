@@ -17,7 +17,7 @@ const jobListings = [
     role: "Cloud Engineer",
     jobType: "Freelancer",
     companyDescription:
-      "Providing top-tier cloud solutions for enterprises worldwide.",
+      "Providing top-tier cloud solutions for enterprises worldwide. Services—including servers, storage, databases, networking, software, analytics, and intelligence",
     requirements: ["AWS", "Docker", "Kubernetes"],
     publishedDate: "2025-02-20",
     imageUrl:
