@@ -15,6 +15,7 @@ import "../../i18n"; // Ensure i18n is imported
 const validationSchema = Yup.object({
   fullName: Yup.string().required("FullNameRequired"), // Updated to use key
   gender: Yup.string().required("GenderRequired"), // Updated to use key
+  profileImageUrl: Yup.array().min(1, "ProfileImageUrlRequired"), // Updated to use key
   email: Yup.string().email("InvalidEmail").required("EmailRequired"), // Updated to use key
   phone: Yup.string().required("PhoneRequired"), // Updated to use key
   userType: Yup.string().required("UserTypeRequired"), // Updated to use key
@@ -77,7 +78,11 @@ const RegisterBusinessOwner = () => {
       {/* Form Section */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8">
         <div className="w-full max-w-full sm:max-w-md space-y-4 sm:space-y-6">
-          <NavLink className="text-primary dark:text-white text-lg md:text-2xl underline " to="/">{t("back")}</NavLink>
+          <NavLink
+            className="text-primary dark:text-white text-lg md:text-2xl underline "
+            to="/">
+            {t("back")}
+          </NavLink>
           {/* Logo and Title */}
           <div className="flex items-center gap-2 sm:gap-3 mt-3">
             <NavLink to="/">
@@ -204,7 +209,6 @@ const RegisterBusinessOwner = () => {
                   </div>
                 </div>
 
-
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
                   {/* Company Name */}
                   <div>
@@ -256,7 +260,7 @@ const RegisterBusinessOwner = () => {
                 </div>
 
                 {/* User Type */}
-                <div>
+                {/* <div>
                   <Field
                     as="select"
                     name="userType"
@@ -264,13 +268,8 @@ const RegisterBusinessOwner = () => {
                     <option value="BUSINESS_OWNER">{t("businessOwner")}</option>
                     <option value="INDIVIDUAL">{t("individual")}</option>
                   </Field>
-                  <ErrorMessage
-                    name="userType"
-                    component="p"
-                    className="text-red-500 dark:text-red-400 text-xs mt-1"
-                    render={(msg) => t(msg)}
-                  />
-                </div>
+                  <ErrorMessage name="userType" component="p" className="text-red-500 dark:text-red-400 text-xs mt-1" render={(msg) => t(msg)} />
+                </div> */}
 
                 {/* Password */}
                 <div>
@@ -305,7 +304,14 @@ const RegisterBusinessOwner = () => {
                   type="submit"
                   className="w-full bg-blue-900 dark:bg-blue-800 text-white py-2 sm:py-3 rounded-lg font-medium disabled:opacity-50 hover:bg-blue-800 dark:hover:bg-blue-700 transition"
                   disabled={isLoading}>
-                  {isLoading ? t("creatingAccount") : t("createAccount")}
+                  {isLoading ? (
+                    <div className="flex items-center justify-center">
+                      <span className="mr-2">{t("creatingAccount")}</span>
+                      <i className="fas fa-spinner fa-spin"></i>
+                    </div>
+                  ) : (
+                    t("createAccount")
+                  )}
                 </button>
               </Form>
             )}
