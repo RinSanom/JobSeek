@@ -437,5 +437,9 @@
   "updateProfile": "ធ្វើបច្ចុប្បន្នភាពប្រវត្តិរូប",
   "profileUpdatedSuccess": "ប្រវត្តិរូបត្រូវបានធ្វើបច្ចុប្បន្នភាពដោយជោគជ័យ!",
   "profileUpdateFailed": "បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពប្រវត្តិរូប",
-  "profileUpdateFailedTryAgain": "បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពប្រវត្តិរូប។ សូមព្យាយាមម្តងទៀត។"
+  "profileUpdateFailedTryAgain": "បរាជ័យក្នុងការធ្វើបច្ចុប្បន្នភាពប្រវត្តិរូប។ សូមព្យាយាមម្តងទៀត។",
+  "PasswordUppercaseRequired": "Password must contain at least one uppercase letter",
+  "passwordUppercaseRequired": "លេខសម្ងាត់ត្រូវតែមានអក្សរធំយ៉ាងហោចណាស់មួយ",
+  "passwordMinLength": "លេខសម្ងាត់ត្រូវតែមានយ៉ាងហោចណាស់ ៦ តួអក្សរ",
+  "passwordRequired": "លេខសម្ងាត់ត្រូវបានទាមទារ"
 }

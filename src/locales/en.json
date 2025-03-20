@@ -439,5 +439,9 @@
   "updateProfile": "Update Profile",
   "profileUpdatedSuccess": "Profile updated successfully!",
   "profileUpdateFailed": "Failed to update profile",
-  "profileUpdateFailedTryAgain": "Failed to update profile. Please try again."
+  "profileUpdateFailedTryAgain": "Failed to update profile. Please try again.",
+  "PasswordUppercaseRequired": "Password must contain at least one uppercase letter",
+  "passwordUppercaseRequired": "Password must contain at least one uppercase letter",
+  "passwordMinLength": "Password must be at least 6 characters",
+  "passwordRequired": "Password is required"
 }

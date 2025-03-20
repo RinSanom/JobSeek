@@ -7,13 +7,13 @@ import Ta2 from "../../assets/Ta_Images/Logo.png";
 import { useRegisterFreelancerMutation } from "../../feature/auth/authSlide";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { NavLink, useNavigate } from "react-router";
+import { NavLink, useNavigate } from "react-router-dom"; // Fixed import
 import toast from "react-hot-toast";
-import { useTranslation } from "react-i18next"; // Added for i18n
+import { useTranslation } from "react-i18next";
 import "../../i18n";
 
 const RegisterFreelancer = () => {
-  const { t } = useTranslation(); // Hook for translations
+  const { t } = useTranslation();
   const [passwordVisible, setPasswordVisible] = useState(false);
   const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const [phoneNumber, setPhoneNumber] = useState("");
@@ -41,7 +41,11 @@ const RegisterFreelancer = () => {
     phone: Yup.string().required(t("phoneRequired")),
     password: Yup.string()
       .min(6, t("passwordMinLength"))
-      .required(t("passwordRequired")),
+      .required(t("passwordRequired"))
+      .matches(
+        /^(?=.*[A-Z])/,
+        t("passwordUppercaseRequired") // New validation message key
+      ),
     confirmPassword: Yup.string()
       .oneOf([Yup.ref("password"), null], t("passwordsMustMatch"))
       .required(t("confirmPasswordRequired")),
@@ -115,11 +119,6 @@ const RegisterFreelancer = () => {
       {/* Form Section */}
       <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8">
         <div className="w-full max-w-md space-y-4 sm:space-y-6">
-          <NavLink
-            className="text-primary dark:text-white text-lg md:text-2xl underline "
-            to="/">
-            {t("back")}
-          </NavLink>
           <div className="flex items-center gap-3">
             <NavLink to="/">
               <img
@@ -144,7 +143,8 @@ const RegisterFreelancer = () => {
 
           <form
             onSubmit={formik.handleSubmit}
-            className="space-y-3 sm:space-y-4">
+            className="space-y-3 sm:space-y-4"
+          >
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               {/* Full Name */}
               <div>
@@ -194,7 +194,8 @@ const RegisterFreelancer = () => {
                   onChange={formik.handleChange}
                   onBlur={formik.handleBlur}
                   value={formik.values.gender}
-                  className="w-full px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700">
+                  className="w-full px-3 py-1 sm:px-4 sm:py-2 border border-gray-300 dark:border-gray-600 rounded-lg focus:ring-2 focus:ring-blue-500 dark:focus:ring-blue-400 focus:border-transparent transition text-gray-900 dark:text-gray-100 bg-white dark:bg-gray-700"
+                >
                   <option value="">{t("selectGender")}</option>
                   <option value="Male">{t("male")}</option>
                   <option value="Female">{t("female")}</option>
@@ -295,7 +296,8 @@ const RegisterFreelancer = () => {
                 <button
                   type="button"
                   onClick={togglePasswordVisibility}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-900 dark:text-blue-300">
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-900 dark:text-blue-300"
+                >
                   {passwordVisible ? (
                     <i className="fas fa-eye-slash"></i>
                   ) : (
@@ -326,7 +328,8 @@ const RegisterFreelancer = () => {
                 <button
                   type="button"
                   onClick={toggleConfirmPasswordVisibility}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-900 dark:text-blue-300">
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-900 dark:text-blue-300"
+                >
                   {confirmPasswordVisible ? (
                     <i className="fas fa-eye-slash"></i>
                   ) : (
@@ -346,7 +349,8 @@ const RegisterFreelancer = () => {
             <button
               className="w-full bg-blue-900 dark:bg-blue-800 hover:bg-blue-800 dark:hover:bg-blue-700 text-white py-2 sm:py-3 rounded-lg font-medium disabled:opacity-50 transition"
               type="submit"
-              disabled={isLoading}>
+              disabled={isLoading}
+            >
               {isLoading ? t("creatingAccount") : t("createAccount")}
             </button>
             {error && (
@@ -361,7 +365,8 @@ const RegisterFreelancer = () => {
               {t("alreadyHaveAccount")}{" "}
               <span
                 className="text-blue-900 dark:text-blue-300 hover:underline cursor-pointer font-medium"
-                onClick={() => navigate("/login")}>
+                onClick={() => navigate("/login")}
+              >
                 {t("loginNow")}
               </span>
             </p>
