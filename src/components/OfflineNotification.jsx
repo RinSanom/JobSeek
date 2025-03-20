@@ -16,7 +16,7 @@ const OfflineNotification = () => {
           {/* Logo and Message Section */}
           <div className="flex gap-3 items-center">
             <img 
-              src={"/images/smallLogo.png"}   
+              src={"public/images/picsvg_download.svg"}   
               alt="logo" 
               className="h-8 w-8 lg:h-15 lg:w-15 md:h-12 md:w-12 sm:h-10 sm:w-10"
             />
