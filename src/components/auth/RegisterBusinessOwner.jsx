@@ -79,7 +79,7 @@ const RegisterBusinessOwner = () => {
       <div className="w-full md:w-1/2 flex items-center justify-center p-4 sm:p-6 md:p-8">
         <div className="w-full max-w-full sm:max-w-md space-y-4 sm:space-y-6">
           <NavLink
-            className="text-primary dark:text-white text-lg md:text-2xl underline "
+            className="text-primary dark:text-white text-lg md:text-xl underline  "
             to="/">
             {t("back")}
           </NavLink>
@@ -105,7 +105,6 @@ const RegisterBusinessOwner = () => {
               {t("createAccountPrompt")}
             </p>
           </div>
-
           <Formik
             initialValues={{
               fullName: "",
