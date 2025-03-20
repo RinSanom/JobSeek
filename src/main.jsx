@@ -26,6 +26,7 @@ import JobDetailPage from "./pages/businessOwner/JobDetailPage.jsx";
 import EditProfileFreelancerPage from "./pages/sitting/EditProfileFreelancerPage.jsx";
 import { NetworkProvider } from "./context/NetworkContext.jsx";
 import UserSeeBusProfile from "./pages/businessOwner/UserSeeBusProfile.jsx";
+import UserSeeFreelancerPro from "./pages/freelaner/UserSeeFreelancerPro.jsx";
 const ProtectedRoute = ({ children, allowedRoles }) => {
   const [userRole, setUserRole] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -150,6 +151,14 @@ const AppRoutes = () => (
         element={
           <ProtectedRoute allowedRoles={["FREELANCER", "BUSINESS_OWNER"]}>
             <UserSeeBusProfile />
+          </ProtectedRoute>
+        }
+      />
+        <Route
+        path="/freelancer-profile/:id"
+        element={
+          <ProtectedRoute allowedRoles={["FREELANCER", "BUSINESS_OWNER"]}>
+            <UserSeeFreelancerPro />
           </ProtectedRoute>
         }
       />

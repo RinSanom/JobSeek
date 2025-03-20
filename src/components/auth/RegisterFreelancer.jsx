@@ -50,7 +50,6 @@ const RegisterFreelancer = () => {
       .oneOf([Yup.ref("password"), null], t("passwordsMustMatch"))
       .required(t("confirmPasswordRequired")),
   });
-
   const formik = useFormik({
     initialValues: {
       fullName: "",
