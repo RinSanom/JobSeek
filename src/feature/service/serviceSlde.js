@@ -16,7 +16,7 @@ export const serviceSlide = apiSlide.injectEndpoints({
     }),
     getAllServices: build.query({
       query: (page = 1) => ({
-        url: `/api/jobs-service/services?page=${page} `,
+        url: `/api/jobs-service/services${page} `,
         method: "GET",
       }),
     }),

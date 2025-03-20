@@ -25,7 +25,7 @@ export default function CardJob({ page }) {
         <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
           <MdError className="text-5xl mb-4 mx-auto text-red-500" />
           <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-            Unable to Load Profile
+            Unable to Load Job
           </h1>
           <p className="mt-2 text-gray-600 dark:text-gray-300">
             We couldn't load your profile information. Please try again later.
@@ -53,7 +53,7 @@ export default function CardJob({ page }) {
                 src={
                   service.jobImages.length > 0
                     ? service.jobImages[0] || dataMuck.imageUrl
-                    : "https://i.pinimg.com/originals/4f/7e/ab/4f7eab8b98913e658391c54b57980e68.gif"
+                    : "https://media.tenor.com/JlQS7xvck0MAAAAe/image-placeholder.png"
                 }
                 className="mb-4 object-cover aspect-video w-full rounded-lg bg-gray-200 dark:bg-gray-700"
                 alt="service banner"
