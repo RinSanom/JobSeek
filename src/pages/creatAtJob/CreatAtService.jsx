@@ -5,6 +5,7 @@ import {
 } from "../../feature/service/serviceSlde";
 import { useUploadImageMutation } from "../../feature/fileUplord/fileUplordSlide";
 import { FaTimes } from "react-icons/fa";
+import toast, { Toaster } from "react-hot-toast"; // Import toast and Toaster
 
 const CreateServicePage = () => {
   const [title, setTitle] = useState("");
@@ -56,7 +57,7 @@ const CreateServicePage = () => {
       setImageUrls((prevUrls) => [...prevUrls, ...uploadedUrls]);
     } catch (error) {
       console.error("Error uploading images:", error);
-      alert("Failed to upload images. Please try again.");
+      toast.error("Failed to upload images. Please try again."); // Replace alert with toast
     }
   };
 
@@ -64,7 +65,7 @@ const CreateServicePage = () => {
     e.preventDefault();
 
     if (!token) {
-      alert("Authentication token missing. Please log in.");
+      toast.error("Authentication token missing. Please log in."); // Replace alert with toast
       return;
     }
 
@@ -78,7 +79,7 @@ const CreateServicePage = () => {
       };
 
       const result = await createService(serviceData).unwrap();
-      alert("Service created successfully!");
+      toast.success("Service created successfully!"); // Replace alert with toast.success
 
       setTitle("");
       setDescription("");
@@ -88,7 +89,7 @@ const CreateServicePage = () => {
       console.error("Create service error:", error);
       let errorMessage =
         error.data?.message || error.message || "Unknown error occurred";
-      alert(`Failed to create service: ${errorMessage}`);
+      toast.error(`Failed to create service: ${errorMessage}`); // Replace alert with toast.error
     }
   };
 
@@ -306,6 +307,7 @@ const CreateServicePage = () => {
           </div>
         </form>
       </div>
+      <Toaster /> {/* Add Toaster component here */}
     </div>
   );
 };

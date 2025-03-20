@@ -5,6 +5,7 @@ import { useUploadImageMutation } from "../../feature/fileUplord/fileUplordSlide
 import { useGetAllCategoriesQuery } from "../../feature/service/serviceSlde";
 import { useTranslation } from "react-i18next"; // Added for i18n
 import "../../i18n"; // Ensure i18n is imported
+import toast, { Toaster } from "react-hot-toast"; // Import toast and Toaster
 
 const CreateJob = () => {
   const { t } = useTranslation(); // Hook for translations
@@ -58,7 +59,7 @@ const CreateJob = () => {
       }));
     } catch (error) {
       console.error("Error uploading images:", error);
-      alert(t("uploadImageError"));
+      toast.error(t("uploadImageError")); // Replace alert with toast.error
     }
   };
 
@@ -71,7 +72,7 @@ const CreateJob = () => {
       !formData.categoryId ||
       !formData.budget
     ) {
-      alert(t("requiredFieldsError"));
+      toast.error(t("requiredFieldsError")); // Replace alert with toast.error
       return;
     }
 
@@ -88,10 +89,10 @@ const CreateJob = () => {
         status: "OPEN",
       });
 
-      alert(t("createSuccess"));
+      toast.success(t("createSuccess")); // Replace alert with toast.success
     } catch (error) {
       console.error("Error creating service:", error);
-      alert(t("createError"));
+      toast.error(t("createError")); // Replace alert with toast.error
     }
   };
 
@@ -329,6 +330,7 @@ const CreateJob = () => {
           </form>
         </div>
       </div>
+      <Toaster /> {/* Add Toaster component here */}
     </div>
   );
 };
