@@ -1,6 +1,9 @@
 import React from "react";
 import { IoMdTime } from "react-icons/io";
-import { useGetAllServicesQuery } from "../../../feature/service/serviceSlde";
+import {
+  useGetAllServicesQuery,
+  useGetFreelancerServiceQuery,
+} from "../../../feature/service/serviceSlde";
 import { NavLink } from "react-router-dom";
 import dataMuck from "../../../data/mockData";
 import { MdError } from "react-icons/md";
@@ -9,46 +12,26 @@ import { toast } from "react-toastify"; // Import toast
 import { motion } from "framer-motion";
 export default function CardServices({ page }) {
   const { data, isLoading, isError } = useGetAllServicesQuery(page);
+  const {
+    data: freelancerSevicePost,
+  } = useGetFreelancerServiceQuery();
   const [createBookmark, { isLoading: isBookmarking }] =
     useCreateBookmarkMutation();
 
+  console.log("Freelancer : ", freelancerSevicePost);
   console.log("Freelancer service: ", data);
-
-  if (isLoading)
-    return (
-      <div className="flex justify-center items-center h-96">
-        <img
-          className="items-center text-9xl"
-          src="src/assets/animation/louding/Animation - 1741739020308 (1).gif"
-          alt="Loading animation"
-        />
-      </div>
-    );
-
-  if (isError) {
-    return (
-      <div className="max-w-7xl mx-auto min-h-screen flex items-center justify-center">
-        <div className="text-center p-6 bg-white dark:bg-gray-800 rounded-xl shadow-lg">
-          <MdError className="text-5xl mb-4 mx-auto text-red-500" />
-          <h1 className="text-2xl font-bold text-gray-800 dark:text-white">
-            Unable to Load Services
-          </h1>
-          <p className="mt-2 text-gray-600 dark:text-gray-300">
-            We couldn't load your services. Please try again later.
-          </p>
-        </div>
-      </div>
-    );
-  }
-
   const services = data?.content || [];
-
-  // Remove duplicates based on service ID
-  const uniqueServices = services.filter(
-    (value, index, self) => index === self.findIndex((t) => t.id === value.id)
-  );
-
-  // Handle adding a service to favorites
+  const users = freelancerSevicePost?.data?.content || [];
+  console.log("Servei all:", data);
+  const servicesWithPoster = services.map((service) => {
+    const jobPoster = users.find((user) => user.id === service.userId);
+    console.log("Job Poster sdsd:", jobPoster);
+    return {
+      ...service,
+      poster: jobPoster || null, 
+    };
+  });
+  console.log("Services with Poster:", servicesWithPoster);
   const handleAddToFavorite = async (serviceId) => {
     try {
       const response = await createBookmark(serviceId).unwrap();
@@ -58,10 +41,9 @@ export default function CardServices({ page }) {
       console.error("Failed to add service to favorites:", error);
     }
   };
-
   return (
     <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-      {uniqueServices.map((service) => (
+      {servicesWithPoster.map((service) => (
         <div
           key={service.id}
           className="rounded-lg bg-white dark:bg-black p-4 shadow-lg">
@@ -81,9 +63,29 @@ export default function CardServices({ page }) {
                   alt="service banner"
                 />
               </motion.div>
-
-              {/* Service Description */}
               <div className="mb-4">
+                {service.poster && (
+                  <NavLink to={`/freelancer-profile/${service.poster.id}`}>
+                    <div className="flex items-center gap-2 mb-4">
+                      <img
+                        src={
+                          service.poster.profileImageUrl ||
+                          "https://via.placeholder.com/40"
+                        }
+                        alt={service.poster.fullName}
+                        className="w-14 h-14 rounded-full object-cover"
+                      />
+                      <div>
+                        <p className="text-xl font-medium text-gray-800 dark:text-gray-200">
+                          {service.poster.fullName}
+                        </p>
+                        <p className="text-md text-gray-500 dark:text-gray-400">
+                          {service.poster.userType}
+                        </p>
+                      </div>
+                    </div>
+                  </NavLink>
+                )}
                 <h3 className="text-lg font-semibold text-black dark:text-white">
                   {service.title}
                 </h3>
@@ -91,8 +93,6 @@ export default function CardServices({ page }) {
                   {service.description}
                 </p>
               </div>
-
-              {/* Service Creation Date */}
               <div className="flex items-center justify-between">
                 <div className="flex items-center gap-2">
                   <IoMdTime className="text-gray-500 dark:text-gray-400" />

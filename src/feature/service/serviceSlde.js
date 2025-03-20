@@ -8,6 +8,12 @@ export const serviceSlide = apiSlide.injectEndpoints({
         method: "GET",
       }),
     }),
+    getFreelancerService: build.query({
+      query: () => ({
+        url: "/api/users?userType=freelancer&page=0&size=10&sortBy=email",
+        method: "GET",
+      }),
+    }),
     getUserById: build.query({
       query: (id) => ({
         url: `/api/users/${id}`,
@@ -15,8 +21,8 @@ export const serviceSlide = apiSlide.injectEndpoints({
       }),
     }),
     getAllServices: build.query({
-      query: (page = 1) => ({
-        url: `/api/jobs-service/services?page=${page}&size=6`,
+      query: () => ({
+        url: `/api/jobs-service/services?page=0&size=1000&sortBy=createdAt`,
         method: "GET",
       }),
     }),
@@ -67,6 +73,12 @@ export const serviceSlide = apiSlide.injectEndpoints({
         };
       },
     }),
+    getServicePoster: build.query({
+      query: (userId) => ({
+        url: `/api/jobs-service/services?userId=${userId}`,
+        method: "GET",
+      }),
+    }),
   }),
 });
 
@@ -79,4 +91,6 @@ export const {
   useGetMyOwnServiceQuery,
   useDeleteServiceMutation,
   useGetGetServicesByIdQuery,
+  useGetFreelancerServiceQuery,
+  useGetServicePosterQuery,
 } = serviceSlide;
