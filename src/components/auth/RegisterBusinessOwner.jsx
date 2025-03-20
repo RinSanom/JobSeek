@@ -104,7 +104,6 @@ const RegisterBusinessOwner = () => {
               {t("createAccountPrompt")}
             </p>
           </div>
-
           <Formik
             initialValues={{
               fullName: "",
