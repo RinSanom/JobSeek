@@ -307,7 +307,6 @@ const CreateServicePage = () => {
           </div>
         </form>
       </div>
-      <Toaster /> {/* Add Toaster component here */}
     </div>
   );
 };

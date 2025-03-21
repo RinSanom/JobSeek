@@ -330,7 +330,6 @@ const CreateJob = () => {
           </form>
         </div>
       </div>
-      <Toaster /> {/* Add Toaster component here */}
     </div>
   );
 };

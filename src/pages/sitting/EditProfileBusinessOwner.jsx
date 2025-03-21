@@ -15,6 +15,7 @@ import { useGetMeQuery } from "../../feature/auth/authSlide";
 import { useEditeProfileBusinessOwnerMutation } from "../../feature/editProfile/editeProfileSlide";
 import { useTranslation } from "react-i18next"; // Added for i18n
 import "../../i18n"; // Ensure i18n is imported
+import toast, { Toaster } from "react-hot-toast"; // Import toast and Toaster
 
 const EditProfileBusinessOwner = () => {
   const { t } = useTranslation(); // Hook for translations
@@ -151,15 +152,15 @@ const EditProfileBusinessOwner = () => {
       }).unwrap();
 
       // Success notification
-      alert(t("profileUpdatedSuccess"));
+      toast.success(t("profileUpdatedSuccess")); // Replace alert with toast.success
       console.log("Profile update response:", result);
     } catch (error) {
       console.error("Failed to update profile:", error);
       // More detailed error handling
       if (error.data?.message) {
-        alert(`${t("profileUpdateFailed")}: ${error.data.message}`);
+        toast.error(`${t("profileUpdateFailed")}: ${error.data.message}`); // Replace alert with toast.error
       } else {
-        alert(t("profileUpdateFailedTryAgain"));
+        toast.error(t("profileUpdateFailedTryAgain")); // Replace alert with toast.error
       }
     }
   };

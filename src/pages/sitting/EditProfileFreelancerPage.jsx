@@ -13,6 +13,7 @@ import {
 import { useGetMeQuery } from "../../feature/auth/authSlide";
 import { useUploadImageMutation } from "../../feature/fileUplord/fileUplordSlide";
 import { useEditeProfileFreelancerMutation } from "../../feature/editProfile/editeProfileSlide";
+import toast, { Toaster } from "react-hot-toast"; // Import toast and Toaster
 
 const EditProfileFreelancerPage = () => {
   // Fetch freelancer data
@@ -22,6 +23,7 @@ const EditProfileFreelancerPage = () => {
   const [editProfileFreelancer, { isLoading: isUpdating }] =
     useEditeProfileFreelancerMutation();
   const { data: userData, refetch } = useGetMeQuery(); // Add refetch
+
   // Initialize form data
   const [formData, setFormData] = useState({
     fullName: "",
@@ -107,44 +109,45 @@ const EditProfileFreelancerPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validateForm()) return;
-  
+
     try {
       let profileImageUrl = formData.profileImageUrl;
-  
+
       // Upload new image if selected
       if (selectedFile) {
         const imageFormData = new FormData();
         imageFormData.append("file", selectedFile);
-  
+
         const uploadResponse = await uploadImage(imageFormData).unwrap();
         if (uploadResponse && uploadResponse.uri) {
           profileImageUrl = uploadResponse.uri;
         }
       }
-  
+
       // Prepare data for submission
       const updatedData = {
         ...formData,
         profileImageUrl,
         skills: formData.skills.split(",").map((skill) => skill.trim()), // Convert skills back to array
       };
-  
+
       // Call API to update freelancer profile
       await editProfileFreelancer(updatedData).unwrap();
-  
+
       // Refetch user data to update the profile page
       await refetch();
-  
+
       // Success notification
-      alert("Profile updated successfully!");
+      toast.success("Profile updated successfully!");
+      // Replace alert with toast.success
     } catch (error) {
       console.error("Failed to update profile:", error);
-      alert(
+      toast.error(
         error?.data?.message || "Failed to update profile. Please try again."
-      );
+      ); // Replace alert with toast.error
     }
   };
-  
+
   // Show loading spinner while data is being fetched
   if (isFreelancerLoading) {
     return (
@@ -158,7 +161,7 @@ const EditProfileFreelancerPage = () => {
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen py-10 px-4">
       <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden">
         {/* Profile Header */}
-        <div className="bg-gradient-to-r from-blue-500 to-purple-600 text-white p-6">
+        <div className="bg-gradient-to-r bg-primary text-white p-6">
           <h1 className="text-2xl font-bold">Edit Freelancer Profile</h1>
           <p className="text-gray-200">Update your profile information</p>
         </div>
@@ -202,7 +205,7 @@ const EditProfileFreelancerPage = () => {
 
           {/* Full Name */}
           <div>
-            <label className="flex items-center text-gray-700 dark:text-gray-300 mb-2">
+            <label className="flex items-cente  text-gray-700 dark:text-gray-300 mb-2">
               <FaUser className="mr-2" /> Full Name
             </label>
             <input
@@ -210,7 +213,7 @@ const EditProfileFreelancerPage = () => {
               name="fullName"
               value={formData.fullName}
               onChange={handleChange}
-              className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+              className={`w-full p-3 border rounded-lg bg-white text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
                 formErrors.fullName ? "border-red-500" : ""
               }`}
             />
@@ -228,7 +231,7 @@ const EditProfileFreelancerPage = () => {
               name="gender"
               value={formData.gender}
               onChange={handleChange}
-              className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+              className={`w-full p-3 bg-white text-black border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
                 formErrors.gender ? "border-red-500" : ""
               }`}>
               <option value="">Select gender</option>
@@ -251,7 +254,7 @@ const EditProfileFreelancerPage = () => {
               name="phone"
               value={formData.phone}
               onChange={handleChange}
-              className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+              className={`w-full p-3 border bg-white text-black rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
                 formErrors.phone ? "border-red-500" : ""
               }`}
             />
@@ -270,7 +273,7 @@ const EditProfileFreelancerPage = () => {
               name="address"
               value={formData.address}
               onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="w-full p-3 border rounded-lg bg-white text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
           </div>
 
@@ -284,7 +287,7 @@ const EditProfileFreelancerPage = () => {
               name="skills"
               value={formData.skills}
               onChange={handleChange}
-              className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+              className={`w-full p-3 border rounded-lg bg-white text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
                 formErrors.skills ? "border-red-500" : ""
               }`}
             />
@@ -303,7 +306,7 @@ const EditProfileFreelancerPage = () => {
               name="portfolioUrl"
               value={formData.portfolioUrl}
               onChange={handleChange}
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="w-full p-3 border rounded-lg bg-white text-black focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
           </div>
 
@@ -317,7 +320,7 @@ const EditProfileFreelancerPage = () => {
               name="experienceYears"
               value={formData.experienceYears}
               onChange={handleChange}
-              className={`w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
+              className={`w-full p-3 border rounded-lg focus:ring-2 bg-white text-black focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white ${
                 formErrors.experienceYears ? "border-red-500" : ""
               }`}
             />
@@ -338,7 +341,7 @@ const EditProfileFreelancerPage = () => {
               value={formData.bio}
               onChange={handleChange}
               rows="4"
-              className="w-full p-3 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
+              className="w-full p-3 border rounded-lg focus:ring-2 bg-white text-black focus:ring-blue-500 focus:border-blue-500 dark:bg-gray-700 dark:border-gray-600 dark:text-white"
             />
           </div>
 
@@ -347,7 +350,7 @@ const EditProfileFreelancerPage = () => {
             <button
               type="submit"
               disabled={isUploading || isUpdating}
-              className="w-full bg-blue-500 text-white py-3 px-6 rounded-lg hover:bg-blue-600 transition duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
+              className="w-full bg-primary text-white py-3 px-6 rounded-lg hover:bg-primary-hover transition duration-300 flex items-center justify-center disabled:opacity-50 disabled:cursor-not-allowed">
               <FaSave className="mr-2" />{" "}
               {isUploading || isUpdating ? "Saving..." : "Save Changes"}
             </button>
