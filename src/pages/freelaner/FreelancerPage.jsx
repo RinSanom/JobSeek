@@ -1,10 +1,12 @@
 // pages/FreelancerPage.jsx
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next"; // Added for i18n
+import "../../i18n"; // Ensure i18n is imported (adjust path as needed)
 import ScrollIndicator from "../../components/scrollIndicator/scrollIndicator";
-import CustomCarousel from "../../components/carousel/CustomCarousel"; // Adjust path as needed
 import CardServices from "../../components/cards/Freelancer/CardServices";
 
 export default function FreelancerPage() {
+  const { t } = useTranslation(); // Hook for translations
   const [currentPage, setCurrentPage] = useState(1);
   const totalPages = 5; // Ideally, this should be dynamic from API response
 
@@ -20,11 +22,10 @@ export default function FreelancerPage() {
       <main className="max-w-screen-xl mx-auto p-4">
         <section className="py-4 sm:py-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-            What The Business Owner Needs.
+            {t("businessOwnerNeedsTitle")}
           </h2>
           <p className="text-sm sm:text-base md:text-md mt-2 sm:mt-3 text-gray-600 dark:text-gray-300">
-            Find the best Job for your business. Post a job and get the best
-            candidates to work for you
+            {t("businessOwnerNeedsDesc")}
           </p>
         </section>
 
@@ -35,7 +36,7 @@ export default function FreelancerPage() {
               className="dark:text-white"
               options={dropdownOptions}
               onChange={handleCategoryChange}
-              placeholder="Select a category"
+              placeholder={t("selectCategory")}
             />
           </div>
         </section> */}
@@ -52,8 +53,9 @@ export default function FreelancerPage() {
                   currentPage === 1
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:bg-blue-500 hover:text-white"
-                }`}>
-                Prev
+                }`}
+              >
+                {t("prev")}
               </button>
             </li>
             {[...Array(totalPages)].map((_, index) => {
@@ -66,7 +68,8 @@ export default function FreelancerPage() {
                       currentPage === page
                         ? "bg-blue-500 text-white"
                         : "hover:bg-blue-500 hover:text-white"
-                    }`}>
+                    }`}
+                  >
                     {page}
                   </button>
                 </li>
@@ -80,8 +83,9 @@ export default function FreelancerPage() {
                   currentPage === totalPages
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:bg-blue-500 hover:text-white"
-                }`}>
-                Next
+                }`}
+              >
+                {t("next")}
               </button>
             </li>
           </ol>
