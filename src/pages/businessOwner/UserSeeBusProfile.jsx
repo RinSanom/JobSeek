@@ -18,14 +18,12 @@ const UserSeeBusProfile = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const { data: userData, isLoading, isError } = useGetUserByIdQuery(id);
-  console.log("User Data: ", userData);
   
   const {
     data: jobposter,
     isLoading: isJobPosterLoading,
     isError: isJobPosterError,
   } = useGetJobPosterQuery(id);
-  console.log("Job Poster: ", jobposter);
   const [showAllServices, setShowAllServices] = useState(false);
 
   if (isLoading || isJobPosterLoading) {
@@ -121,8 +119,8 @@ const UserSeeBusProfile = () => {
                 <div className="space-y-4 sm:space-y-5">
                   {user.email && (
                     <div className="flex items-center">
-                      <div className="bg-blue-100 dark:bg-blue-900 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
-                        <FaEnvelope className="text-indigo-600 dark:text-blue-300 text-sm sm:text-base" />
+                      <div className="bg-primary  p-3 rounded-full mr-4">
+                        <FaEnvelope className="text-secondary" />
                       </div>
                       <div>
                         <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
@@ -136,8 +134,8 @@ const UserSeeBusProfile = () => {
                   )}
                   {user.phone && (
                     <div className="flex items-center">
-                      <div className="bg-blue-100 dark:bg-blue-900 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
-                        <FaPhone className="text-indigo-600 dark:text-blue-300 text-sm sm:text-base" />
+                      <div className="bg-primary  p-3 rounded-full mr-4">
+                        <FaPhone className="text-secondary" />
                       </div>
                       <div>
                         <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
@@ -151,8 +149,8 @@ const UserSeeBusProfile = () => {
                   )}
                   {user.companyWebsite && (
                     <div className="flex items-center">
-                      <div className="bg-blue-100 dark:bg-blue-900 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
-                        <FaGlobe className="text-indigo-600 dark:text-blue-300 text-sm sm:text-base" />
+                      <div className="bg-primary  p-3 rounded-full mr-4">
+                        <FaGlobe className="text-secondary" />
                       </div>
                       <div>
                         <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
@@ -170,8 +168,8 @@ const UserSeeBusProfile = () => {
                   )}
                   {user.createdAt && (
                     <div className="flex items-center">
-                      <div className="bg-blue-100 dark:bg-blue-900 p-2 sm:p-3 rounded-full mr-3 sm:mr-4">
-                        <FaCalendarAlt className="text-indigo-600 dark:text-blue-300 text-sm sm:text-base" />
+                      <div className="bg-primary  p-3 rounded-full mr-4">
+                        <FaCalendarAlt className="text-secondary" />
                       </div>
                       <div>
                         <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">

@@ -122,7 +122,7 @@ export default function UserSeeFreelancerPro() {
                   {user.skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="bg-teal-100 text-teal-800 dark:bg-teal-800 dark:text-teal-100 px-3 py-1 rounded-full text-sm">
+                      className="bg-primary text-white px-3 py-1 rounded-full text-sm">
                       {skill}
                     </span>
                   ))}
@@ -144,12 +144,12 @@ export default function UserSeeFreelancerPro() {
               <div className="space-y-4">
                 {user.email && (
                   <div className="flex items-center">
-                    <div className="bg-teal-100 dark:bg-teal-800 p-3 rounded-full mr-4">
-                      <FaEnvelope className="text-teal-600 dark:text-teal-200" />
+                    <div className="bg-primary  p-3 rounded-full mr-4">
+                      <FaEnvelope className="text-secondary" />
                     </div>
                     <div>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
-                        Email
+                        Email 
                       </p>
                       <p className="text-gray-800 dark:text-white">
                         {user.email}
@@ -160,8 +160,8 @@ export default function UserSeeFreelancerPro() {
 
                 {user.phone && (
                   <div className="flex items-center">
-                    <div className="bg-teal-100 dark:bg-teal-800 p-3 rounded-full mr-4">
-                      <FaPhone className="text-teal-600 dark:text-teal-200" />
+                    <div className="bg-primary  p-3 rounded-full mr-4">
+                      <FaPhone className="text-secondary" />
                     </div>
                     <div>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -176,8 +176,8 @@ export default function UserSeeFreelancerPro() {
 
                 {user.createdAt && (
                   <div className="flex items-center">
-                    <div className="bg-teal-100 dark:bg-teal-800 p-3 rounded-full mr-4">
-                      <FaCalendarAlt className="text-teal-600 dark:text-teal-200" />
+                    <div className="bg-primary  p-3 rounded-full mr-4">
+                      <FaCalendarAlt className="text-secondary" />
                     </div>
                     <div>
                       <p className="text-sm text-gray-500 dark:text-gray-400">

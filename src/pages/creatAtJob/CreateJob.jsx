@@ -313,7 +313,7 @@ const CreateJob = () => {
               <div className="flex justify-start mt-3 sm:mt-4">
                 <button
                   type="submit"
-                  className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-primary dark:bg-primary text-white rounded-lg hover:bg-indigo-700 dark:hover:bg-indigo-800 transition text-sm sm:text-base disabled:bg-indigo-300 dark:disabled:bg-indigo-500 disabled:cursor-not-allowed focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:ring-offset-2"
+                  className="inline-flex items-center px-3 sm:px-4 py-1.5 sm:py-2 bg-primary dark:bg-primary text-white rounded-lg hover:bg-primary-hover dark:hover:bg-indigo-800 transition text-sm sm:text-base disabled:bg-indigo-300 dark:disabled:bg-indigo-500 disabled:cursor-not-allowed focus:ring-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 focus:ring-offset-2"
                   disabled={isCreating || isUploading}
                 >
                   <FaSave className="mr-1 sm:mr-2 w-4 sm:w-5 h-4 sm:h-5" />

@@ -32,7 +32,6 @@ const LoginPage = () => {
     onSubmit: async (values) => {
       try {
         const response = await login(values).unwrap();
-        console.log("Login successful:", response);
 
         if (response?.accessToken) {
           localStorage.setItem("accessToken", response.accessToken);
@@ -46,12 +45,10 @@ const LoginPage = () => {
           });
 
           if (response.role === "FREELANCER") {
-            console.log("Freelancer login res : ", response.role);
             localStorage.setItem("userRole", response.role);
 
             navigate("/");
           } else if (response.role === "BUSINESS_OWNER") {
-            console.log("bussiness login res :", response.role);
             localStorage.setItem("userRole", response.role);
 
             navigate("/");
@@ -62,7 +59,6 @@ const LoginPage = () => {
           toast.error(t("noTokenReceived"));
         }
       } catch (err) {
-        console.error("Login error:", err);
         toast.error(err.data?.message || t("invalidCredentials"));
       }
     },

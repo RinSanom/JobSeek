@@ -150,7 +150,7 @@ export default function JobDetailPage() {
           <div className="sm:space-y-6 space-y-4">
             {jobPoster && (
               <>
-                <NavLink to={`/bussiness-owner-profile/${jobPoster.id}`}>
+                <NavLink to={`/business-owner-profile/${jobPoster.id}`}>
                   <div className="flex sm:space-y-6 space-y-4">
                     {jobPoster && (
                       <>

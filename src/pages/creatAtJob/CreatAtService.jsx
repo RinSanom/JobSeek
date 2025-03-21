@@ -274,7 +274,7 @@ const CreateServicePage = () => {
               <button
                 type="submit"
                 disabled={isLoading || isCreating || isUploading}
-                className="w-full px-3 sm:px-4 py-2 sm:py-3 mt-3 sm:mt-4 bg-indigo-600 dark:bg-indigo-700 text-white font-semibold rounded-md hover:bg-indigo-700 dark:hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 disabled:bg-indigo-300 dark:disabled:bg-indigo-500 disabled:cursor-not-allowed transition-all duration-200 text-sm sm:text-base"
+                className="w-full px-3 sm:px-4 py-2 sm:py-3 mt-3 sm:mt-4 bg-primary  text-white font-semibold rounded-md hover:bg-primary-hover dark:hover:bg-indigo-800 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 dark:focus:ring-indigo-400 disabled:bg-indigo-300 dark:disabled:bg-indigo-500 disabled:cursor-not-allowed transition-all duration-200 text-sm sm:text-base"
               >
                 {isLoading || isCreating ? (
                   <span className="flex items-center justify-center">

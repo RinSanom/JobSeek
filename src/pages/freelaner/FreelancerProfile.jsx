@@ -148,7 +148,7 @@ const FreelancerProfile = () => {
                   Skills
                 </h2>
                 <Link
-                  to="/edit-skills"
+                  to="/edit-profile-freelanecer"
                   className="text-primary hover:underline text-sm font-medium">
                   {skills.length > 0 ? "Edit Skills" : "Add Skills"}
                 </Link>
@@ -158,7 +158,7 @@ const FreelancerProfile = () => {
                   {skills.map((skill, index) => (
                     <span
                       key={index}
-                      className="bg-teal-100 text-teal-800 dark:bg-teal-800 dark:text-teal-100 px-3 py-1 rounded-full text-sm">
+                      className="bg-primary text-white dark:bg-primary dark:text-teal-100 px-3 py-1 rounded-full text-sm">
                       {skill}
                     </span>
                   ))}
@@ -180,8 +180,8 @@ const FreelancerProfile = () => {
               <div className="space-y-4">
                 {userData.email && (
                   <div className="flex items-center">
-                    <div className="bg-teal-100 dark:bg-teal-800 p-3 rounded-full mr-4">
-                      <FaEnvelope className="text-teal-600 dark:text-teal-200" />
+                    <div className="bg-primary  p-3 rounded-full mr-4">
+                      <FaEnvelope className="text-secondary " />
                     </div>
                     <div>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -196,8 +196,8 @@ const FreelancerProfile = () => {
 
                 {userData.phone && (
                   <div className="flex items-center">
-                    <div className="bg-teal-100 dark:bg-teal-800 p-3 rounded-full mr-4">
-                      <FaPhone className="text-teal-600 dark:text-teal-200" />
+                    <div className="bg-primary  p-3 rounded-full mr-4">
+                      <FaPhone className="text-secondary" />
                     </div>
                     <div>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -209,11 +209,11 @@ const FreelancerProfile = () => {
                     </div>
                   </div>
                 )}
-            
+
                 {userData.createdAt && (
                   <div className="flex items-center">
-                    <div className="bg-teal-100 dark:bg-teal-800 p-3 rounded-full mr-4">
-                      <FaCalendarAlt className="text-teal-600 dark:text-teal-200" />
+                    <div className="bg-primary  p-3 rounded-full mr-4">
+                      <FaCalendarAlt className="text-secondary" />
                     </div>
                     <div>
                       <p className="text-sm text-gray-500 dark:text-gray-400">
@@ -347,7 +347,7 @@ const FreelancerProfile = () => {
                     </p>
                     <Link
                       to="/create-service"
-                      className="mt-4 inline-flex items-center px-4 py-2 bg-teal-600 text-white rounded-lg hover:bg-teal-700 transition">
+                      className="mt-4 inline-flex items-center px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-hover transition">
                       <FaPlus className="mr-2" />
                       Add Service
                     </Link>

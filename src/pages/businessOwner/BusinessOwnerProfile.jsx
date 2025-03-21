@@ -159,8 +159,8 @@ const BusinessProfile = () => {
               <div className="sm:space-y-5 space-y-4">
                 {userData.email && (
                   <div className="flex items-center">
-                    <div className="bg-blue-100 p-2 rounded-full dark:bg-blue-900 mr-3 sm:mr-4 sm:p-3">
-                      <FaEnvelope className="text-indigo-600 text-sm dark:text-blue-300 sm:text-base" />
+                    <div className="bg-primary  p-3 rounded-full mr-4">
+                      <FaEnvelope className="text-secondary" />
                     </div>
                     <div>
                       <p className="text-gray-500 text-xs dark:text-gray-400 sm:text-sm">
@@ -213,7 +213,7 @@ const BusinessProfile = () => {
                     </div>
                     <div>
                       <p className="text-gray-500 text-xs dark:text-gray-400 sm:text-sm">
-                        {t("joinedAt")}
+                        {t("joinedAt")} 
                       </p>
                       <p className="text-gray-800 text-sm dark:text-white sm:text-base">
                         {new Date(userData.createdAt).toLocaleDateString()}
