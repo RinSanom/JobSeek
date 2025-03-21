@@ -18,6 +18,8 @@ const UserSeeBusProfile = () => {
   const { t } = useTranslation();
   const { id } = useParams();
   const { data: userData, isLoading, isError } = useGetUserByIdQuery(id);
+  console.log("User Data: ", userData);
+  
   const {
     data: jobposter,
     isLoading: isJobPosterLoading,

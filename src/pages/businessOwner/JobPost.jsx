@@ -1,4 +1,7 @@
+// pages/JobPost.jsx
 import React, { useState } from "react";
+import { useTranslation } from "react-i18next"; // Added for i18n
+import "../../i18n"; // Ensure i18n is imported (adjust path as needed)
 import ScrollIndicator from "../../components/scrollIndicator/scrollIndicator";
 import CardJob from "../../components/cards/businessOwner/CardJob";
 import { useGetAllJobsQuery } from "../../feature/job/jobSlide";
@@ -6,6 +9,7 @@ import Dropdown from "../../components/Dropdown";
 import { useGetAllCategoriesQuery } from "../../feature/service/serviceSlde";
 
 export default function JobPost() {
+  const { t } = useTranslation(); // Hook for translations
   const {
     data: jobsData,
     isLoading: isJobsLoading,
@@ -55,14 +59,14 @@ export default function JobPost() {
 
   // Loading state
   if (isJobsLoading || isCategoriesLoading) {
-    return <div className="text-center py-8">Loading...</div>;
+    return <div className="text-center py-8">{t("loading")}</div>;
   }
 
   // Error state
   if (isJobsError || isCategoriesError) {
     return (
       <div className="text-center py-8 text-red-500">
-        Error loading data. Please try again later.
+        {t("errorLoadingData")}
       </div>
     );
   }
@@ -71,7 +75,7 @@ export default function JobPost() {
   if (filteredJobs?.length === 0) {
     return (
       <div className="text-center py-8">
-        No jobs found for the selected category.
+        {t("noJobsFound")}
       </div>
     );
   }
@@ -82,11 +86,10 @@ export default function JobPost() {
       <main className="max-w-full sm:max-w-screen-md md:max-w-screen-lg lg:max-w-screen-xl mx-auto px-4 sm:px-6 lg:px-8 bg-gray-50 dark:bg-gray-900">
         <section className="py-4 sm:py-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-            What The Business Owner Needs.
+            {t("businessOwnerNeedsTitle")}
           </h2>
           <p className="text-sm sm:text-base md:text-md mt-2 sm:mt-3 text-gray-600 dark:text-gray-300">
-            Find the best Job for your business. Post a job and get the best
-            candidates to work for you
+            {t("businessOwnerNeedsDesc")}
           </p>
         </section>
 
@@ -97,7 +100,7 @@ export default function JobPost() {
               className="dark:text-white"
               options={dropdownOptions}
               onChange={handleCategoryChange}
-              placeholder="Select a category"
+              placeholder={t("selectCategory")}
             />
           </div>
         </section>
@@ -105,7 +108,6 @@ export default function JobPost() {
         <section className="mt-4 sm:mt-7">
           <CardJob jobs={paginatedJobs} />
         </section>
-
         {/* Pagination */}
         <section>
           <ol className="flex justify-center gap-2 mb-4">
@@ -113,13 +115,14 @@ export default function JobPost() {
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                aria-label="Previous page"
+                aria-label={t("prevPageAria")}
                 className={`px-3 py-2 border rounded transition-colors duration-200 ${
                   currentPage === 1
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:bg-blue-500 hover:text-white"
-                }`}>
-                Prev
+                }`}
+              >
+                {t("prev")}
               </button>
             </li>
             {[...Array(totalPages)].map((_, index) => {
@@ -128,12 +131,13 @@ export default function JobPost() {
                 <li key={page}>
                   <button
                     onClick={() => handlePageChange(page)}
-                    aria-label={`Page ${page}`}
+                    aria-label={t("pageAria", { page })}
                     className={`px-3 py-2 border rounded transition-colors duration-200 ${
                       currentPage === page
                         ? "bg-blue-500 text-white"
                         : "hover:bg-blue-500 hover:text-white"
-                    }`}>
+                    }`}
+                  >
                     {page}
                   </button>
                 </li>
@@ -143,13 +147,14 @@ export default function JobPost() {
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                aria-label="Next page"
+                aria-label={t("nextPageAria")}
                 className={`px-3 py-2 border rounded transition-colors duration-200 ${
                   currentPage === totalPages
                     ? "opacity-50 cursor-not-allowed"
                     : "hover:bg-blue-500 hover:text-white"
-                }`}>
-                Next
+                }`}
+              >
+                {t("next")}
               </button>
             </li>
           </ol>

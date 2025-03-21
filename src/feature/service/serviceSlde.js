@@ -10,7 +10,7 @@ export const serviceSlide = apiSlide.injectEndpoints({
     }),
     getFreelancerService: build.query({
       query: () => ({
-        url: "/api/users?userType=freelancer&page=0&size=10&sortBy=email",
+        url: "/api/users?userType=freelancer&page=0&size=30&sortBy=email",
         method: "GET",
       }),
     }),

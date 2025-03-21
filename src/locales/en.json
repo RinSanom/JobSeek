@@ -458,5 +458,22 @@
   "ourMission": "Our Mission",
   "missionDescription": "To provide a seamless platform that fosters collaboration, growth, and success for all users.",
   "coreValues": "Core Values",
-  "valuesDescription": "Integrity, collaboration, excellence, innovation, and customer-centricity guide everything we do."
+  "valuesDescription": "Integrity, collaboration, excellence, innovation, and customer-centricity guide everything we do.",
+  "loading": "Loading...",
+  "findBestServicesTitle": "Find the best services for your business",
+  "findBestServicesDesc": "Find the best services for your business. Post a job and get the best",
+  "prev": "Prev",
+  "next": "Next",
+  "loading": "Loading...",
+  "errorLoadingData": "Error loading data. Please try again later.",
+  "noJobsFound": "No jobs found for the selected category.",
+  "businessOwnerNeedsTitle": "What The Business Owner Needs",
+  "businessOwnerNeedsDesc": "Find the best Job for your business. Post a job and get the best candidates to work for you",
+  "selectCategory": "Select a category",
+  "prev": "Prev",
+  "next": "Next",
+  "prevPageAria": "Previous page",
+  "nextPageAria": "Next page",
+  "pageAria": "Page {{page}}"
+  
 }

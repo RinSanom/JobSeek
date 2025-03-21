@@ -147,7 +147,7 @@ const AppRoutes = () => (
         }
       />
       <Route
-        path="/bussiness-owner-profile/:id"
+        path="/business-owner-profile/:id"
         element={
           <ProtectedRoute allowedRoles={["FREELANCER", "BUSINESS_OWNER"]}>
             <UserSeeBusProfile />
