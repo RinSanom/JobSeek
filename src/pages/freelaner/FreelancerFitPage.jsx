@@ -5,7 +5,6 @@ import { useGetAllUsersQuery } from "../../feature/service/serviceSlde";
 
 export default function FreelancerFitPage() {
   const { data, isLoading, error } = useGetAllUsersQuery();
-  console.log("Data from FreelancerFitPage:", data);
   return (
     <div className="bg-gray-100 min-h-screen flex flex-col">
       <div className="container mx-auto flex flex-grow gap-6 px-4 mt-4">

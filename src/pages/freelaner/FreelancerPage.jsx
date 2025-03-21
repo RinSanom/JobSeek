@@ -1,8 +1,9 @@
 // pages/FreelancerPage.jsx
 import React, { useState } from "react";
 import ScrollIndicator from "../../components/scrollIndicator/scrollIndicator";
-import CustomCarousel from "../../components/carousel/CustomCarousel"; // Adjust path as needed
 import CardServices from "../../components/cards/Freelancer/CardServices";
+import ServiceBtn from "../../components/button/ServiceBtn";
+import { useGetAllCategoriesQuery } from "../../feature/service/serviceSlde";
 
 export default function FreelancerPage() {
   const [currentPage, setCurrentPage] = useState(1);
@@ -14,34 +15,31 @@ export default function FreelancerPage() {
     }
   };
 
+  const { data, isLoading } = useGetAllCategoriesQuery();
+  const allCategories = data?.data || [];
+
   return (
     <>
       <ScrollIndicator />
-      <main className="max-w-screen-xl mx-auto p-4">
+      <main className="p-4 max-w-screen-xl mx-auto">
         <section className="py-4 sm:py-6">
-          <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
-            What The Business Owner Needs.
+          <h2 className="text-gray-900 text-xl dark:text-white font-bold md:text-3xl sm:text-2xl">
+            Find the best services for your business
           </h2>
-          <p className="text-sm sm:text-base md:text-md mt-2 sm:mt-3 text-gray-600 dark:text-gray-300">
-            Find the best Job for your business. Post a job and get the best
-            candidates to work for you
+          <p className="text-gray-600 text-sm dark:text-gray-300 md:text-md mt-2 sm:mt-3 sm:text-base">
+            Find the best services for your business. Post a job and get the
+            best
           </p>
         </section>
 
-        {/* Dropdown for category filtering */}
-        {/* <section className="border-b-2 border-gray-300 dark:border-gray-700 flex flex-col sm:flex-row mt-3 sm:mt-4 justify-between items-start sm:items-center gap-3 sm:gap-0 pb-3 sm:pb-4">
-          <div className="w-full sm:w-auto">
-            <Dropdown
-              className="dark:text-white"
-              options={dropdownOptions}
-              onChange={handleCategoryChange}
-              placeholder="Select a category"
-            />
-          </div>
-        </section> */}
+        <section className="border-b-2 border-gray-300 dark:border-gray-700 mt-3 pb-3 sm:mt-4 sm:pb-4">
+          <ServiceBtn categories={allCategories} />
+        </section>
+
         <section className="mt-10">
           <CardServices page={currentPage} />
         </section>
+
         <section>
           <ol className="flex justify-center gap-2 mt-4">
             <li>
