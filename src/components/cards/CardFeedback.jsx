@@ -9,6 +9,10 @@ import Aos from "aos";
 import daraImg from "../../assets/imgAboutUs/dara.jpg";
 import nomImg from "../../assets/imgAboutUs/sanom.jpg";
 import thearaImg from "./../../assets/imgAboutUs/theara.jpg";
+import meyling from "./../../assets/imgAboutUs/meyLingjpg.jpg";
+import daron from "./../../assets/imgAboutUs/daron.png";
+
+import { t } from "i18next";
 
 const testimonials = [
   {
@@ -20,32 +24,26 @@ const testimonials = [
   {
     nameKey: "ChimTheara",
     roleKey: "leadDesigner",
-    image: nomImg,
+    image: thearaImg,
     feedbackKey: "chimThearaFeedback",
   },
   {
     nameKey: "RinSanom",
     roleKey: "webDeveloper",
-    image: thearaImg,
+    image: nomImg,
     feedbackKey: "rinSanomFeedback",
   },
   {
-    nameKey: "KongSisovandara",
+    nameKey: "Chun MeyLing",
     roleKey: "leadFrontend",
-    image: daraImg,
+    image: meyling,
     feedbackKey: "kongSisovandaraFeedback",
   },
   {
-    nameKey: "ChimTheara",
+    nameKey: "Kea Daron",
     roleKey: "leadDesigner",
-    image: nomImg,
+    image: daron,
     feedbackKey: "chimThearaFeedback",
-  },
-  {
-    nameKey: "RinSanom",
-    roleKey: "webDeveloper",
-    image: thearaImg,
-    feedbackKey: "rinSanomFeedback",
   },
 ];
 
@@ -56,7 +54,7 @@ const CardFeedback = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="w-full mx-auto  cursor-pointer">
+    <div className="w-full cursor-pointer mx-auto">
       <Swiper
         modules={[Pagination, Autoplay]}
         pagination={{ clickable: true }}
@@ -78,21 +76,21 @@ const CardFeedback = () => {
             <blockquote
               data-aos="fade-up"
               data-aos-duration="1000"
-              className="rounded-lg bg-gray-50 p-4 sm:p-6 lg:p-8 shadow-lg dark:bg-black dark:border-white dark:border">
-              <div className="flex items-start gap-3 sm:gap-4">
+              className="bg-gray-50 p-4 rounded-lg shadow-lg dark:bg-black dark:border dark:border-white lg:p-8 sm:p-6">
+              <div className="flex gap-3 items-start sm:gap-4">
                 <img
                   alt={t(testimonial.nameKey)}
                   src={testimonial.image}
-                  className="size-12 sm:size-14 rounded-full object-cover"
+                  className="rounded-full object-cover size-12 sm:size-14"
                 />
                 <div>
-                  <p className="text-base sm:text-lg font-semibold text-gray-900 dark:text-white">
+                  <p className="text-base text-gray-900 dark:text-white font-semibold sm:text-lg">
                     {t(testimonial.nameKey)}
                   </p>
-                  <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+                  <p className="text-gray-500 text-xs dark:text-gray-400 sm:text-sm">
                     {t(testimonial.roleKey)}
                   </p>
-                  <div className="flex gap-0.5 text-yellow-500">
+                  <div className="flex text-yellow-500 gap-0.5">
                     {Array(5)
                       .fill(0)
                       .map((_, i) => (
@@ -108,7 +106,7 @@ const CardFeedback = () => {
                   </div>
                 </div>
               </div>
-              <p className="mt-3 sm:mt-4 text-sm sm:text-base text-gray-700 dark:text-gray-300 text-start line-clamp-6">
+              <p className="text-gray-700 text-sm text-start dark:text-gray-300 line-clamp-6 mt-3 sm:mt-4 sm:text-base">
                 {t(testimonial.feedbackKey)}
               </p>
             </blockquote>

@@ -123,7 +123,7 @@ function JobCard({ service, jobPoster }) {
         <div className="flex items-center justify-between">
           <div className="flex gap-2">
             <span className="text-md text-primary dark:text-gray-400">
-              {service.budget}$ /M
+               {service.budget}$ /M
             </span>
           </div>
           <div className="flex items-center gap-2">

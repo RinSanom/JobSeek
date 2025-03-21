@@ -4,6 +4,8 @@ import { useTranslation } from "react-i18next"; // Added for i18n
 import "../../i18n"; // Ensure i18n is imported (adjust path as needed)
 import ScrollIndicator from "../../components/scrollIndicator/scrollIndicator";
 import CardServices from "../../components/cards/Freelancer/CardServices";
+import ServiceBtn from "../../components/button/ServiceBtn";
+import { useGetAllCategoriesQuery } from "../../feature/service/serviceSlde";
 
 export default function FreelancerPage() {
   const { t } = useTranslation(); // Hook for translations
@@ -16,10 +18,13 @@ export default function FreelancerPage() {
     }
   };
 
+  const { data, isLoading } = useGetAllCategoriesQuery();
+  const allCategories = data?.data || [];
+
   return (
     <>
       <ScrollIndicator />
-      <main className="max-w-screen-xl mx-auto p-4">
+      <main className="p-4 max-w-screen-xl mx-auto">
         <section className="py-4 sm:py-6">
           <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-gray-900 dark:text-white">
             {t("businessOwnerNeedsTitle")}
@@ -29,20 +34,14 @@ export default function FreelancerPage() {
           </p>
         </section>
 
-        {/* Dropdown for category filtering */}
-        {/* <section className="border-b-2 border-gray-300 dark:border-gray-700 flex flex-col sm:flex-row mt-3 sm:mt-4 justify-between items-start sm:items-center gap-3 sm:gap-0 pb-3 sm:pb-4">
-          <div className="w-full sm:w-auto">
-            <Dropdown
-              className="dark:text-white"
-              options={dropdownOptions}
-              onChange={handleCategoryChange}
-              placeholder={t("selectCategory")}
-            />
-          </div>
-        </section> */}
+        <section className="border-b-2 border-gray-300 dark:border-gray-700 mt-3 pb-3 sm:mt-4 sm:pb-4">
+          <ServiceBtn categories={allCategories} />
+        </section>
+
         <section className="mt-10">
           <CardServices page={currentPage} />
         </section>
+
         <section>
           <ol className="flex justify-center gap-2 mt-4">
             <li>

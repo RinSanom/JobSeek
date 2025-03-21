@@ -23,12 +23,23 @@ export default function JobDetailPage() {
   const { data: userData } = useGetAllUsersQuery();
 
   const jobData = jobs?.content?.find((job) => job.id === id);
-  console.log("Job Data", jobData);
 
   const users = userData?.data?.content || [];
   const jobPoster = users.find((user) => user.id === jobData?.userId);
-  console.log("Job Poster", jobPoster);
+  // Function to handle email navigation
+  const handleEmailClick = () => {
+    window.location.href = `mailto:${jobPoster.email}`;
+  };
 
+  // Function to handle phone navigation
+  const handlePhoneClick = () => {
+    window.location.href = `tel:${jobPoster.phone}`;
+  };
+
+  // Function to handle website navigation
+  const handleWebsiteClick = () => {
+    window.open(jobPoster.companyWebsite, "_blank");
+  };
   if (isLoading) {
     return (
       <div className="flex bg-gray-50 justify-center dark:bg-gray-900 items-center min-h-screen">
@@ -75,7 +86,55 @@ export default function JobDetailPage() {
   return (
     <div className="bg-gray-50 dark:bg-gray-900 min-h-screen py-6 sm:py-10">
       <div className="lg:max-w-6xl lg:px-8 max-w-full md:max-w-5xl mx-auto px-4 sm:max-w-3xl sm:px-6 xl:max-w-7xl">
-        <div className="grid grid-cols-1 border-b border-indigo-500 dark:border-indigo-400 gap-4 md:gap-8 md:grid-cols-2 pb-6 sm:gap-6 sm:pb-8">
+        <nav aria-label="Breadcrumb">
+          <ol className="flex text-gray-600 text-sm dark:text-gray-300 gap-1 items-center">
+            <li>
+              <a
+                href="/"
+                className="block dark:hover:text-gray-200 hover:text-gray-700 hover:underline transition">
+                <span className="sr-only"> Home </span>
+
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  className="size-4"
+                  fill="none"
+                  viewBox="0 0 24 24"
+                  stroke="currentColor">
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6"
+                  />
+                </svg>
+              </a>
+            </li>
+
+            <li className="rtl:rotate-180">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                className="size-4"
+                viewBox="0 0 20 20"
+                fill="currentColor">
+                <path
+                  fillRule="evenodd"
+                  d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
+                  clipRule="evenodd"
+                />
+              </svg>
+            </li>
+
+            <li>
+              <a
+                href="/job-post"
+                className="block dark:hover:text-gray-200 hover:text-gray-700 hover:underline transition">
+                {" "}
+                Job Post{" "}
+              </a>
+            </li>
+          </ol>
+        </nav>
+        <div className="grid grid-cols-1 border-b border-indigo-500 dark:border-indigo-400 gap-4 md:gap-8 md:grid-cols-2 mt-3 pb-6 sm:gap-6 sm:pb-8">
           <div className="sm:space-y-6 space-y-4">
             <div className="sm:space-y-4 space-y-3">
               {jobData.jobImages?.map((image, index) => (
@@ -132,17 +191,14 @@ export default function JobDetailPage() {
               <p className="text-gray-600 text-sm dark:text-gray-300 sm:text-base">
                 {jobData.description}
               </p>{" "}
-              <div className="flex items-center">
-                <span className="text-gray-700 text-sm w-24 dark:text-gray-300 font-semibold sm:text-base sm:w-32">
-                  {t("budget")}:
+              <div className="flex items-start">
+                <span className="text-gray-700 text-sm dark:text-gray-300 font-semibold sm:text-base sm:w-32">
+                  {t("Salary")}: {jobData.budget}$ /M
                 </span>
-                <span className="text-gray-600 text-sm dark:text-gray-400 sm:text-base">
-                  ${jobData.budget}
-                </span>
+                <span className="text-gray-600 text-sm dark:text-gray-400 sm:text-base"></span>
               </div>
             </div>
           </div>
-
           {/* Right Column: Job Poster and Images */}
         </div>
         <section className="grid grid-cols-1 border-gray-300 border-t-2 dark:border-gray-700 gap-6 lg:grid-cols-3 mb-6 md:grid-cols-2 py-6 sm:gap-8 sm:mb-8 sm:py-8">
@@ -155,7 +211,9 @@ export default function JobDetailPage() {
                 </h3>
                 <div className="sm:space-y-5 space-y-4">
                   {jobPoster.email && (
-                    <div className="flex items-center">
+                    <div
+                      onClick={handleEmailClick}
+                      className="flex cursor-pointer items-center">
                       <div className="bg-blue-100 p-2 rounded-full dark:bg-blue-900 mr-3 sm:mr-4 sm:p-3">
                         <FaEnvelope className="text-indigo-600 text-sm dark:text-blue-300 sm:text-base" />
                       </div>
@@ -170,7 +228,9 @@ export default function JobDetailPage() {
                     </div>
                   )}
                   {jobPoster.phone && (
-                    <div className="flex items-center">
+                    <div
+                      onClick={handlePhoneClick}
+                      className="flex cursor-pointer items-center">
                       <div className="bg-blue-100 p-2 rounded-full dark:bg-blue-900 mr-3 sm:mr-4 sm:p-3">
                         <FaPhone className="text-indigo-600 text-sm dark:text-blue-300 sm:text-base" />
                       </div>
@@ -185,7 +245,9 @@ export default function JobDetailPage() {
                     </div>
                   )}
                   {jobPoster.companyWebsite && (
-                    <div className="flex items-center">
+                    <div
+                      onClick={handleWebsiteClick}
+                      className="flex cursor-pointer items-center">
                       <div className="bg-blue-100 p-2 rounded-full dark:bg-blue-900 mr-3 sm:mr-4 sm:p-3">
                         <FaGlobe className="text-indigo-600 text-sm dark:text-blue-300 sm:text-base" />
                       </div>

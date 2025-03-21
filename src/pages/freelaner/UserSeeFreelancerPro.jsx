@@ -24,8 +24,7 @@ export default function UserSeeFreelancerPro() {
 
   const [showAllServices, setShowAllServices] = useState(false);
 
-  console.log("Job Poster Data:", jobposter);
-  console.log("User Data:", userData);
+
 
   if (isLoading || isJobPosterLoading) {
     return (

@@ -193,7 +193,7 @@ const ChatbotPage = () => {
                 Welcome to JobSeek's AI
               </h2>
               <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400 mb-6 flex items-center gap-2">
-                Hi <span className="text-yellow-500 dark:text-yellow-400">👋</span> Koko what can I help with
+                Hi <span className="text-yellow-500 dark:text-yellow-400">👋</span> How can I help you?
               </p>
             </div>
           )}

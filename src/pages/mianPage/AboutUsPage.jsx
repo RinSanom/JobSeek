@@ -22,10 +22,10 @@ export default function AboutUsPage() {
   }, []);
 
   return (
-    <main className="bg-gray-50 dark:bg-gray-900 min-h-screen">
+    <main className="bg-gray-50 dark:bg-gray-900 min-h-screen overflow-x-hidden">
       <ScrollIndicator />
       <HeroSection />
-      <div className="max-w-screen-xl mx-auto sm:px-6">
+      <div className="max-w-screen-xl mx-auto sm:px-6 px-4">
         <VisionMissionValues />
         <section className="mt-20">
           <h2
@@ -41,9 +41,9 @@ export default function AboutUsPage() {
           >
             {t("ourTeam")}
           </h2>
-        <div>
-        <OurTeam />
-        </div>
+          <div>
+            <OurTeam />
+          </div>
         </section>
         <section className="mt-20">
           <h2
@@ -54,76 +54,62 @@ export default function AboutUsPage() {
           </h2>
           <CardAchievement />
         </section>
-        {/* <section className="mt-20">
-          <h2
-            data-aos="fade-up"
-            className="text-3xl md:text-4xl font-bold text-primary text-center underline underline-offset-8 decoration-secondary mb-10"
-          >
-            {t("aboutUs.service")}
-          </h2>
-          <CardService />
-        </section> */}
-
         {/* How It Works Section */}
         <section className="mt-20">
-      <h2
-        data-aos="fade-up"
-        className="text-3xl md:text-4xl font-bold text-primary text-center underline underline-offset-8 decoration-secondary mb-12"
-      >
-        {t("howItWorks")}
-      </h2>
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-        <div
-          data-aos="fade-up"
-          data-aos-delay="100"
-          className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center"
-        >
-          <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-2xl text-blue-600 dark:text-blue-300">1</span>
+          <h2
+            data-aos="fade-up"
+            className="text-3xl md:text-4xl font-bold text-primary text-center underline underline-offset-8 decoration-secondary mb-12"
+          >
+            {t("howItWorks")}
+          </h2>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div
+              data-aos="fade-up"
+              data-aos-delay="100"
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center"
+            >
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl text-blue-600 dark:text-blue-300">1</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                {t("freelancersCreateProfilesTitle")}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                {t("freelancersCreateProfilesDesc")}
+              </p>
+            </div>
+            <div
+              data-aos="fade-up"
+              data-aos-delay="200"
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center"
+            >
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl text-blue-600 dark:text-blue-300">2</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                {t("businessOwnersPostJobsTitle")}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                {t("businessOwnersPostJobsDesc")}
+              </p>
+            </div>
+            <div
+              data-aos="fade-up"
+              data-aos-delay="300"
+              className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center"
+            >
+              <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
+                <span className="text-2xl text-blue-600 dark:text-blue-300">3</span>
+              </div>
+              <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
+                {t("connectCollaborateTitle")}
+              </h3>
+              <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
+                {t("connectCollaborateDesc")}
+              </p>
+            </div>
           </div>
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-            {t("freelancersCreateProfilesTitle")}
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            {t("freelancersCreateProfilesDesc")}
-          </p>
-        </div>
-        <div
-          data-aos="fade-up"
-          data-aos-delay="200"
-          className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center"
-        >
-          <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-2xl text-blue-600 dark:text-blue-300">2</span>
-          </div>
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-            {t("businessOwnersPostJobsTitle")}
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            {t("businessOwnersPostJobsDesc")}
-          </p>
-        </div>
-        <div
-          data-aos="fade-up"
-          data-aos-delay="300"
-          className="bg-white dark:bg-gray-800 rounded-xl shadow-lg p-6 text-center"
-        >
-          <div className="w-16 h-16 bg-blue-100 dark:bg-blue-900 rounded-full flex items-center justify-center mx-auto mb-4">
-            <span className="text-2xl text-blue-600 dark:text-blue-300">3</span>
-          </div>
-          <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-3">
-            {t("connectCollaborateTitle")}
-          </h3>
-          <p className="text-gray-600 dark:text-gray-300 leading-relaxed">
-            {t("connectCollaborateDesc")}
-          </p>
-        </div>
-      </div>
-    </section>
-
-
-
-
+        </section>
         {/* Contact Us Section */}
         <section className="mt-20">
           <CardContactUs />

@@ -111,7 +111,7 @@ export default function JobPost() {
 
         {/* Pagination */}
         <section>
-          <ol className="flex justify-center gap-2 mt-4">
+          <ol className="flex justify-center gap-2 mb-4">
             <li>
               <button
                 onClick={() => handlePageChange(currentPage - 1)}

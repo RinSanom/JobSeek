@@ -16,10 +16,10 @@ export default function PopularCart() {
           data-aos="fade-up"
           data-aos-duration="1000"
           key={index}
-          className="relative block rounded-tr-3xl border border-gray-100 dark:border-gray-700"
+          className="border border-gray-100 rounded-tr-3xl block dark:border-gray-700 relative"
         >
           {/* Date Badge */}
-          <span className="absolute -right-px -top-px rounded-bl-3xl rounded-tr-3xl bg-rose-600 px-4 py-2 sm:px-6 sm:py-4 font-medium uppercase tracking-widest text-black dark:text-white">
+          <span className="bg-rose-600 rounded-bl-3xl rounded-tr-3xl text-black -right-px -top-px absolute dark:text-white font-medium px-4 py-2 sm:px-6 sm:py-4 tracking-widest uppercase">
             {jobData.publishedDate}
           </span>
 
@@ -27,23 +27,23 @@ export default function PopularCart() {
           <img
             src={jobData.imageUrl}
             alt={jobData.companyName}
-            className="h-48 sm:h-64 md:h-80 w-full rounded-tr-3xl object-cover"
+            className="h-48 rounded-tr-3xl w-full md:h-80 object-cover sm:h-64"
           />
 
           {/* Content */}
-          <div className="p-3 sm:p-4 text-start">
-            <strong className="text-lg sm:text-xl font-medium text-gray-900 dark:text-gray-100">
+          <div className="p-3 text-start sm:p-4">
+            <strong className="text-gray-900 text-lg dark:text-gray-100 font-medium sm:text-xl">
               {t(jobData.companyType)}
             </strong>
-            <p className="mt-1 sm:mt-2 text-sm sm:text-base text-pretty text-black dark:text-gray-300 line-clamp-2">
+            <p className="text-black text-pretty text-sm dark:text-gray-300 line-clamp-2 mt-1 sm:mt-2 sm:text-base">
               {t(jobData.role)}
             </p>
-            <p className="mt-1 sm:mt-2 text-sm sm:text-base text-pretty text-black dark:text-gray-300 line-clamp-2">
+            <p className="text-black text-pretty text-sm dark:text-gray-300 line-clamp-2 mt-1 sm:mt-2 sm:text-base">
               {t(jobData.companyDescription)} {t(jobData.companyDescriptionKey)}
             </p>
 
             {/* Learn More Button */}
-            <span className="mt-3 sm:mt-4 block text-center rounded-md border border-indigo-900 bg-indigo-900 px-4 py-2 sm:px-5 sm:py-3 text-xs sm:text-sm font-medium uppercase tracking-widest text-white transition-colors hover:bg-white hover:text-indigo-900 dark:border-indigo-500 dark:bg-indigo-500 dark:hover:bg-gray-800 dark:hover:text-indigo-300">
+            <span className="bg-indigo-900 border border-indigo-900 rounded-md text-center text-white text-xs block dark:bg-indigo-500 dark:border-indigo-500 dark:hover:bg-gray-800 dark:hover:text-indigo-300 font-medium hover:bg-white hover:text-indigo-900 mt-3 px-4 py-2 sm:mt-4 sm:px-5 sm:py-3 sm:text-sm tracking-widest transition-colors uppercase">
               {t("learnMore")}
             </span>
           </div>
